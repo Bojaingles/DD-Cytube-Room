@@ -1,3 +1,102 @@
+// ============================================================
+// CYTUBE ROOM CUSTOM JAVASCRIPT
+// ============================================================
+
+
+
+// ------------------------------------------------------------
+// FAVICON
+// ------------------------------------------------------------
+
+(function () {
+    const faviconURL = "https://i.postimg.cc/5N5W08N0/Stan-Smith-Head.png";
+
+    let link = document.querySelector("link[rel~='icon']");
+
+    if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.getElementsByTagName("head")[0].appendChild(link);
+    }
+
+    link.href = faviconURL;
+})();
+
+
+
+// ------------------------------------------------------------
+// CHAT TIMESTAMPS
+// ------------------------------------------------------------
+
+function processNode(node) {
+    if (!(node instanceof HTMLElement)) return;
+
+    const ts = node.querySelector(".timestamp");
+
+    if (ts && !ts.dataset.dateAdded) {
+        let date;
+
+        if (ts.title) {
+            // CyTube puts a full timestamp in the title attribute
+            date = new Date(ts.title);
+        } else {
+            // fallback if no title is present
+            date = new Date();
+        }
+
+        ts.textContent = "[" + formatDate(date) + "]";
+        ts.dataset.dateAdded = "true";
+    }
+}
+
+
+
+// ------------------------------------------------------------
+// SMOOTH SCROLL TO VIDEO
+// ------------------------------------------------------------
+
+function addSmoothScroll() {
+    const video = document.getElementById("videowrap");
+    const link = document.querySelector('a[href="#videowrap"]');
+
+    if (!video || !link) {
+        setTimeout(addSmoothScroll, 500);
+        return;
+    }
+
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const rect = video.getBoundingClientRect();
+        const scrollTop =
+            window.pageYOffset ||
+            document.documentElement.scrollTop;
+
+        const videoCenter =
+            rect.top +
+            scrollTop +
+            rect.height / 2;
+
+        const targetScroll =
+            videoCenter -
+            window.innerHeight / 2;
+
+        window.scrollTo({
+            top: targetScroll,
+            behavior: "smooth"
+        });
+    });
+}
+
+addSmoothScroll();
+
+
+
+// ============================================================
+// PASTE IMAGE / CATBOX CODE GOES BELOW HERE
+// ============================================================
+
+
 (function () {
     "use strict";
 
