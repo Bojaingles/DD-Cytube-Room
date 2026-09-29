@@ -1,19 +1,6 @@
 // ============================================================================
 // CYTUBE ROOM CUSTOM JAVASCRIPT
 // ============================================================================
-//
-// Features:
-//
-// 1. Custom favicon
-// 2. Full date/time on chat timestamps
-// 3. Smooth scroll to video
-// 4. Paste screenshots/images directly into chat with CTRL+V
-// 5. Drag images onto the chat box
-// 6. Automatically upload pasted images
-// 7. Automatically display image URLs inline
-// 8. Click an inline image to open the full-size image
-//
-// ============================================================================
 
 (function () {
     "use strict";
@@ -26,15 +13,13 @@
     const FAVICON_URL =
         "https://i.postimg.cc/5N5W08N0/Stan-Smith-Head.png";
 
-    // Maximum displayed image size inside chat.
     const IMAGE_MAX_WIDTH = 500;
     const IMAGE_MAX_HEIGHT = 400;
 
-    // Maximum pasted/uploaded image size.
-    // 20 MB.
-    const MAX_UPLOAD_SIZE = 20 * 1024 * 1024;
+    // 20 MB
+    const MAX_UPLOAD_SIZE =
+        20 * 1024 * 1024;
 
-    // GoFile anonymous upload endpoint.
     const UPLOAD_URL =
         "https://upload.gofile.io/uploadfile";
 
@@ -45,342 +30,347 @@
 
     function setFavicon() {
         let link =
-            document.querySelector("link[rel~='icon']");
+            document.querySelector(
+                "link[rel~='icon']"
+            );
 
         if (!link) {
-            link = document.createElement("link");
+            link =
+                document.createElement(
+                    "link"
+                );
+
             link.rel = "icon";
 
-            document
-                .getElementsByTagName("head")[0]
-                .appendChild(link);
+            document.head.appendChild(
+                link
+            );
         }
 
-        link.href = FAVICON_URL;
+        link.href =
+            FAVICON_URL;
     }
 
     setFavicon();
 
 
-   // ========================================================================
-// CHAT TIMESTAMPS + CURRENT EPISODE CODE
-// ========================================================================
-//
-// Format:
-//
-// [S02E07] [9/28/26 23:14]
-//
-// The episode code is extracted from the CURRENTLY PLAYING video title.
-//
-// Recognized examples:
-//
-// S01E01
-// S02E07
-// S10E24
-// S3E5
-//
-// ========================================================================
+    // ========================================================================
+    // DATE / TIME
+    // ========================================================================
 
-
-function padNumber(number) {
-    return String(number).padStart(2, "0");
-}
-
-
-// ------------------------------------------------------------------------
-// DATE FORMAT
-// ------------------------------------------------------------------------
-//
-// M/D/YY HH:MM
-//
-// Example:
-// 9/28/26 23:14
-//
-
-function formatDate(date) {
-    if (
-        !(date instanceof Date) ||
-        isNaN(date.getTime())
-    ) {
-        date = new Date();
-    }
-
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const year = String(date.getFullYear()).slice(-2);
-
-    const hours = padNumber(date.getHours());
-    const minutes = padNumber(date.getMinutes());
-
-    return (
-        month +
-        "/" +
-        day +
-        "/" +
-        year +
-        " " +
-        hours +
-        ":" +
-        minutes
-    );
-}
-
-
-// ------------------------------------------------------------------------
-// GET CURRENT VIDEO TITLE
-// ------------------------------------------------------------------------
-
-function getCurrentVideoTitle() {
-
-    // First choice:
-    // CyTube's current-title display.
-
-    const currentTitle =
-        document.getElementById("currenttitle");
-
-    if (
-        currentTitle &&
-        currentTitle.textContent.trim()
-    ) {
-        return currentTitle.textContent.trim();
-    }
-
-
-    // Fallback:
-    // Active playlist entry.
-
-    const activeTitle =
-        document.querySelector(
-            ".queue_active .qe_title"
+    function padNumber(number) {
+        return String(number).padStart(
+            2,
+            "0"
         );
-
-    if (
-        activeTitle &&
-        activeTitle.textContent.trim()
-    ) {
-        return activeTitle.textContent.trim();
     }
 
 
-    // Second playlist fallback for CyTube layouts
-    // where the title is directly inside an anchor.
+    function formatDate(date) {
+        if (
+            !(date instanceof Date) ||
+            isNaN(date.getTime())
+        ) {
+            date = new Date();
+        }
 
-    const activeLink =
-        document.querySelector(
-            ".queue_active a"
+        const month =
+            date.getMonth() + 1;
+
+        const day =
+            date.getDate();
+
+        const year =
+            String(
+                date.getFullYear()
+            ).slice(-2);
+
+        const hours =
+            padNumber(
+                date.getHours()
+            );
+
+        const minutes =
+            padNumber(
+                date.getMinutes()
+            );
+
+        return (
+            month +
+            "/" +
+            day +
+            "/" +
+            year +
+            " " +
+            hours +
+            ":" +
+            minutes
         );
-
-    if (
-        activeLink &&
-        activeLink.textContent.trim()
-    ) {
-        return activeLink.textContent.trim();
     }
 
 
-    return "";
-}
+    // ========================================================================
+    // CURRENT VIDEO TITLE
+    // ========================================================================
 
+    function getCurrentVideoTitle() {
 
-// ------------------------------------------------------------------------
-// EXTRACT EPISODE CODE
-// ------------------------------------------------------------------------
+        // ------------------------------------------------------------
+        // Prefer active playlist entry.
+        // ------------------------------------------------------------
 
-function getCurrentEpisodeCode() {
-
-    const title =
-        getCurrentVideoTitle();
-
-    if (!title) {
-        return null;
-    }
-
-
-    /*
-     * Finds codes such as:
-     *
-     * S02E07
-     * S2E7
-     * S10E24
-     *
-     */
-
-    const match =
-        title.match(
-            /\bS(\d{1,3})E(\d{1,3})\b/i
-        );
-
-
-    if (!match) {
-        return null;
-    }
-
-
-    /*
-     * Normalize it.
-     *
-     * S2E7
-     *
-     * becomes:
-     *
-     * S02E07
-     */
-
-    const season =
-        String(match[1]).padStart(2, "0");
-
-    const episode =
-        String(match[2]).padStart(2, "0");
-
-
-    return (
-        "S" +
-        season +
-        "E" +
-        episode
-    );
-}
-
-
-// ------------------------------------------------------------------------
-// MODIFY CHAT TIMESTAMP
-// ------------------------------------------------------------------------
-
-function processTimestamp(timestamp) {
-
-    if (!timestamp) {
-        return;
-    }
-
-
-    // Prevent the same message from being processed twice.
-
-    if (
-        timestamp.dataset
-            .episodeTimestampAdded ===
-        "true"
-    ) {
-        return;
-    }
-
-
-    // --------------------------------------------------------------------
-    // MESSAGE DATE
-    // --------------------------------------------------------------------
-
-    let date = null;
-
-
-    /*
-     * CyTube normally puts additional timestamp
-     * information in the title attribute.
-     */
-
-    if (timestamp.title) {
-
-        const parsedDate =
-            new Date(timestamp.title);
+        const activeTitle =
+            document.querySelector(
+                ".queue_active .qe_title"
+            );
 
         if (
-            !isNaN(
-                parsedDate.getTime()
-            )
+            activeTitle &&
+            activeTitle.textContent.trim()
         ) {
-            date = parsedDate;
+            return activeTitle.textContent.trim();
         }
+
+
+        // ------------------------------------------------------------
+        // Some CyTube layouts use an anchor directly.
+        // ------------------------------------------------------------
+
+        const activeLink =
+            document.querySelector(
+                ".queue_active a"
+            );
+
+        if (
+            activeLink &&
+            activeLink.textContent.trim()
+        ) {
+            return activeLink.textContent.trim();
+        }
+
+
+        // ------------------------------------------------------------
+        // Fallback: Currently Playing title.
+        // ------------------------------------------------------------
+
+        const currentTitle =
+            document.getElementById(
+                "currenttitle"
+            );
+
+        if (
+            currentTitle &&
+            currentTitle.textContent.trim()
+        ) {
+            return currentTitle.textContent.trim();
+        }
+
+
+        return "";
     }
 
 
-    // Fallback to current browser time.
+    // ========================================================================
+    // EXTRACT EPISODE CODE
+    // ========================================================================
 
-    if (!date) {
-        date = new Date();
-    }
+    function getCurrentEpisodeCode() {
+        const title =
+            getCurrentVideoTitle();
 
-
-    // --------------------------------------------------------------------
-    // CURRENT EPISODE
-    // --------------------------------------------------------------------
-
-    const episodeCode =
-        getCurrentEpisodeCode();
+        if (!title) {
+            return null;
+        }
 
 
-    // --------------------------------------------------------------------
-    // FINAL DISPLAY
-    // --------------------------------------------------------------------
+        // Finds:
+        //
+        // S02E07
+        // S2E7
+        // s03e14
+        //
+        // etc.
 
-    if (episodeCode) {
-
-        timestamp.textContent =
-            "[" +
-            episodeCode +
-            "] [" +
-            formatDate(date) +
-            "]";
-
-    } else {
-
-        /*
-         * If a video somehow does not contain an
-         * SxxExx code, don't display bogus information.
-         */
-
-        timestamp.textContent =
-            "[" +
-            formatDate(date) +
-            "]";
-    }
+        const match =
+            title.match(
+                /\bS(\d{1,3})E(\d{1,3})\b/i
+            );
 
 
-    timestamp.dataset
-        .episodeTimestampAdded =
-        "true";
-}
+        if (!match) {
+            return null;
+        }
 
 
-// ------------------------------------------------------------------------
-// PROCESS NEW CHAT MESSAGE
-// ------------------------------------------------------------------------
-
-function processNode(node) {
-
-    if (
-        !(node instanceof HTMLElement)
-    ) {
-        return;
-    }
-
-
-    // The node itself might be the timestamp.
-
-    if (
-        node.classList &&
-        node.classList.contains(
-            "timestamp"
-        )
-    ) {
-        processTimestamp(node);
-    }
+        const season =
+            String(
+                parseInt(
+                    match[1],
+                    10
+                )
+            ).padStart(
+                2,
+                "0"
+            );
 
 
-    // Usually the timestamp is somewhere inside
-    // the newly-created chat message.
+        const episode =
+            String(
+                parseInt(
+                    match[2],
+                    10
+                )
+            ).padStart(
+                2,
+                "0"
+            );
 
-    const timestamps =
-        node.querySelectorAll(
-            ".timestamp"
+
+        return (
+            "S" +
+            season +
+            "E" +
+            episode
         );
+    }
 
 
-    timestamps.forEach(
-        function (timestamp) {
-            processTimestamp(
+    // ========================================================================
+    // CHAT TIMESTAMP
+    // ========================================================================
+
+    function getMessageDate(timestamp) {
+
+        // Try CyTube's original timestamp metadata first.
+
+        if (
+            timestamp &&
+            timestamp.title
+        ) {
+            const parsed =
+                new Date(
+                    timestamp.title
+                );
+
+            if (
+                !isNaN(
+                    parsed.getTime()
+                )
+            ) {
+                return parsed;
+            }
+        }
+
+
+        // Otherwise use the moment the message
+        // appeared in this browser.
+
+        return new Date();
+    }
+
+
+    function processTimestamp(timestamp) {
+        if (!timestamp) {
+            return;
+        }
+
+
+        if (
+            timestamp.dataset
+                .customTimestampAdded ===
+            "true"
+        ) {
+            return;
+        }
+
+
+        const date =
+            getMessageDate(
                 timestamp
             );
+
+
+        const episode =
+            getCurrentEpisodeCode();
+
+
+        // ------------------------------------------------------------
+        // Desired format:
+        //
+        // [S02E07] [9/28/26 23:14]
+        //
+        // ------------------------------------------------------------
+
+        if (episode) {
+            timestamp.textContent =
+                "[" +
+                episode +
+                "] [" +
+                formatDate(date) +
+                "]";
+        } else {
+
+            // Video doesn't contain SxxExx.
+            //
+            // Fall back to date/time only.
+
+            timestamp.textContent =
+                "[" +
+                formatDate(date) +
+                "]";
         }
-    );
-}
+
+
+        timestamp.dataset
+            .customTimestampAdded =
+            "true";
+
+
+        if (episode) {
+            timestamp.dataset
+                .episodeCode =
+                episode;
+        }
+    }
+
+
+    function processChatNode(node) {
+        if (
+            !(node instanceof HTMLElement)
+        ) {
+            return;
+        }
+
+
+        // The element itself might be a timestamp.
+
+        if (
+            node.classList &&
+            node.classList.contains(
+                "timestamp"
+            )
+        ) {
+            processTimestamp(
+                node
+            );
+        }
+
+
+        // Or timestamp may be contained in the message.
+
+        const timestamps =
+            node.querySelectorAll(
+                ".timestamp"
+            );
+
+        timestamps.forEach(
+            function (timestamp) {
+                processTimestamp(
+                    timestamp
+                );
+            }
+        );
+    }
 
 
     // ========================================================================
@@ -388,15 +378,23 @@ function processNode(node) {
     // ========================================================================
 
     function addSmoothScroll() {
+
         const video =
-            document.getElementById("videowrap");
+            document.getElementById(
+                "videowrap"
+            );
+
 
         const link =
             document.querySelector(
                 'a[href="#videowrap"]'
             );
 
-        if (!video || !link) {
+
+        if (
+            !video ||
+            !link
+        ) {
             setTimeout(
                 addSmoothScroll,
                 500
@@ -405,63 +403,87 @@ function processNode(node) {
             return;
         }
 
-        // Prevent duplicate event listeners.
+
         if (
-            link.dataset.smoothScrollAdded === "true"
+            link.dataset
+                .smoothScrollAdded ===
+            "true"
         ) {
             return;
         }
 
-        link.dataset.smoothScrollAdded = "true";
+
+        link.dataset
+            .smoothScrollAdded =
+            "true";
+
 
         link.addEventListener(
             "click",
             function (event) {
+
                 event.preventDefault();
+
 
                 const rect =
                     video.getBoundingClientRect();
 
+
                 const scrollTop =
                     window.pageYOffset ||
-                    document.documentElement.scrollTop;
+                    document.documentElement
+                        .scrollTop;
+
 
                 const videoCenter =
                     rect.top +
                     scrollTop +
                     rect.height / 2;
 
+
                 const targetScroll =
                     videoCenter -
                     window.innerHeight / 2;
 
+
                 window.scrollTo({
-                    top: targetScroll,
-                    behavior: "smooth"
+                    top:
+                        targetScroll,
+
+                    behavior:
+                        "smooth"
                 });
             }
         );
     }
 
+
     addSmoothScroll();
 
 
     // ========================================================================
-    // UPLOAD STATUS MESSAGE
+    // IMAGE UPLOAD STATUS
     // ========================================================================
 
     function showUploadStatus(message) {
+
         let status =
             document.getElementById(
                 "cytube-image-upload-status"
             );
 
+
         if (!status) {
+
             status =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             status.id =
                 "cytube-image-upload-status";
+
 
             status.style.position =
                 "fixed";
@@ -490,43 +512,61 @@ function processNode(node) {
             status.style.fontSize =
                 "13px";
 
-            status.style.fontFamily =
-                "Arial, sans-serif";
-
             status.style.pointerEvents =
                 "none";
 
             status.style.boxShadow =
                 "0 2px 8px rgba(0,0,0,.4)";
 
+
             document.body.appendChild(
                 status
             );
         }
 
-        status.textContent = message;
 
-        if (status._removeTimer) {
+        status.textContent =
+            message;
+
+
+        if (
+            status._removeTimer
+        ) {
             clearTimeout(
                 status._removeTimer
             );
         }
 
+
         status._removeTimer =
-            setTimeout(function () {
-                if (status.parentNode) {
-                    status.remove();
-                }
-            }, 3000);
+            setTimeout(
+                function () {
+
+                    if (
+                        status.parentNode
+                    ) {
+                        status.remove();
+                    }
+
+                },
+                3000
+            );
     }
 
 
     // ========================================================================
-    // GOFILE IMAGE UPLOAD
+    // GOFILE UPLOAD
     // ========================================================================
 
-    function normalizeGoFileServer(server) {
-        server = String(server || "");
+    function normalizeGoFileServer(
+        server
+    ) {
+
+        server =
+            String(
+                server || ""
+            );
+
 
         server =
             server.replace(
@@ -534,37 +574,48 @@ function processNode(node) {
                 ""
             );
 
+
         server =
             server.replace(
                 /\/.*$/,
                 ""
             );
 
+
         if (
-            !/\.gofile\.io$/i.test(server)
+            !/\.gofile\.io$/i.test(
+                server
+            )
         ) {
-            server += ".gofile.io";
+            server +=
+                ".gofile.io";
         }
+
 
         return server;
     }
 
 
     async function uploadImage(file) {
+
         if (!file) {
             throw new Error(
-                "No file was supplied."
+                "No image supplied."
             );
         }
 
+
         if (
             !file.type ||
-            !file.type.startsWith("image/")
+            !file.type.startsWith(
+                "image/"
+            )
         ) {
             throw new Error(
-                "The selected file is not an image."
+                "File is not an image."
             );
         }
+
 
         if (
             file.size >
@@ -575,8 +626,10 @@ function processNode(node) {
             );
         }
 
+
         const form =
             new FormData();
+
 
         form.append(
             "file",
@@ -585,47 +638,68 @@ function processNode(node) {
                 "pasted-image.png"
         );
 
+
         const response =
             await fetch(
                 UPLOAD_URL,
                 {
-                    method: "POST",
-                    body: form
+                    method:
+                        "POST",
+
+                    body:
+                        form
                 }
             );
 
-        if (!response.ok) {
+
+        if (
+            !response.ok
+        ) {
             throw new Error(
-                "Upload server returned HTTP " +
+                "Upload returned HTTP " +
                 response.status
             );
         }
 
+
         const result =
             await response.json();
+
 
         if (
             !result ||
             result.status !== "ok" ||
             !result.data
         ) {
+            console.error(
+                "GoFile response:",
+                result
+            );
+
             throw new Error(
                 "Unexpected upload response."
             );
         }
 
+
         const data =
             result.data;
 
-        let server = null;
+
+        let server =
+            null;
+
 
         if (
-            Array.isArray(data.servers) &&
+            Array.isArray(
+                data.servers
+            ) &&
             data.servers.length
         ) {
             server =
                 data.servers[0];
         }
+
 
         if (
             !server &&
@@ -634,6 +708,7 @@ function processNode(node) {
             server =
                 data.server;
         }
+
 
         if (
             !server ||
@@ -646,15 +721,22 @@ function processNode(node) {
             );
 
             throw new Error(
-                "Upload succeeded but direct file information was missing."
+                "Upload response did not contain direct file information."
             );
         }
 
+
         const hostname =
-            normalizeGoFileServer(server);
+            normalizeGoFileServer(
+                server
+            );
+
 
         const filename =
-            encodeURIComponent(data.name);
+            encodeURIComponent(
+                data.name
+            );
+
 
         return (
             "https://" +
@@ -668,10 +750,13 @@ function processNode(node) {
 
 
     // ========================================================================
-    // SEND A CYTUBE CHAT MESSAGE
+    // SEND CYTUBE CHAT MESSAGE
     // ========================================================================
 
-    function sendChatMessage(message) {
+    function sendChatMessage(
+        message
+    ) {
+
         if (
             !window.socket ||
             typeof window.socket.emit !==
@@ -682,38 +767,50 @@ function processNode(node) {
             );
         }
 
+
         window.socket.emit(
             "chatMsg",
             {
-                msg: message
+                msg:
+                    message
             }
         );
     }
 
 
     // ========================================================================
-    // HANDLE A PASTED / DROPPED IMAGE
+    // HANDLE IMAGE
     // ========================================================================
 
-    let uploadInProgress = false;
+    let uploadInProgress =
+        false;
 
 
-    async function handleImage(file) {
+    async function handleImage(
+        file
+    ) {
+
         if (
             !file ||
             !file.type ||
-            !file.type.startsWith("image/")
+            !file.type.startsWith(
+                "image/"
+            )
         ) {
             return;
         }
 
-        if (uploadInProgress) {
+
+        if (
+            uploadInProgress
+        ) {
             showUploadStatus(
                 "An image is already uploading..."
             );
 
             return;
         }
+
 
         if (
             file.size >
@@ -726,119 +823,144 @@ function processNode(node) {
             return;
         }
 
-        uploadInProgress = true;
+
+        uploadInProgress =
+            true;
+
 
         showUploadStatus(
             "Uploading image..."
         );
 
+
         try {
+
             const imageURL =
-                await uploadImage(file);
+                await uploadImage(
+                    file
+                );
+
 
             sendChatMessage(
                 imageURL
             );
 
+
             showUploadStatus(
                 "Image posted."
             );
+
         } catch (error) {
+
             console.error(
                 "[CyTube Images] Upload failed:",
                 error
             );
 
+
             showUploadStatus(
                 "Image upload failed."
             );
+
         } finally {
-            uploadInProgress = false;
+
+            uploadInProgress =
+                false;
         }
     }
 
 
     // ========================================================================
-    // PASTE IMAGE INTO CHAT
+    // CTRL+V IMAGE PASTE
     // ========================================================================
 
-    function setupPasteHandler() {
-        document.addEventListener(
-            "paste",
-            function (event) {
-                const target =
-                    event.target;
+    document.addEventListener(
+        "paste",
+        function (event) {
 
-                // Only intercept image paste while
-                // the chat input is focused.
+            const target =
+                event.target;
+
+
+            // Only intercept image pastes
+            // while the chat box is focused.
+
+            if (
+                !target ||
+                target.id !==
+                    "chatline"
+            ) {
+                return;
+            }
+
+
+            const clipboard =
+                event.clipboardData;
+
+
+            if (
+                !clipboard ||
+                !clipboard.items
+            ) {
+                return;
+            }
+
+
+            for (
+                let i = 0;
+                i <
+                clipboard.items.length;
+                i++
+            ) {
+
+                const item =
+                    clipboard.items[i];
+
+
                 if (
-                    !target ||
-                    target.id !== "chatline"
+                    item.kind === "file" &&
+                    item.type &&
+                    item.type.startsWith(
+                        "image/"
+                    )
                 ) {
-                    return;
-                }
 
-                const clipboard =
-                    event.clipboardData;
+                    const file =
+                        item.getAsFile();
 
-                if (!clipboard) {
-                    return;
-                }
 
-                const items =
-                    clipboard.items;
+                    if (file) {
 
-                if (!items) {
-                    return;
-                }
+                        event.preventDefault();
+                        event.stopPropagation();
 
-                for (
-                    let i = 0;
-                    i < items.length;
-                    i++
-                ) {
-                    const item =
-                        items[i];
+                        handleImage(
+                            file
+                        );
 
-                    if (
-                        item.kind === "file" &&
-                        item.type &&
-                        item.type.startsWith(
-                            "image/"
-                        )
-                    ) {
-                        const file =
-                            item.getAsFile();
-
-                        if (file) {
-                            event.preventDefault();
-                            event.stopPropagation();
-
-                            handleImage(file);
-
-                            return;
-                        }
+                        return;
                     }
                 }
-            },
-            true
-        );
-    }
-
-    setupPasteHandler();
+            }
+        },
+        true
+    );
 
 
     // ========================================================================
-    // DRAG + DROP IMAGE INTO CHAT
+    // DRAG + DROP IMAGES
     // ========================================================================
 
     function setupDragAndDrop() {
+
         const chatline =
             document.getElementById(
                 "chatline"
             );
 
+
         if (!chatline) {
+
             setTimeout(
                 setupDragAndDrop,
                 500
@@ -846,6 +968,7 @@ function processNode(node) {
 
             return;
         }
+
 
         if (
             chatline.dataset
@@ -855,8 +978,11 @@ function processNode(node) {
             return;
         }
 
-        chatline.dataset.imageDropAdded =
+
+        chatline.dataset
+            .imageDropAdded =
             "true";
+
 
         chatline.addEventListener(
             "dragover",
@@ -865,14 +991,18 @@ function processNode(node) {
             }
         );
 
+
         chatline.addEventListener(
             "drop",
             function (event) {
+
                 event.preventDefault();
+
 
                 const files =
                     event.dataTransfer &&
                     event.dataTransfer.files;
+
 
                 if (
                     !files ||
@@ -881,11 +1011,13 @@ function processNode(node) {
                     return;
                 }
 
+
                 for (
                     let i = 0;
                     i < files.length;
                     i++
                 ) {
+
                     if (
                         files[i].type &&
                         files[
@@ -894,6 +1026,7 @@ function processNode(node) {
                             "image/"
                         )
                     ) {
+
                         handleImage(
                             files[i]
                         );
@@ -905,6 +1038,7 @@ function processNode(node) {
         );
     }
 
+
     setupDragAndDrop();
 
 
@@ -913,13 +1047,17 @@ function processNode(node) {
     // ========================================================================
 
     function isImageURL(url) {
+
         if (!url) {
             return false;
         }
 
+
         try {
+
             const parsed =
                 new URL(url);
+
 
             if (
                 parsed.protocol !==
@@ -930,10 +1068,11 @@ function processNode(node) {
                 return false;
             }
 
+
             const pathname =
                 parsed.pathname.toLowerCase();
 
-            // Normal direct image URLs.
+
             if (
                 /\.(png|jpg|jpeg|gif|webp|bmp|avif)$/i.test(
                     pathname
@@ -942,7 +1081,7 @@ function processNode(node) {
                 return true;
             }
 
-            // Catbox direct links.
+
             if (
                 parsed.hostname ===
                 "files.catbox.moe"
@@ -950,21 +1089,40 @@ function processNode(node) {
                 return true;
             }
 
+
+            if (
+                /\.gofile\.io$/i.test(
+                    parsed.hostname
+                ) &&
+                parsed.pathname.includes(
+                    "/download/"
+                )
+            ) {
+                return true;
+            }
+
+
             return false;
+
         } catch (error) {
+
             return false;
         }
     }
 
 
     // ========================================================================
-    // TURN IMAGE LINKS INTO INLINE IMAGES
+    // DISPLAY IMAGE LINKS INLINE
     // ========================================================================
 
-    function convertImageLink(link) {
+    function convertImageLink(
+        link
+    ) {
+
         if (!link) {
             return;
         }
+
 
         if (
             link.dataset
@@ -974,62 +1132,78 @@ function processNode(node) {
             return;
         }
 
-        if (
-            link.dataset
-                .imageRenderFailed ===
-            "true"
-        ) {
-            return;
-        }
 
         const url =
             link.href;
 
-        if (!isImageURL(url)) {
+
+        if (
+            !isImageURL(url)
+        ) {
             return;
         }
 
-        // Don't convert links that already
-        // contain an image.
+
         if (
-            link.querySelector("img")
+            link.querySelector(
+                "img"
+            )
         ) {
-            link.dataset.imageConverted =
+            link.dataset
+                .imageConverted =
                 "true";
 
             return;
         }
 
-        link.dataset.imageConverted =
+
+        link.dataset
+            .imageConverted =
             "true";
 
-        const wrapper =
-            document.createElement("a");
 
-        wrapper.href = url;
-        wrapper.target = "_blank";
+        const wrapper =
+            document.createElement(
+                "a"
+            );
+
+
+        wrapper.href =
+            url;
+
+        wrapper.target =
+            "_blank";
+
         wrapper.rel =
             "noopener noreferrer";
 
-        wrapper.dataset.imageConverted =
-            "true";
 
         const image =
-            document.createElement("img");
+            document.createElement(
+                "img"
+            );
 
-        image.src = url;
-        image.alt = "Chat image";
 
-        image.loading = "lazy";
+        image.src =
+            url;
+
+        image.alt =
+            "Chat image";
+
+        image.loading =
+            "lazy";
+
 
         image.style.display =
             "block";
 
         image.style.maxWidth =
-            IMAGE_MAX_WIDTH + "px";
+            IMAGE_MAX_WIDTH +
+            "px";
 
         image.style.maxHeight =
-            IMAGE_MAX_HEIGHT + "px";
+            IMAGE_MAX_HEIGHT +
+            "px";
 
         image.style.width =
             "auto";
@@ -1052,28 +1226,11 @@ function processNode(node) {
         image.style.objectFit =
             "contain";
 
-        // If the image cannot actually be loaded,
-        // restore the normal clickable link.
-        image.addEventListener(
-            "error",
-            function () {
-                link.dataset
-                    .imageRenderFailed =
-                    "true";
-
-                if (
-                    wrapper.parentNode
-                ) {
-                    wrapper.replaceWith(
-                        link
-                    );
-                }
-            }
-        );
 
         wrapper.appendChild(
             image
         );
+
 
         link.replaceWith(
             wrapper
@@ -1081,43 +1238,60 @@ function processNode(node) {
     }
 
 
-    function renderImages(root) {
+    function renderImages(
+        root
+    ) {
+
         if (!root) {
             return;
         }
 
+
         if (
-            root instanceof HTMLAnchorElement
+            root instanceof
+            HTMLAnchorElement
         ) {
-            convertImageLink(root);
+            convertImageLink(
+                root
+            );
         }
+
 
         if (
             root.querySelectorAll
         ) {
+
             const links =
                 root.querySelectorAll(
                     "a[href]"
                 );
 
+
             links.forEach(
-                convertImageLink
+                function (link) {
+                    convertImageLink(
+                        link
+                    );
+                }
             );
         }
     }
 
 
     // ========================================================================
-    // WATCH CYTUBE CHAT FOR NEW MESSAGES
+    // CHAT OBSERVER
     // ========================================================================
 
     function setupChatObserver() {
+
         const messageBuffer =
             document.getElementById(
                 "messagebuffer"
             );
 
+
         if (!messageBuffer) {
+
             setTimeout(
                 setupChatObserver,
                 500
@@ -1126,20 +1300,24 @@ function processNode(node) {
             return;
         }
 
+
         if (
             messageBuffer.dataset
-                .customObserverAdded ===
+                .roomObserverAdded ===
             "true"
         ) {
             return;
         }
 
+
         messageBuffer.dataset
-            .customObserverAdded =
+            .roomObserverAdded =
             "true";
 
-        // Process existing messages.
-        processNode(
+
+        // Process whatever is already visible.
+
+        processChatNode(
             messageBuffer
         );
 
@@ -1147,15 +1325,23 @@ function processNode(node) {
             messageBuffer
         );
 
+
         const observer =
             new MutationObserver(
-                function (mutations) {
+                function (
+                    mutations
+                ) {
+
                     mutations.forEach(
-                        function (mutation) {
+                        function (
+                            mutation
+                        ) {
+
                             mutation.addedNodes.forEach(
                                 function (
                                     node
                                 ) {
+
                                     if (
                                         !(
                                             node instanceof
@@ -1165,9 +1351,11 @@ function processNode(node) {
                                         return;
                                     }
 
-                                    processNode(
+
+                                    processChatNode(
                                         node
                                     );
+
 
                                     renderImages(
                                         node
@@ -1179,16 +1367,56 @@ function processNode(node) {
                 }
             );
 
+
         observer.observe(
             messageBuffer,
             {
-                childList: true,
-                subtree: true
+                childList:
+                    true,
+
+                subtree:
+                    true
             }
         );
     }
 
+
     setupChatObserver();
+
+
+    // ========================================================================
+    // VIDEO CHANGE DEBUGGING
+    // ========================================================================
+
+    if (
+        window.socket &&
+        typeof window.socket.on ===
+            "function"
+    ) {
+
+        window.socket.on(
+            "changeMedia",
+            function () {
+
+                setTimeout(
+                    function () {
+
+                        console.log(
+                            "[CyTube Room] Current title:",
+                            getCurrentVideoTitle()
+                        );
+
+                        console.log(
+                            "[CyTube Room] Episode:",
+                            getCurrentEpisodeCode()
+                        );
+
+                    },
+                    250
+                );
+            }
+        );
+    }
 
 
     // ========================================================================
@@ -1199,8 +1427,21 @@ function processNode(node) {
         "[CyTube Room JS] Loaded successfully."
     );
 
+
     console.log(
-        "[CyTube Images] Paste an image into #chatline with Ctrl+V."
+        "[CyTube Room] Current title:",
+        getCurrentVideoTitle()
+    );
+
+
+    console.log(
+        "[CyTube Room] Episode:",
+        getCurrentEpisodeCode()
+    );
+
+
+    console.log(
+        "[CyTube Images] Ctrl+V an image into the chat box to upload it."
     );
 
 })();
