@@ -62,97 +62,325 @@
     setFavicon();
 
 
-    // ========================================================================
-    // CHAT TIMESTAMPS
-    // ========================================================================
+   // ========================================================================
+// CHAT TIMESTAMPS + CURRENT EPISODE CODE
+// ========================================================================
+//
+// Format:
+//
+// [S02E07] [9/28/26 23:14]
+//
+// The episode code is extracted from the CURRENTLY PLAYING video title.
+//
+// Recognized examples:
+//
+// S01E01
+// S02E07
+// S10E24
+// S3E5
+//
+// ========================================================================
 
-    function padNumber(number) {
-        return String(number).padStart(2, "0");
+
+function padNumber(number) {
+    return String(number).padStart(2, "0");
+}
+
+
+// ------------------------------------------------------------------------
+// DATE FORMAT
+// ------------------------------------------------------------------------
+//
+// M/D/YY HH:MM
+//
+// Example:
+// 9/28/26 23:14
+//
+
+function formatDate(date) {
+    if (
+        !(date instanceof Date) ||
+        isNaN(date.getTime())
+    ) {
+        date = new Date();
+    }
+
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = String(date.getFullYear()).slice(-2);
+
+    const hours = padNumber(date.getHours());
+    const minutes = padNumber(date.getMinutes());
+
+    return (
+        month +
+        "/" +
+        day +
+        "/" +
+        year +
+        " " +
+        hours +
+        ":" +
+        minutes
+    );
+}
+
+
+// ------------------------------------------------------------------------
+// GET CURRENT VIDEO TITLE
+// ------------------------------------------------------------------------
+
+function getCurrentVideoTitle() {
+
+    // First choice:
+    // CyTube's current-title display.
+
+    const currentTitle =
+        document.getElementById("currenttitle");
+
+    if (
+        currentTitle &&
+        currentTitle.textContent.trim()
+    ) {
+        return currentTitle.textContent.trim();
     }
 
 
-    function formatDate(date) {
-        if (
-            !(date instanceof Date) ||
-            isNaN(date.getTime())
-        ) {
-            date = new Date();
-        }
+    // Fallback:
+    // Active playlist entry.
 
-        const month =
-            padNumber(date.getMonth() + 1);
-
-        const day =
-            padNumber(date.getDate());
-
-        const year =
-            date.getFullYear();
-
-        const hours =
-            padNumber(date.getHours());
-
-        const minutes =
-            padNumber(date.getMinutes());
-
-        return (
-            month +
-            "/" +
-            day +
-            "/" +
-            year +
-            " " +
-            hours +
-            ":" +
-            minutes
+    const activeTitle =
+        document.querySelector(
+            ".queue_active .qe_title"
         );
+
+    if (
+        activeTitle &&
+        activeTitle.textContent.trim()
+    ) {
+        return activeTitle.textContent.trim();
     }
 
 
-    function processTimestamp(timestamp) {
-        if (!timestamp) {
-            return;
-        }
+    // Second playlist fallback for CyTube layouts
+    // where the title is directly inside an anchor.
 
-        if (timestamp.dataset.dateAdded === "true") {
-            return;
-        }
+    const activeLink =
+        document.querySelector(
+            ".queue_active a"
+        );
 
-        let date;
+    if (
+        activeLink &&
+        activeLink.textContent.trim()
+    ) {
+        return activeLink.textContent.trim();
+    }
 
-        if (timestamp.title) {
-            date = new Date(timestamp.title);
-        } else {
-            date = new Date();
+
+    return "";
+}
+
+
+// ------------------------------------------------------------------------
+// EXTRACT EPISODE CODE
+// ------------------------------------------------------------------------
+
+function getCurrentEpisodeCode() {
+
+    const title =
+        getCurrentVideoTitle();
+
+    if (!title) {
+        return null;
+    }
+
+
+    /*
+     * Finds codes such as:
+     *
+     * S02E07
+     * S2E7
+     * S10E24
+     *
+     */
+
+    const match =
+        title.match(
+            /\bS(\d{1,3})E(\d{1,3})\b/i
+        );
+
+
+    if (!match) {
+        return null;
+    }
+
+
+    /*
+     * Normalize it.
+     *
+     * S2E7
+     *
+     * becomes:
+     *
+     * S02E07
+     */
+
+    const season =
+        String(match[1]).padStart(2, "0");
+
+    const episode =
+        String(match[2]).padStart(2, "0");
+
+
+    return (
+        "S" +
+        season +
+        "E" +
+        episode
+    );
+}
+
+
+// ------------------------------------------------------------------------
+// MODIFY CHAT TIMESTAMP
+// ------------------------------------------------------------------------
+
+function processTimestamp(timestamp) {
+
+    if (!timestamp) {
+        return;
+    }
+
+
+    // Prevent the same message from being processed twice.
+
+    if (
+        timestamp.dataset
+            .episodeTimestampAdded ===
+        "true"
+    ) {
+        return;
+    }
+
+
+    // --------------------------------------------------------------------
+    // MESSAGE DATE
+    // --------------------------------------------------------------------
+
+    let date = null;
+
+
+    /*
+     * CyTube normally puts additional timestamp
+     * information in the title attribute.
+     */
+
+    if (timestamp.title) {
+
+        const parsedDate =
+            new Date(timestamp.title);
+
+        if (
+            !isNaN(
+                parsedDate.getTime()
+            )
+        ) {
+            date = parsedDate;
         }
+    }
+
+
+    // Fallback to current browser time.
+
+    if (!date) {
+        date = new Date();
+    }
+
+
+    // --------------------------------------------------------------------
+    // CURRENT EPISODE
+    // --------------------------------------------------------------------
+
+    const episodeCode =
+        getCurrentEpisodeCode();
+
+
+    // --------------------------------------------------------------------
+    // FINAL DISPLAY
+    // --------------------------------------------------------------------
+
+    if (episodeCode) {
 
         timestamp.textContent =
-            "[" + formatDate(date) + "]";
+            "[" +
+            episodeCode +
+            "] [" +
+            formatDate(date) +
+            "]";
 
-        timestamp.dataset.dateAdded = "true";
+    } else {
+
+        /*
+         * If a video somehow does not contain an
+         * SxxExx code, don't display bogus information.
+         */
+
+        timestamp.textContent =
+            "[" +
+            formatDate(date) +
+            "]";
     }
 
 
-    function processNode(node) {
-        if (!(node instanceof HTMLElement)) {
-            return;
-        }
+    timestamp.dataset
+        .episodeTimestampAdded =
+        "true";
+}
 
-        // The node itself may be a timestamp.
-        if (
-            node.classList &&
-            node.classList.contains("timestamp")
-        ) {
-            processTimestamp(node);
-        }
 
-        // Or timestamps may exist underneath it.
-        const timestamps =
-            node.querySelectorAll(".timestamp");
+// ------------------------------------------------------------------------
+// PROCESS NEW CHAT MESSAGE
+// ------------------------------------------------------------------------
 
-        timestamps.forEach(function (timestamp) {
-            processTimestamp(timestamp);
-        });
+function processNode(node) {
+
+    if (
+        !(node instanceof HTMLElement)
+    ) {
+        return;
     }
+
+
+    // The node itself might be the timestamp.
+
+    if (
+        node.classList &&
+        node.classList.contains(
+            "timestamp"
+        )
+    ) {
+        processTimestamp(node);
+    }
+
+
+    // Usually the timestamp is somewhere inside
+    // the newly-created chat message.
+
+    const timestamps =
+        node.querySelectorAll(
+            ".timestamp"
+        );
+
+
+    timestamps.forEach(
+        function (timestamp) {
+            processTimestamp(
+                timestamp
+            );
+        }
+    );
+}
 
 
     // ========================================================================
