@@ -27,4 +27,6 @@ To roll back, restore the backed-up original MOTD, CSS, and inline JavaScript, c
 
 ## Validation
 
+Version 1.1.1 fixes chat follow scrolling: timestamps are formatted before CyTube measures new messages, and media updates use CyTube's follow mode and scroll helper. An isolated Chrome regression fixture reproduces the old wrapped-line and delayed-image failures and passes all 10 checks with the fix, including preserving the reader's position and private-message formatting.
+
 Checked in an isolated Chrome fixture using the original MOTD and CSS: 25 assertions covering timestamps, episode changes, historical messages, signed URLs, unsafe URL schemes, autoplay attributes, duplicate loading, and exact preservation of original links/images/text. Carousel buttons and a 390px mobile viewport were also checked. Tests do not post messages to the live channel.
