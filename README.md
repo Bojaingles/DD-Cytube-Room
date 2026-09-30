@@ -1,0 +1,30 @@
+# American-Dad room enhancements
+
+`cytube-room.js` and `cytube-room.css` enhance the existing CyTube room. The original MOTD is stored verbatim in the JavaScript file and original CSS is preserved at the start of the stylesheet. All three built-in editors are empty. No external HTML or backend is required.
+
+## Features
+
+- New chat messages show `[s06e08][9/30/26 23:07]` using the server-provided message time and the viewer's local timezone. Episode titles accept both S06E08 and Season 6 Episode 8.
+- Previously observed episode associations survive reloads in the same browser tab. Historical messages with no known episode are never assigned a guessed episode. Messages rendered before this script loaded retain their original timestamp.
+- Direct images and videos, signed Discord attachment URLs, YouTube (including Shorts), Vimeo, and simple Imgur image pages render inline. Extensionless URLs are tried as image/video resources, never arbitrary HTML frames. Original links remain available when a host blocks embedding, expires a URL, requires authentication, or the browser lacks the codec. Discord message permalinks are not attachment URLs.
+- Videos have controls and no autoplay. Provider frames explicitly disable autoplay and do not receive autoplay permission. Media loads as links approach the visible viewport, with a limit of six previews per message.
+- The original 52 show banners become a manually scrollable carousel with previous/next buttons, keyboard navigation, touch scrolling, and a current-channel highlight. Nothing rotates automatically.
+- Info & support contains the original remaining MOTD artwork, typography, support links, affiliate disclosure, and Discord link. Original source markup is retained verbatim inside the JavaScript file.
+
+## Installation
+
+Use commit-pinned jsDelivr GitHub URLs in Channel Settings > General Settings > External CSS and External Javascript:
+
+`https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@COMMIT/cytube-room.css`
+
+`https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@COMMIT/cytube-room.js`
+
+After both external files load, clear the built-in MOTD, CSS, and Javascript editors under Edit. The JavaScript supplies the original MOTD markup, favicon, and video-anchor behavior; the external stylesheet includes all original CSS.
+
+## Rollback
+
+To roll back, restore the backed-up original MOTD, CSS, and inline JavaScript, clear both external URLs, and refresh. Git commit `bd5d65f7e04aad394defad009757a9025e79b703` contains the old repository script, which was not connected to the live room at the time of this rewrite.
+
+## Validation
+
+Checked in an isolated Chrome fixture using the original MOTD and CSS: 25 assertions covering timestamps, episode changes, historical messages, signed URLs, unsafe URL schemes, autoplay attributes, duplicate loading, and exact preservation of original links/images/text. Carousel buttons and a 390px mobile viewport were also checked. Tests do not post messages to the live channel.
