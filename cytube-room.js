@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.DDRoom) return;
-  const version = '1.1.1';
+  const version = '1.2.0';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
   const started = Date.now();
@@ -282,7 +282,158 @@
     if (api.railResize) api.railResize.disconnect();
     if ('ResizeObserver' in window) { api.railResize = new ResizeObserver(controls); api.railResize.observe(rail); }
   }
+  // TVmaze data is CC BY-SA; the panel links to its source and license.
+  const episodeCacheKey = 'dd-american-dad-guide-v1';
+  let guideCache, guideRequest, guideRetryAt = 0;
+  function validGuide(value) {
+    return Array.isArray(value) && value.length > 0 && value.every(e => e && typeof e.name === 'string' && Number.isInteger(e.id));
+  }
+  async function episodeGuide() {
+    if (!guideCache) {
+      try {
+        const cached = JSON.parse(localStorage.getItem(episodeCacheKey) || 'null');
+        if (cached && validGuide(cached.episodes)) guideCache = cached;
+      } catch (_) {}
+    }
+    if (guideCache && Date.now() - guideCache.saved < 86400000) return guideCache.episodes;
+    if (guideRequest) return guideRequest;
+    if (Date.now() < guideRetryAt) {
+      if (guideCache) return guideCache.episodes;
+      throw new Error('Guide temporarily unavailable');
+    }
+    guideRequest = (async () => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+      try {
+        const response = await fetch('https://api.tvmaze.com/shows/215/episodes?specials=1', { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
+        if (!response.ok) throw new Error('Guide unavailable');
+        const episodes = await response.json();
+        if (!validGuide(episodes)) throw new Error('Invalid guide');
+        guideCache = { saved: Date.now(), episodes };
+        try { localStorage.setItem(episodeCacheKey, JSON.stringify(guideCache)); } catch (_) {}
+        guideRetryAt = 0;
+        return episodes;
+      } catch (error) {
+        guideRetryAt = Date.now() + 60000;
+        if (guideCache) return guideCache.episodes;
+        throw error;
+      } finally { clearTimeout(timeout); }
+    })();
+    try { return await guideRequest; } finally { guideRequest = null; }
+  }
+  function titleKey(value) {
+    return String(value).normalize('NFKD').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]/g, '');
+  }
+  function playingEpisode(raw) {
+    const title = String(raw || '').replace(/^Currently Playing:\s*/i, '').trim();
+    if (!/^American[ ._-]+Dad\b/i.test(title)) return null;
+    const code = episode(title);
+    const name = title.replace(/^American[ ._-]+Dad!?\s*/i, '')
+      .replace(/\bS\d{1,3}\s*E\d{1,3}\b|\bSeason\s+\d{1,3}\s+Episode\s+\d{1,3}\b/i, '')
+      .replace(/\.(mp4|mkv|webm|avi)$/i, '').replace(/^[\s:._–—-]+|[\s_–—-]+$/g, '').trim();
+    return { code, name, title };
+  }
+  function guideMatch(info, entries) {
+    // Season numbering varies by provider. Never fall back to a conflicting
+    // season/episode number when a title cannot be confidently matched.
+    if (!info?.name) return null;
+    const matches = entries.filter(e => titleKey(e.name) === titleKey(info.name));
+    return matches.length === 1 ? matches[0] : null;
+  }
+  Object.assign(api, { playingEpisode, guideMatch });
+  let episodePanel, episodeTitleNode, episodeObserver, episodeRaw, episodeRevision = 0;
+  function panelText(selector, text) { episodePanel.querySelector(selector).textContent = text; }
+  async function updateEpisodePanel(force) {
+    const raw = document.getElementById('currenttitle')?.textContent || '';
+    if (!episodePanel || (!force && raw === episodeRaw)) return;
+    episodeRaw = raw;
+    const revision = ++episodeRevision;
+    const info = playingEpisode(raw);
+    const source = episodePanel.querySelector('.dd-episode-source');
+    source.hidden = true;
+    panelText('.dd-episode-meta', info?.code.toUpperCase() || '');
+    panelText('.dd-episode-title', info?.name || info?.title || 'Episode information');
+    panelText('.dd-episode-synopsis', info ? 'Loading episode information…' : 'Episode information appears when an American Dad! episode is playing.');
+    episodePanel.dataset.state = info ? 'loading' : 'idle';
+    if (!info) return;
+    try {
+      const entries = await episodeGuide();
+      if (revision !== episodeRevision || raw !== document.getElementById('currenttitle')?.textContent) return;
+      const match = guideMatch(info, entries);
+      if (!match) {
+        panelText('.dd-episode-synopsis', 'No synopsis available for this episode yet.');
+        episodePanel.dataset.state = 'unmatched';
+        return;
+      }
+      panelText('.dd-episode-title', match.name);
+      const meta = [info.code.toUpperCase()];
+      if (/^\d{4}-\d{2}-\d{2}$/.test(match.airdate || '')) {
+        const [y,m,d] = match.airdate.split('-').map(Number);
+        meta.push('First aired ' + new Date(y,m-1,d).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }));
+      }
+      panelText('.dd-episode-meta', meta.filter(Boolean).join(' · '));
+      const template = document.createElement('template');
+      template.innerHTML = String(match.summary || '').replace(/<\/(p|div)>|<br\s*\/?\s*>/gi, ' ');
+      template.content.querySelectorAll('script,style').forEach(e => e.remove());
+      panelText('.dd-episode-synopsis', template.content.textContent.trim() || 'No synopsis available for this episode yet.');
+      source.querySelector('a').href = 'https://www.tvmaze.com/episodes/' + match.id;
+      source.hidden = false;
+      episodePanel.dataset.state = 'ready';
+    } catch (_) {
+      if (revision !== episodeRevision) return;
+      panelText('.dd-episode-synopsis', 'Episode details are temporarily unavailable. They’ll retry automatically.');
+      episodePanel.dataset.state = 'error';
+    }
+  }
+  let playlistExpanded = false;
+  try { playlistExpanded = sessionStorage.getItem('dd-playlist-expanded') === '1'; } catch (_) {}
+  function episodeUI() {
+    const title = document.getElementById('currenttitle');
+    const host = document.getElementById('rightpane');
+    const poll = document.getElementById('pollwrap');
+    if (!episodePanel && title && (host || poll)) {
+      episodePanel = document.createElement('section');
+      episodePanel.id = 'dd-episode-info';
+      episodePanel.setAttribute('aria-label', 'Current episode information');
+      episodePanel.innerHTML = '<div class="dd-episode-eyebrow">NOW PLAYING</div><h3 class="dd-episode-title"></h3><p class="dd-episode-meta"></p><details open><summary>Synopsis</summary><p class="dd-episode-synopsis"></p><small class="dd-episode-source" hidden>Episode details: <a target="_blank" rel="noopener noreferrer">TVmaze</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA</a></small></details>';
+      if (host) host.prepend(episodePanel); else poll.before(episodePanel);
+    }
+    if (episodePanel && title !== episodeTitleNode) {
+      episodeObserver?.disconnect();
+      episodeTitleNode = title;
+      if (title) {
+        episodeObserver = new MutationObserver(() => updateEpisodePanel());
+        episodeObserver.observe(title, { childList: true, subtree: true, characterData: true });
+      }
+    }
+    updateEpisodePanel(episodePanel?.dataset.state === 'error' && Date.now() >= guideRetryAt);
+    // Presentation only: native CyTube permissions continue to govern actions.
+    const staff = Number(window.CLIENT?.rank) >= 2;
+    document.documentElement.classList.toggle('dd-viewer', !staff);
+    document.documentElement.classList.toggle('dd-playlist-folded', !playlistExpanded);
+    const controls = document.getElementById('rightcontrols');
+    if (controls && !document.getElementById('dd-playlist-toggle')) {
+      const button = document.createElement('button');
+      button.id = 'dd-playlist-toggle';
+      button.type = 'button';
+      button.className = 'btn btn-sm btn-default';
+      button.setAttribute('aria-controls', 'rightpane-inner plcontrol');
+      button.addEventListener('click', () => {
+        playlistExpanded = !playlistExpanded;
+        try { sessionStorage.setItem('dd-playlist-expanded', playlistExpanded ? '1' : '0'); } catch (_) {}
+        episodeUI();
+      });
+      controls.prepend(button);
+    }
+    const toggle = document.getElementById('dd-playlist-toggle');
+    if (toggle) {
+      toggle.hidden = !staff;
+      toggle.setAttribute('aria-expanded', String(playlistExpanded));
+      toggle.textContent = playlistExpanded ? '▾ Playlist controls' : '▸ Playlist controls';
+    }
+  }
   function init() {
+    episodeUI();
     hookFormatter();
     buffer = document.getElementById('messagebuffer');
     if (buffer && !buffer.dataset.ddObserved) {
@@ -310,6 +461,8 @@
     if (link && video) { e.preventDefault(); video.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' }); }
   });
   init();
+  // Detect login/rank changes and replacement title nodes without touching polls.
+  api.episodeMonitor = setInterval(episodeUI, 2000);
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
   // Bounded startup retry for asynchronously constructed CyTube controls.
   let attempts = 0;

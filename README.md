@@ -4,6 +4,10 @@
 
 ## Features
 
+- A Now Playing panel beside the poll shows the current American Dad episode title, room season/episode code, original air date, and a collapsible synopsis. It follows title changes automatically, including playlist skips. Polls and announcements are unchanged.
+- The playlist is hidden from regular viewers. Moderators and admins (CyTube rank 2+) get a Playlist controls toggle, initially collapsed, with the choice remembered in the tab. This is presentation only; CyTube's existing permissions still control access and playback.
+- Episode information is fetched from TVmaze's public HTTPS API and cached locally for 24 hours. Matching uses the episode title because season numbering differs between providers; ambiguous, missing, and unrelated titles do not receive guessed synopses. TVmaze attribution and its CC BY-SA license are linked in the panel. Failed requests retry after a minute, and a late response cannot overwrite a newer episode.
+
 - New chat messages show `[s06e08][9/30/26 23:07]` using the server-provided message time and the viewer's local timezone. Episode titles accept both S06E08 and Season 6 Episode 8.
 - Previously observed episode associations survive reloads in the same browser tab. Historical messages with no known episode are never assigned a guessed episode. Messages rendered before this script loaded retain their original timestamp.
 - Direct images and videos, signed Discord attachment URLs, YouTube (including Shorts), Vimeo, and simple Imgur image pages render inline. Extensionless URLs are tried as image/video resources, never arbitrary HTML frames. Original links remain available when a host blocks embedding, expires a URL, requires authentication, or the browser lacks the codec. Discord message permalinks are not attachment URLs.
@@ -26,6 +30,8 @@ After both external files load, clear the built-in MOTD, CSS, and Javascript edi
 To roll back, restore the backed-up original MOTD, CSS, and inline JavaScript, clear both external URLs, and refresh. Git commit `bd5d65f7e04aad394defad009757a9025e79b703` contains the old repository script, which was not connected to the live room at the time of this rewrite.
 
 ## Validation
+
+Version 1.2.0 adds the episode panel and staff playlist toggle. Chrome checks cover title changes, differing season numbers, concurrent requests, unknown and ambiguous titles, role changes, playlist expansion/collapse, title-node replacement, poll preservation, caching, and guide failure/retry. The real TVmaze endpoint was also checked in Chrome.
 
 Version 1.1.1 fixes chat follow scrolling: timestamps are formatted before CyTube measures new messages, and media updates use CyTube's follow mode and scroll helper. An isolated Chrome regression fixture reproduces the old wrapped-line and delayed-image failures and passes all 10 checks with the fix, including preserving the reader's position and private-message formatting.
 
