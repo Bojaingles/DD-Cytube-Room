@@ -367,3 +367,33 @@ img:hover {
   #dd-channel-bar #dd-channel-rail img { width: 190px; }
 }
 @media (prefers-reduced-motion: reduce) { #dd-channel-bar * { scroll-behavior: auto !important; transition: none !important; } }
+
+/* Continuous channel rail and viewport-sized viewing area. */
+#dd-channel-bar { position: relative; }
+#dd-channel-bar .dd-bar-head { padding-right: 0; }
+#dd-channel-bar #dd-channel-rail { scroll-snap-type: none; scroll-behavior: auto; }
+#dd-channel-bar > details { position: absolute; top: 0; left: 0; width: 100%; border: 0; padding: 0; pointer-events: none; z-index: 20; }
+#dd-channel-bar > details > summary { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); padding: 3px 10px; margin: 0; pointer-events: auto; white-space: nowrap; }
+#dd-channel-bar > details > .dd-original-info { pointer-events: auto; margin: 52px 8px 0; max-height: min(65vh,600px); overflow: auto; padding: 16px; border: 1px solid #694348; border-radius: 6px; background: #151214; box-shadow: 0 12px 30px #000b; }
+.dd-fit-view #main { display: flex; height: var(--dd-view-height); min-height: 0; margin-bottom: 0; }
+.dd-fit-view #chatwrap, .dd-fit-view #videowrap { height: 100% !important; min-height: 0; margin-bottom: 0; }
+.dd-fit-view #videowrap { display: flex; flex-direction: column; }
+.dd-fit-view #videowrap-header { flex: 0 0 auto; }
+.dd-fit-view #videowrap > .embed-responsive { padding-bottom: 0 !important; flex: 1 1 0; min-height: 0; width: 100%; }
+.dd-fit-view #ytapiplayer { width: 100% !important; height: 100% !important; }
+.dd-fit-view #ytapiplayer video { object-fit: contain; }
+.dd-fit-view #messagebuffer, .dd-fit-view #userlist { height: var(--dd-message-height) !important; min-height: 0 !important; overflow-y: auto; }
+@media(max-width:991px) {
+  .dd-fit-view #main { flex-direction: column; }
+  .dd-fit-view #videowrap { order: 0; width: 100%; height: 45% !important; }
+  .dd-fit-view #chatwrap { order: 1; width: 100%; height: 55% !important; }
+}
+@media(max-width:640px) {
+  #dd-channel-bar .dd-bar-head { padding-top: 27px; }
+  #dd-channel-bar > details > summary { top: 5px; }
+  #dd-channel-bar > details > .dd-original-info { margin-top: 31px; }
+  #dd-channel-bar .dd-count { display: none; }
+  #dd-channel-bar .dd-bar-head strong { margin-right: auto; font-size: 10px; }
+  #dd-channel-bar #dd-channel-rail img { width: 160px; }
+  #dd-channel-bar #dd-channel-rail .column { flex-basis: 160px; }
+}
