@@ -31,6 +31,9 @@ To roll back, restore the backed-up original MOTD, CSS, and inline JavaScript, c
 
 ## Validation
 
+Version 1.3.1 fixes sticky carousel pauses: live hover detection replaces latched hover flags, only keyboard focus inside the rail pauses motion, pointer release/cancel and tab changes clear interrupted gestures, and Resume works without moving focus away. An isolated browser event/clock fixture reproduces the old failures and passes all 20 interaction checks.
+
+
 Version 1.3.0 adds the continuous channel rail, top-centered support dropdown, and viewport-fitting chat/player layout. Boundary wrapping, pause, preserved links/artwork, support placement, and chat/player bounds are checked in an isolated Chrome fixture. Desktop uses side-by-side panes and narrow screens stack the video above chat.
 
 
@@ -39,4 +42,5 @@ Version 1.2.0 adds the episode panel and staff playlist toggle. Chrome checks co
 Version 1.1.1 fixes chat follow scrolling: timestamps are formatted before CyTube measures new messages, and media updates use CyTube's follow mode and scroll helper. An isolated Chrome regression fixture reproduces the old wrapped-line and delayed-image failures and passes all 10 checks with the fix, including preserving the reader's position and private-message formatting.
 
 Checked in an isolated Chrome fixture using the original MOTD and CSS: 25 assertions covering timestamps, episode changes, historical messages, signed URLs, unsafe URL schemes, autoplay attributes, duplicate loading, and exact preservation of original links/images/text. Carousel buttons and a 390px mobile viewport were also checked. Tests do not post messages to the live channel.
+
 
