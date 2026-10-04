@@ -469,3 +469,6 @@ img:hover {
   #dd-channel-bar .dd-room-navigation .dd-count { display: inline; margin-left: 0; }
   #dd-channel-bar .dd-room-navigation .dd-bar-head > button:first-of-type { margin-left: 0; }
 }
+
+/* Let the room watermark show through the carousel frame. */
+#dd-channel-bar { background: transparent; box-shadow: none; }
