@@ -476,3 +476,10 @@ img:hover {
 /* Hide the rail scrollbar while retaining scrolling and navigation. */
 #dd-channel-bar #dd-channel-rail { scrollbar-width: none; -ms-overflow-style: none; }
 #dd-channel-bar #dd-channel-rail::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+/* Support shares the top control row, with its panel opening below it. */
+#dd-channel-bar .dd-bar-head > details { border: 0; padding: 0; }
+#dd-channel-bar .dd-bar-head > details > summary { position: static; transform: none; margin: 0; padding: 3px 10px; line-height: 26px; white-space: nowrap; }
+#dd-channel-bar .dd-bar-head > details > .dd-original-info { position: absolute; top: 100%; left: 0; right: 0; z-index: 40; max-height: min(65vh,600px); overflow: auto; padding: 16px; border: 1px solid #694348; border-radius: 6px; background: #151214; box-shadow: 0 12px 30px #000b; }
+#dd-channel-bar:has(.dd-room-navigation .dd-bar-head) #dd-channel-rail { margin-top: 6px; }
+@media (min-width: 768px) { #dd-channel-bar .dd-room-navigation .navbar-collapse { flex-wrap: wrap; } }

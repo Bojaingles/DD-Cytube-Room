@@ -213,6 +213,8 @@
     if (controls && account) {
       nav.querySelector('.dd-bar-head')?.remove();
       account.before(controls);
+      const support = bar.querySelector(':scope > details');
+      if (support) controls.prepend(support);
     }
     nav.classList.add('dd-room-navigation');
     document.documentElement.classList.add('dd-integrated-navigation');
