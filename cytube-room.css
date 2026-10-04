@@ -472,3 +472,7 @@ img:hover {
 
 /* Let the room watermark show through the carousel frame. */
 #dd-channel-bar { background: transparent; box-shadow: none; }
+
+/* Hide the rail scrollbar while retaining scrolling and navigation. */
+#dd-channel-bar #dd-channel-rail { scrollbar-width: none; -ms-overflow-style: none; }
+#dd-channel-bar #dd-channel-rail::-webkit-scrollbar { display: none; width: 0; height: 0; }
