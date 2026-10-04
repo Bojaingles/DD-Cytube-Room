@@ -4,6 +4,10 @@
 
 ## Features
 
+- The original DBN network logo is a large, faint fixed watermark behind the page. Translucent chat and information panels let it show through while the video stays unobstructed.
+- The original CyTube navigation is integrated into the carousel frame, retaining account/admin controls, dropdowns and the mobile menu. The CHANNEL SELECT label is removed.
+
+
 - A Now Playing panel beside the poll shows the current American Dad episode title, room season/episode code, original air date, and a collapsible synopsis. It follows title changes automatically, including playlist skips. Polls and announcements are unchanged.
 - The playlist is hidden from regular viewers. Moderators and admins (CyTube rank 2+) get a Playlist controls toggle, initially collapsed, with the choice remembered in the tab. This is presentation only; CyTube's existing permissions still control access and playback.
 - Episode information is fetched from TVmaze's public HTTPS API and cached locally for 24 hours. Matching uses the episode title because season numbering differs between providers; ambiguous, missing, and unrelated titles do not receive guessed synopses. TVmaze attribution and its CC BY-SA license are linked in the panel. Failed requests retry after a minute, and a late response cannot overwrite a newer episode.
@@ -42,5 +46,6 @@ Version 1.2.0 adds the episode panel and staff playlist toggle. Chrome checks co
 Version 1.1.1 fixes chat follow scrolling: timestamps are formatted before CyTube measures new messages, and media updates use CyTube's follow mode and scroll helper. An isolated Chrome regression fixture reproduces the old wrapped-line and delayed-image failures and passes all 10 checks with the fix, including preserving the reader's position and private-message formatting.
 
 Checked in an isolated Chrome fixture using the original MOTD and CSS: 25 assertions covering timestamps, episode changes, historical messages, signed URLs, unsafe URL schemes, autoplay attributes, duplicate loading, and exact preservation of original links/images/text. Carousel buttons and a 390px mobile viewport were also checked. Tests do not post messages to the live channel.
+
 
 

@@ -338,9 +338,9 @@ img:hover {
 #dd-channel-bar .dd-bar-head strong { font-size: 12px; letter-spacing: .15em; color: #f2c4c5; }
 #dd-channel-bar .dd-bar-hint { font-size: 11px; color: #b7a7aa; }
 #dd-channel-bar .dd-count { margin-left: auto; color: #b7a7aa; font-size: 11px; }
-#dd-channel-bar button { border: 1px solid #694348; border-radius: 5px; background: #2d2024; color: #fff; font-size: 26px; line-height: 26px; width: 34px; height: 32px; }
-#dd-channel-bar button:hover:not(:disabled) { background: #6e2630; }
-#dd-channel-bar button:disabled { opacity: .3; cursor: default; }
+#dd-channel-bar .dd-bar-head > button { border: 1px solid #694348; border-radius: 5px; background: #2d2024; color: #fff; font-size: 26px; line-height: 26px; width: 34px; height: 32px; }
+#dd-channel-bar .dd-bar-head > button:hover:not(:disabled) { background: #6e2630; }
+#dd-channel-bar .dd-bar-head > button:disabled { opacity: .3; cursor: default; }
 #dd-channel-bar :focus-visible { outline: 2px solid #ff8188; outline-offset: 3px; }
 #dd-channel-bar #dd-channel-rail { position: relative; display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 14px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #8d414a #1c181a; margin: 6px 0 4px; padding: 12px 6px 14px; }
 #dd-channel-rail .column { flex: 0 0 240px; scroll-snap-align: center; align-self: center; }
@@ -396,4 +396,38 @@ img:hover {
   #dd-channel-bar .dd-bar-head strong { margin-right: auto; font-size: 10px; }
   #dd-channel-bar #dd-channel-rail img { width: 160px; }
   #dd-channel-bar #dd-channel-rail .column { flex-basis: 160px; }
+}
+
+
+/* Original DBN artwork, fixed behind page content. */
+.dd-branded-room body { isolation: isolate; }
+#dd-room-watermark { position: fixed; inset: 0; z-index: -1; pointer-events: none; display: grid; place-items: center; opacity: .23; overflow: hidden; }
+#dd-room-watermark img { width: min(94vw,1900px); height: 80vh; object-fit: contain; transform: none !important; filter: none !important; box-shadow: none !important; user-select: none; }
+.dd-branded-room #chatwrap, .dd-branded-room #videowrap, .dd-branded-room #queue,
+.dd-branded-room #playlistrow, .dd-branded-room #rightpane, .dd-branded-room #leftpane,
+.dd-branded-room #pollwrap > .well { background-color: rgba(17,17,17,.38) !important; }
+.dd-branded-room #messagebuffer, .dd-branded-room #userlist { background-color: rgba(0,0,0,.16) !important; }
+/* Keep the original navbar and all of its behavior inside the channel frame. */
+.dd-integrated-navigation #mainpage { padding-top: 8px !important; }
+#dd-channel-bar > .dd-room-navigation { position: relative !important; inset: auto !important; min-height: 36px; margin: -4px 0 6px; border: 0; border-bottom: 1px solid #ffffff19; border-radius: 0; background: transparent; z-index: 30; }
+#dd-channel-bar .dd-room-navigation .navbar-brand { height: 36px; padding: 8px 12px 8px 0; font-size: 16px; }
+#dd-channel-bar .dd-room-navigation .navbar-nav > li > a { padding-top: 8px; padding-bottom: 8px; font-size: 12px; }
+#dd-channel-bar .dd-room-navigation .navbar-text { margin-top: 8px; margin-bottom: 8px; font-size: 12px; }
+#dd-channel-bar .dd-room-navigation .navbar-collapse { padding-left: 0; padding-right: 0; }
+#dd-channel-bar .dd-room-navigation .dropdown-menu { background: #20191c; border-color: #694348; }
+#dd-channel-bar .dd-room-navigation .dropdown-menu a { color: #eee; }
+#dd-channel-bar .dd-room-navigation .dropdown-menu a:hover { background: #49242c; }
+#dd-channel-bar > details > summary { top: calc(var(--dd-navigation-height,0px) + 16px); }
+#dd-channel-bar > details > .dd-original-info { margin-top: calc(var(--dd-navigation-height,0px) + 52px); }
+@media(max-width:767px) {
+  #dd-channel-bar .dd-room-navigation .navbar-toggle { margin: 2px 0 6px; }
+  #dd-channel-bar .dd-room-navigation .navbar-header { margin: 0; }
+  #dd-channel-bar .dd-room-navigation .navbar-collapse { margin: 0; max-height: 50vh; overflow-y: auto; }
+  #dd-channel-bar .dd-room-navigation .navbar-nav { margin: 6px 0; }
+  #dd-channel-bar .dd-room-navigation .navbar-text { float: none !important; }
+}
+@media(max-width:640px) {
+  #dd-channel-bar > details > summary { top: calc(var(--dd-navigation-height,0px) + 5px); }
+  #dd-channel-bar > details > .dd-original-info { margin-top: calc(var(--dd-navigation-height,0px) + 31px); }
+  #dd-channel-bar .dd-bar-head > button:first-of-type { margin-left: auto; }
 }
