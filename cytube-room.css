@@ -453,3 +453,19 @@ img:hover {
   #dd-channel-bar .dd-room-navigation .navbar-nav .open .dropdown-menu { background: #20191c; }
   #dd-channel-bar .dd-room-navigation .navbar-text { padding-top: 6px; }
 }
+
+/* Keep channel navigation immediately before the signed-in account. */
+@media (min-width: 768px) {
+  #dd-channel-bar .dd-room-navigation .navbar-collapse { display: flex !important; align-items: center; gap: 12px; }
+  #dd-channel-bar .dd-room-navigation .navbar-collapse::before,
+  #dd-channel-bar .dd-room-navigation .navbar-collapse::after { display: none; }
+  #dd-channel-bar .dd-room-navigation .navbar-nav { flex: 0 0 auto; }
+  #dd-channel-bar .dd-room-navigation .dd-bar-head { margin-left: auto; flex: 0 0 auto; padding: 0; gap: 8px; }
+  #dd-channel-bar .dd-room-navigation .navbar-text { flex: 0 0 auto; float: none !important; }
+}
+#dd-channel-bar:has(.dd-room-navigation .dd-bar-head) #dd-channel-rail { margin-top: 32px; }
+@media (max-width: 767px) {
+  #dd-channel-bar .dd-room-navigation .dd-bar-head { padding: 6px 0; justify-content: flex-start; }
+  #dd-channel-bar .dd-room-navigation .dd-count { display: inline; margin-left: 0; }
+  #dd-channel-bar .dd-room-navigation .dd-bar-head > button:first-of-type { margin-left: 0; }
+}

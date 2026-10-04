@@ -208,6 +208,12 @@
     if (!nav || !bar) return;
     if (!navigationHome) { navigationHome = document.createComment('Original CyTube navigation position'); nav.before(navigationHome); }
     if (nav.parentElement !== bar) bar.prepend(nav); // Move, never clone: retain native handlers and IDs.
+    const controls = bar.querySelector(':scope > .dd-bar-head');
+    const account = nav.querySelector('#logoutform, .navbar-text');
+    if (controls && account) {
+      nav.querySelector('.dd-bar-head')?.remove();
+      account.before(controls);
+    }
     nav.classList.add('dd-room-navigation');
     document.documentElement.classList.add('dd-integrated-navigation');
     if (api.navigationResize) api.navigationResize.disconnect();
