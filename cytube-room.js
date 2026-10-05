@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.DDRoom) return;
-  const version = '1.4.0';
+  const version = '1.5.0';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
   const started = Date.now();
@@ -152,12 +152,133 @@
       else makeMedia(link, spec);
     }
   }
+  // Colors travel only with a user's own ordinary messages. The room filter
+  // turns the bounded suffix into an empty span before broadcasting the message.
+  const nameColors = new Map();
+  const nameColorKey = 'dd-name-color:' + location.pathname + ':';
+  const validNameColor = value => /^(?:[a-f0-9]{6}|default)$/i.test(value || '');
+  function ownNameColor() {
+    try { const value = localStorage.getItem(nameColorKey + (window.CLIENT?.name || '').toLowerCase()); return validNameColor(value) ? value.toLowerCase() : ''; } catch (_) { return ''; }
+  }
+  function paintName(node, name) {
+    if (!node) return;
+    const ranked = node.matches('.userlist_op,.userlist_owner,.userlist_siteadmin') || node.parentElement?.matches('.userlist_op,.userlist_owner,.userlist_siteadmin');
+    const own = name.toLowerCase() === (window.CLIENT?.name || '').toLowerCase() ? ownNameColor() : '';
+    const color = own || nameColors.get(name.toLowerCase())?.color;
+    if (!ranked && color && color !== 'default') node.style.setProperty('color', '#' + color);
+    else node.style.removeProperty('color');
+  }
+  function refreshNames() {
+    document.querySelectorAll('#messagebuffer > div').forEach(row => {
+      const node = row.querySelector('.username');
+      const name = row.dataset.ddName || node?.textContent.replace(/:\s*$/, '').trim();
+      if (name) paintName(node, name);
+    });
+    document.querySelectorAll('#userlist .userlist_item').forEach(row => {
+      const node = row.children[1];
+      if (node) paintName(node, node.textContent.trim());
+    });
+  }
+  function receiveNameColor(row, data) {
+    if (!row || !data?.username) return;
+    row.dataset.ddName = data.username;
+    const markers = row.querySelectorAll('span.dd-namecolor[data-color]');
+    const color = markers.length ? markers[markers.length - 1].getAttribute('data-color') : '';
+    const name = data.username.toLowerCase();
+    const time = Number(data.time) || 0;
+    if (validNameColor(color) && time >= (nameColors.get(name)?.time || 0)) {
+      if (nameColors.size >= 500 && !nameColors.has(name)) nameColors.delete(nameColors.keys().next().value);
+      nameColors.set(name, { color: color.toLowerCase(), time });
+      queueMicrotask(refreshNames);
+    }
+    paintName(row.querySelector('.username'), data.username);
+  }
+  function hookNameColorSending() {
+    const socket = window.socket;
+    if (!socket?.emit || socket.emit.ddNameColors) return;
+    const original = socket.emit;
+    function emit(...args) {
+      const [event, data] = args;
+      const color = ownNameColor();
+      // Never change commands, PMs, empty messages, or long messages. The latter
+      // keep their learned color without risking a partially truncated suffix.
+      if (event === 'chatMsg' && color && typeof data?.msg === 'string' && data.msg.trim() &&
+          !data.msg.trimStart().startsWith('/') && data.msg.length <= 280 && !/\[ddnc:/.test(data.msg)) {
+        args[1] = { ...data, msg: data.msg + ' [ddnc:' + color + ']' };
+      }
+      return original.apply(this, args);
+    }
+    emit.ddNameColors = true;
+    socket.emit = emit;
+  }
+  function nameColorUI() {
+    hookNameColorSending();
+    const header = document.getElementById('chatheader');
+    if (!header || document.getElementById('dd-name-button')) return;
+    const trigger = button('Name style', 'Choose your name color');
+    trigger.id = 'dd-name-button';
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-controls', 'dd-name-settings');
+    const panel = document.createElement('section');
+    panel.id = 'dd-name-settings'; panel.hidden = true;
+    panel.setAttribute('aria-label', 'Name appearance');
+    panel.innerHTML = '<label>My name color <input type="color" id="dd-name-picker" value="#91bded"></label>' +
+      '<p><span class="dd-name-preview" id="dd-own-preview">Your name</span></p>' +
+      '<button type="button" id="dd-save-name">Save color</button><button type="button" id="dd-reset-name">Default color</button>' +
+      '<p>Everyone using the room script sees your color from your next regular chat message. Your choice is remembered on this browser.</p>' +
+      '<p>Staff badge on: <span class="dd-name-preview dd-mod">Moderator</span> · <span class="dd-name-preview dd-admin">Admin</span></p>' +
+      '<label><input type="checkbox" id="dd-animate-names" checked> Animate staff names on my screen</label>' +
+      '<p id="dd-name-status" role="status"></p><button type="button" id="dd-close-names">Close</button>';
+    header.append(trigger, panel);
+    const picker = panel.querySelector('#dd-name-picker');
+    const preview = panel.querySelector('#dd-own-preview');
+    const status = panel.querySelector('#dd-name-status');
+    const animate = panel.querySelector('#dd-animate-names');
+    try { animate.checked = localStorage.getItem('dd-animate-names') !== 'false'; } catch (_) {}
+    document.documentElement.classList.toggle('dd-still-names', !animate.checked);
+    function close() { panel.hidden = true; trigger.setAttribute('aria-expanded', 'false'); }
+    trigger.addEventListener('click', () => {
+      panel.hidden = !panel.hidden;
+      trigger.setAttribute('aria-expanded', String(!panel.hidden));
+      if (!panel.hidden) {
+        const color = ownNameColor(); picker.value = color && color !== 'default' ? '#' + color : '#91bded';
+        preview.textContent = window.CLIENT?.name || 'Your name'; preview.style.color = picker.value;
+        status.textContent = window.CLIENT?.name ? '' : 'Sign in or choose a guest name to save a color.';
+      }
+    });
+    picker.addEventListener('input', () => { preview.style.color = picker.value; });
+    function save(value) {
+      const name = window.CLIENT?.name;
+      if (!name) { status.textContent = 'Sign in or choose a guest name first.'; return; }
+      try { localStorage.setItem(nameColorKey + name.toLowerCase(), value); }
+      catch (_) { status.textContent = 'Your browser blocked saving this preference.'; return; }
+      refreshNames(); status.textContent = 'Saved. Others will see it with your next regular message.';
+    }
+    panel.querySelector('#dd-save-name').addEventListener('click', () => save(picker.value.slice(1)));
+    panel.querySelector('#dd-reset-name').addEventListener('click', () => save('default'));
+    animate.addEventListener('change', () => {
+      document.documentElement.classList.toggle('dd-still-names', !animate.checked);
+      try { localStorage.setItem('dd-animate-names', String(animate.checked)); } catch (_) {}
+    });
+    panel.querySelector('#dd-close-names').addEventListener('click', () => { close(); trigger.focus(); });
+    panel.addEventListener('keydown', event => { if (event.key === 'Escape') { close(); trigger.focus(); } });
+    document.addEventListener('click', event => { if (!panel.contains(event.target) && !trigger.contains(event.target)) close(); });
+    const list = document.getElementById('userlist');
+    if (list) new MutationObserver(refreshNames).observe(list, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    document.querySelectorAll('#messagebuffer > div').forEach(row => {
+      const name = row.querySelector('.username')?.textContent.replace(/:\s*$/, '').trim() || Array.from(row.classList).find(c => c.startsWith('chat-msg-'))?.slice(9);
+      if (name) receiveNameColor(row, { username: name, time: Number(row.dataset.ddTime) || 0 });
+    });
+    refreshNames();
+  }
+
   function hookFormatter() {
     const original = window.formatChatMessage;
     if (typeof original !== 'function' || original.ddRoom) return;
     function format(data) {
       const rendered = original.apply(this, arguments);
       const row = rendered?.[0];
+      receiveNameColor(row, data);
       if (row && data && Number.isFinite(Number(data.time))) {
         row.dataset.ddTime = String(data.time);
         const key = String(data.time) + ':' + String(data.username || '');
@@ -580,6 +701,7 @@
   }
   function init() {
     roomWatermark();
+    nameColorUI();
     episodeUI();
     fitViewingArea();
     hookFormatter();

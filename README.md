@@ -49,3 +49,10 @@ Checked in an isolated Chrome fixture using the original MOTD and CSS: 25 assert
 
 
 
+
+Name appearance (v1.5.0):
+- Chat header > Name style opens a native color picker. Preferences are stored per room and username in this browser. Saving does not send a message.
+- Ordinary messages of up to 280 characters carry a bounded color marker. Commands, private messages and longer messages are untouched; recipients retain any color already learned in this visit. New arrivals learn colors from recent chat or the sender's next ordinary message.
+- Required active room chat filter: DD shared name color. Regex: ` ?\[ddnc:([A-Fa-f0-9]{6}|default)\]$`; flags: empty; replacement: `<span class="dd-namecolor" data-color="\1"></span>`; Filter Links: off.
+- Colors are associated only with the authenticated message sender. Only six-digit hex or default is accepted. Staff role classes take priority; original Name Color staff-badge toggle remains functional.
+- Moderators use gold shimmer/sparkles; admins use rainbow sparkles. Reduced-motion settings and the local animation checkbox disable motion.
