@@ -56,3 +56,7 @@ Name appearance (v1.5.0):
 - Required active room chat filter: DD shared name color. Regex: ` ?\[ddnc:([A-Fa-f0-9]{6}|default)\]$`; flags: empty; replacement: `<span class="dd-namecolor" data-color="\1"></span>`; Filter Links: off.
 - Colors are associated only with the authenticated message sender. Only six-digit hex or default is accepted. Staff role classes take priority; original Name Color staff-badge toggle remains functional.
 - Moderators use gold shimmer/sparkles; admins use rainbow sparkles. Reduced-motion settings and the local animation checkbox disable motion.
+
+v1.5.1: Native video +/- changes both column width and player height; larger sizes may extend below the window. Fit restores the default seven-column viewport layout. Chat stays aligned on desktop. On narrow screens, larger video height is added above the chat rather than squeezing the chat away.
+Unconfigured usernames receive a deterministic pseudorandom color from a non-white palette. Explicit choices remain higher priority; Default color returns to the assigned palette color.
+Validation: 7 resize/default-color checks and 20 shared-color/staff checks passed locally.

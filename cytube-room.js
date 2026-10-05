@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.DDRoom) return;
-  const version = '1.5.0';
+  const version = '1.5.1';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
   const started = Date.now();
@@ -157,6 +157,12 @@
   const nameColors = new Map();
   const nameColorKey = 'dd-name-color:' + location.pathname + ':';
   const validNameColor = value => /^(?:[a-f0-9]{6}|default)$/i.test(value || '');
+  function defaultNameColor(name) {
+    const palette = ['ff8585', 'ffb36b', 'e3cd59', 'a8d96e', '61d5a5', '67d8d8', '78b9ff', '9ca6ff', 'c799ff', 'f397d1', 'e594b0', 'd4ac76'];
+    let hash = 2166136261;
+    for (const char of name.toLowerCase()) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+    return palette[(hash >>> 0) % palette.length];
+  }
   function ownNameColor() {
     try { const value = localStorage.getItem(nameColorKey + (window.CLIENT?.name || '').toLowerCase()); return validNameColor(value) ? value.toLowerCase() : ''; } catch (_) { return ''; }
   }
@@ -165,7 +171,7 @@
     const ranked = node.matches('.userlist_op,.userlist_owner,.userlist_siteadmin') || node.parentElement?.matches('.userlist_op,.userlist_owner,.userlist_siteadmin');
     const own = name.toLowerCase() === (window.CLIENT?.name || '').toLowerCase() ? ownNameColor() : '';
     const color = own || nameColors.get(name.toLowerCase())?.color;
-    if (!ranked && color && color !== 'default') node.style.setProperty('color', '#' + color);
+    if (!ranked) node.style.setProperty('color', '#' + (color && color !== 'default' ? color : defaultNameColor(name)));
     else node.style.removeProperty('color');
   }
   function refreshNames() {
@@ -241,7 +247,7 @@
       panel.hidden = !panel.hidden;
       trigger.setAttribute('aria-expanded', String(!panel.hidden));
       if (!panel.hidden) {
-        const color = ownNameColor(); picker.value = color && color !== 'default' ? '#' + color : '#91bded';
+        const color = ownNameColor(); picker.value = '#' + (color && color !== 'default' ? color : defaultNameColor(window.CLIENT?.name || 'Your name'));
         preview.textContent = window.CLIENT?.name || 'Your name'; preview.style.color = picker.value;
         status.textContent = window.CLIENT?.name ? '' : 'Sign in or choose a guest name to save a color.';
       }
@@ -540,7 +546,39 @@
     const top = main.getBoundingClientRect().top + window.scrollY;
     const toolbar = document.getElementById('controlsrow')?.getBoundingClientRect().height || 36;
     const available = Math.max(240, (window.visualViewport?.height || window.innerHeight) - top - toolbar - 12);
-    main.style.setProperty('--dd-view-height', available + 'px');
+    const columns = Math.min(9, Math.max(3, Number(video.className.match(/\bcol-md-(\d+)\b/)?.[1]) || 7));
+    const narrow = window.matchMedia('(max-width: 991px)').matches;
+    const player = video.querySelector('video');
+    const aspect = player?.videoWidth > 0 && player.videoHeight > 0 ? player.videoWidth / player.videoHeight : 16 / 9;
+    const frameWidth = video.querySelector('.embed-responsive')?.clientWidth || video.clientWidth;
+    const videoHeader = document.getElementById('videowrap-header')?.getBoundingClientRect().height || 22;
+    // Native +/- changes Bootstrap columns. Let that choice change height as
+    // well: default fits the viewport; larger choices may extend below it.
+    const baseVideoHeight = narrow ? available * .45 : available;
+    const chosenHeight = columns > 7
+      ? Math.max(baseVideoHeight * columns / 7, frameWidth / aspect + videoHeader)
+      : Math.max(100, baseVideoHeight * columns / 7);
+    const height = narrow ? chosenHeight + available * .55 : chosenHeight;
+    main.style.setProperty('--dd-view-height', height + 'px');
+    main.style.setProperty('--dd-mobile-video-height', chosenHeight + 'px');
+    main.style.setProperty('--dd-mobile-chat-height', available * .55 + 'px');
+    if (!video.dataset.ddSizeObserved) {
+      video.dataset.ddSizeObserved = '1';
+      new MutationObserver(fitViewingArea).observe(video, { attributes: true, attributeFilter: ['class'] });
+      video.addEventListener('loadedmetadata', fitViewingArea, true);
+    }
+    const videoTitle = document.getElementById('videowrap-header');
+    if (videoTitle && !document.getElementById('dd-fit-video')) {
+      const fit = button('Fit', 'Fit video and chat to window');
+      fit.id = 'dd-fit-video';
+      fit.title = 'Restore the window-fitting video size';
+      fit.addEventListener('click', () => {
+        const current = Number(video.className.match(/\bcol-md-(\d+)\b/)?.[1]) || 7;
+        if (window.CyTube?.ui?.changeVideoWidth && !document.body.classList.contains('hd')) window.CyTube.ui.changeVideoWidth(7 - current);
+        fitViewingArea();
+      });
+      videoTitle.insertBefore(fit, document.getElementById('currenttitle'));
+    }
     const chatHeight = chat.clientHeight;
     const headerHeight = document.getElementById('chatheader')?.getBoundingClientRect().height || 0;
     const formHeight = chat.querySelector('form')?.getBoundingClientRect().height || 38;

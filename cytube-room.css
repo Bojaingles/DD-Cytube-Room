@@ -521,3 +521,10 @@ img:hover {
 #dd-name-settings p { margin: 8px 0; line-height: 1.4; }
 #dd-name-settings .dd-name-preview { display: inline-block; font-weight: bold; }
 span.dd-namecolor { display: none !important; }
+
+/* Native +/- size choices can extend the page; Fit restores the viewport. */
+#dd-fit-video { float: right; margin: 0 5px; padding: 0 6px; line-height: 17px; font-size: 11px; border: 1px solid #694348; border-radius: 4px; background: #2d2024; color: #ead6d8; }
+@media (max-width:991px) {
+  .dd-fit-view #videowrap { flex: 0 0 var(--dd-mobile-video-height); height: var(--dd-mobile-video-height) !important; }
+  .dd-fit-view #chatwrap { flex: 0 0 var(--dd-mobile-chat-height); height: var(--dd-mobile-chat-height) !important; }
+}
