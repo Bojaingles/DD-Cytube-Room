@@ -596,6 +596,9 @@ span.dd-namecolor { display: none !important; }
 }
 #chatwrap .userlist_item { padding-top: 2px; padding-bottom: 2px; }
 #chatwrap .userlist_item:hover { background: #ffffff07; }
+#chatwrap .userlist_item:has(> :is(.userlist_op,.userlist_owner)) { display: flex; align-items: baseline; gap: 2px; }
+#chatwrap .userlist_item:has(> :is(.userlist_op,.userlist_owner)) > span:first-child { flex: 0 0 12px; }
+#chatwrap .userlist_item > :is(.userlist_op,.userlist_owner) { min-width: 0; max-width: calc(100% - 16px); overflow-wrap: anywhere; }
 .dd-branded-room #chatwrap #messagebuffer {
   padding: 7px 9px;
   border: 0;
