@@ -476,6 +476,9 @@ img:hover {
 /* Hide the rail scrollbar while retaining scrolling and navigation. */
 #dd-channel-bar #dd-channel-rail { scrollbar-width: none; -ms-overflow-style: none; }
 #dd-channel-bar #dd-channel-rail::-webkit-scrollbar { display: none; width: 0; height: 0; }
+#dd-channel-bar #dd-channel-rail[hidden], #dd-channel-bar .dd-bar-head > button[hidden] { display: none !important; }
+#dd-channel-bar .dd-bar-head > #dd-channel-toggle { width: auto; padding: 0 8px; font-size: 11px; white-space: nowrap; }
+#dd-channel-bar.dd-channels-collapsed > nav.dd-room-navigation { padding-bottom: 0; margin-bottom: 0; }
 
 /* Support shares the top control row, with its panel opening below it. */
 #dd-channel-bar .dd-bar-head > details { border: 0; padding: 0; }

@@ -62,3 +62,5 @@ Unconfigured usernames receive a deterministic pseudorandom color from a non-whi
 Validation: 7 resize/default-color checks and 20 shared-color/staff checks passed locally.
 
 Chat appearance update (2026-10-07): moderator names have compact gold borders; admin names have lavender borders and a soft pink/blue glow around their existing rainbow treatment. Chat, user list, header, input and user menus use the room's burgundy styling and subtle shadows. Native name-color toggles and animation preferences are retained. Existing 20 name behavior checks pass with the updated stylesheet.
+
+Version 1.6.0: Hide channels / Show channels hides only the banner strip and its scrolling controls; navigation, account controls and Info & support remain available. The preference is stored per room in the viewer's browser. Video and chat use the freed viewport space. Collapsed banners stop drifting and return to a valid loop position when expanded. Validation: 10 collapse checks and 20 hover/pause regression checks passed; collapsed initialization after reload was verified.
