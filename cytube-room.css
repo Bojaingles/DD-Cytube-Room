@@ -550,6 +550,8 @@ span.dd-namecolor { display: none !important; }
 
 /* Chat follows the carousel's burgundy frame, with restrained depth. */
 .dd-branded-room #chatwrap {
+  padding-left: 0;
+  padding-right: 0;
   border: 1px solid #694348;
   border-radius: 10px;
   box-sizing: border-box;
