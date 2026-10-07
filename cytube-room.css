@@ -631,6 +631,15 @@ span.dd-namecolor { display: none !important; }
 }
 #chatwrap .user-dropdown { border: 1px solid #79525d; border-radius: 7px; background: #23181f; box-shadow: 0 4px 12px #0006; }
 #chatwrap .user-dropdown .btn { background: #34232b; border-color: #694348; color: #ead6d8; }
+#leftcontrols > .btn {
+  margin: 3px 5px 0 0;
+  border: 1px solid #694348;
+  border-radius: 5px;
+  background: linear-gradient(#39262b, #24191d);
+  color: #ead6d8;
+  box-shadow: 0 2px 5px #0004, inset 0 1px 0 #ffffff09;
+}
+#leftcontrols > .btn:hover { border-color: #a86677; background: #493039; }
 
 /* Native +/- size choices can extend the page; Fit restores the viewport. */
 #dd-fit-video { float: right; margin: 0 5px; padding: 0 6px; line-height: 17px; font-size: 11px; border: 1px solid #694348; border-radius: 4px; background: #2d2024; color: #ead6d8; }
