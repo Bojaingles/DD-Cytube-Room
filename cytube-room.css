@@ -522,6 +522,113 @@ img:hover {
 #dd-name-settings .dd-name-preview { display: inline-block; font-weight: bold; }
 span.dd-namecolor { display: none !important; }
 
+/* Compact staff badges: native role classes keep the Name Color toggle working. */
+#userlist .userlist_item > :is(.userlist_op,.userlist_owner),
+#messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username,
+.dd-name-preview:is(.dd-mod,.dd-admin) {
+  display: inline-block;
+  padding: 0 4px;
+  margin-right: 2px;
+  border: 1px solid;
+  border-radius: 5px;
+  line-height: 1.35;
+  vertical-align: baseline;
+}
+#userlist .userlist_item > .userlist_op,
+#messagebuffer > div > .userlist_op > .username,
+.dd-name-preview.dd-mod {
+  border-color: #bd913f;
+  box-shadow: inset 0 0 5px #ffd65c12, 0 1px 3px #0008;
+}
+#userlist .userlist_item > .userlist_owner,
+#messagebuffer > div > .userlist_owner > .username,
+.dd-name-preview.dd-admin {
+  border-color: #c39ae4;
+  box-shadow: inset 0 0 5px #a2bfff15, 0 0 4px #ff89c52b;
+  filter: drop-shadow(0 0 2px #ff9ac54d) drop-shadow(0 0 5px #91caff40);
+}
+
+/* Chat follows the carousel's burgundy frame, with restrained depth. */
+.dd-branded-room #chatwrap {
+  border: 1px solid #694348;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: linear-gradient(150deg, #23181ae0, #100e11d9) !important;
+  box-shadow: 0 5px 16px #0006, 0 1px 4px #0008, inset 0 1px 0 #ffffff0c;
+}
+#chatwrap #chatheader {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 36px;
+  padding: 6px 9px;
+  border: 0;
+  border-bottom: 1px solid #694348;
+  border-radius: 9px 9px 0 0;
+  background: linear-gradient(#39262be6, #24191de6);
+  color: #ead6d8;
+  font-size: 12px;
+  box-shadow: 0 2px 5px #0003;
+}
+#chatwrap #usercount { margin-right: auto; font-weight: 600; }
+#chatwrap #userlisttoggle { float: none !important; padding: 3px; color: #c9a7af; }
+#chatwrap :is(#modflair,#dd-name-button) {
+  float: none !important;
+  margin: 0;
+  padding: 3px 7px;
+  border: 1px solid #79525d;
+  border-radius: 5px;
+  background: #2b1c22;
+  color: #efdbe1;
+  font-size: 11px;
+  line-height: 16px;
+  box-shadow: 0 1px 3px #0004;
+}
+#chatwrap #modflair.label-success { border-color: #8f7650; color: #ffe2a5; background: #3a2a21; }
+#chatwrap :is(#dd-name-button,#modflair):hover { background: #493039; }
+.dd-branded-room #chatwrap #userlist {
+  border: 0;
+  border-right: 1px solid #69434880;
+  background: #100c1080 !important;
+  scrollbar-width: thin;
+  scrollbar-color: #79525d #161014;
+}
+#chatwrap .userlist_item { padding-top: 2px; padding-bottom: 2px; }
+#chatwrap .userlist_item:hover { background: #ffffff07; }
+.dd-branded-room #chatwrap #messagebuffer {
+  padding: 7px 9px;
+  border: 0;
+  background: #100c1033 !important;
+  scrollbar-width: thin;
+  scrollbar-color: #79525d #161014;
+  box-shadow: inset 0 2px 6px #0002;
+}
+#chatwrap #messagebuffer > div { padding-bottom: 3px; }
+#chatwrap #messagebuffer .timestamp { color: #baa3ab; font-size: .8em; }
+#chatwrap > form {
+  clear: both;
+  padding: 7px;
+  margin: 0;
+  border-top: 1px solid #694348;
+  border-radius: 0 0 9px 9px;
+  background: #24191dcc;
+}
+#chatwrap #chatline {
+  height: 36px;
+  border: 1px solid #79525d;
+  border-radius: 6px;
+  background: #100d11;
+  color: #f0e3e7;
+  box-shadow: inset 0 1px 4px #0005;
+}
+#chatwrap #chatline:focus {
+  border-color: #c37387;
+  box-shadow: 0 0 0 2px #c3738726, inset 0 1px 4px #0005;
+}
+#chatwrap .user-dropdown { border: 1px solid #79525d; border-radius: 7px; background: #23181f; box-shadow: 0 4px 12px #0006; }
+#chatwrap .user-dropdown .btn { background: #34232b; border-color: #694348; color: #ead6d8; }
+
 /* Native +/- size choices can extend the page; Fit restores the viewport. */
 #dd-fit-video { float: right; margin: 0 5px; padding: 0 6px; line-height: 17px; font-size: 11px; border: 1px solid #694348; border-radius: 4px; background: #2d2024; color: #ead6d8; }
 @media (max-width:991px) {

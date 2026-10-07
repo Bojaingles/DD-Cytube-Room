@@ -60,3 +60,5 @@ Name appearance (v1.5.0):
 v1.5.1: Native video +/- changes both column width and player height; larger sizes may extend below the window. Fit restores the default seven-column viewport layout. Chat stays aligned on desktop. On narrow screens, larger video height is added above the chat rather than squeezing the chat away.
 Unconfigured usernames receive a deterministic pseudorandom color from a non-white palette. Explicit choices remain higher priority; Default color returns to the assigned palette color.
 Validation: 7 resize/default-color checks and 20 shared-color/staff checks passed locally.
+
+Chat appearance update (2026-10-07): moderator names have compact gold borders; admin names have lavender borders and a soft pink/blue glow around their existing rainbow treatment. Chat, user list, header, input and user menus use the room's burgundy styling and subtle shadows. Native name-color toggles and animation preferences are retained. Existing 20 name behavior checks pass with the updated stylesheet.
