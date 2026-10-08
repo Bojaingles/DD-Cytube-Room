@@ -53,7 +53,7 @@ Checked in an isolated Chrome fixture using the original MOTD and CSS: 25 assert
 Name appearance (v1.5.0):
 - Chat header > Name style opens a native color picker. Preferences are stored per room and username in this browser. Saving does not send a message.
 - Ordinary messages of up to 280 characters carry a bounded color marker. Commands, private messages and longer messages are untouched; recipients retain any color already learned in this visit. New arrivals learn colors from recent chat or the sender's next ordinary message.
-- Required active room chat filter: DD shared name color. Regex: ` ?\[ddnc:([A-Fa-f0-9]{6}|default)\]$`; flags: empty; replacement: `<span class="dd-namecolor" data-color="\1"></span>`; Filter Links: off.
+- Required active room chat filter: DD shared name color. Regex: ` ?\[ddnc:([A-Fa-f0-9]{6}|default)\]$`; flags: empty; replacement: ` <span class="dd-namecolor" data-color="\1"></span>`; Filter Links: off.
 - Colors are associated only with the authenticated message sender. Only six-digit hex or default is accepted. Staff role classes take priority; original Name Color staff-badge toggle remains functional.
 - Moderators use gold shimmer/sparkles; admins use rainbow sparkles. Reduced-motion settings and the local animation checkbox disable motion.
 
@@ -64,3 +64,5 @@ Validation: 7 resize/default-color checks and 20 shared-color/staff checks passe
 Chat appearance update (2026-10-07): moderator names have compact gold borders; admin names have lavender borders and a soft pink/blue glow around their existing rainbow treatment. Chat, user list, header, input and user menus use the room's burgundy styling and subtle shadows. Native name-color toggles and animation preferences are retained. Existing 20 name behavior checks pass with the updated stylesheet.
 
 Version 1.6.0: Hide channels / Show channels hides only the banner strip and its scrolling controls; navigation, account controls and Info & support remain available. The preference is stored per room in the viewer's browser. Video and chat use the freed viewport space. Collapsed banners stop drifting and return to a valid loop position when expanded. Validation: 10 collapse checks and 20 hover/pause regression checks passed; collapsed initialization after reload was verified.
+
+Version 1.6.1: Shared name-color metadata is removed before native emote matching and restored afterward. Existing colored messages with stuck emote text are repaired without changing links or usernames. The room filter replacement now begins with a space for compatibility with older clients. Validation: 17 native-emote regression checks and 20 name-color/staff checks passed in Chrome; no test messages posted in the live room.
