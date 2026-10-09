@@ -659,3 +659,50 @@ span.dd-namecolor { display: none !important; }
   .dd-fit-view #videowrap { flex: 0 0 var(--dd-mobile-video-height); height: var(--dd-mobile-video-height) !important; }
   .dd-fit-view #chatwrap { flex: 0 0 var(--dd-mobile-chat-height); height: var(--dd-mobile-chat-height) !important; }
 }
+
+/* Fine, independently scattered glitter across staff badges. */
+#userlist .userlist_item > :is(.userlist_op,.userlist_owner)::before,
+#messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::before,
+.dd-name-preview:is(.dd-mod,.dd-admin)::before,
+#userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
+#messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
+.dd-name-preview:is(.dd-mod,.dd-admin)::after {
+  content: ''; position: absolute; inset: -2px -1px; pointer-events: none;
+  border-radius: inherit; opacity: .14;
+  background: var(--dd-glitter-a, radial-gradient(circle at 17% 16%,#fff9 0 .55px,transparent 1.2px),radial-gradient(circle at 68% 82%,#fff9 0 .55px,transparent 1.2px));
+  animation: dd-fine-glitter var(--dd-glitter-time-a,2.3s) var(--dd-glitter-delay-a,-.7s) linear infinite;
+}
+#userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
+#messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
+.dd-name-preview:is(.dd-mod,.dd-admin)::after {
+  background: var(--dd-glitter-b,radial-gradient(circle at 38% 85%,#fff9 0 .55px,transparent 1.2px),radial-gradient(circle at 89% 21%,#fff9 0 .55px,transparent 1.2px));
+  animation-duration: var(--dd-glitter-time-b,2.7s); animation-delay: var(--dd-glitter-delay-b,-1.5s);
+}
+@keyframes dd-fine-glitter { 0%,100% { opacity:.10; } 16% { opacity:.42; } 29% { opacity:.15; } 47% { opacity:.3; } 63% { opacity:.08; } 81% { opacity:.38; } }
+.dd-still-names :is(#userlist .userlist_item > span,#messagebuffer .username,.dd-name-preview)::before { animation:none !important; }
+@media(prefers-reduced-motion:reduce) { :is(#userlist .userlist_item > span,#messagebuffer .username,.dd-name-preview)::before { animation:none !important; } }
+
+/* Symmetric icon gutters keep every name centered, away or active. */
+#chatwrap #userlist .userlist_item {
+  display:grid; grid-template-columns:18px minmax(0,1fr) 18px; align-items:center;
+  gap:0; padding:3px 3px; min-height:25px; text-align:center;
+}
+#chatwrap #userlist .userlist_item > span:first-child { grid-column:1; width:18px; min-width:0; text-align:center; }
+#chatwrap #userlist .userlist_item > span:nth-child(2) {
+  grid-column:2; justify-self:center; min-width:0; max-width:100%; margin:0;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; overflow-wrap:normal;
+}
+#chatwrap #userlist .userlist_item .user-dropdown { text-align:left; }
+#chatwrap #userlist .glyphicon-time { font-size:0; line-height:1; width:16px; height:16px; display:inline-grid; place-items:center; vertical-align:middle; }
+#chatwrap #userlist .glyphicon-time::before { content:'☾'; font:14px/1 'Segoe UI Emoji','Apple Color Emoji',sans-serif; opacity:.8; filter:drop-shadow(0 1px 2px #0008); }
+[data-dd-afk-season=pumpkin] #chatwrap #userlist .glyphicon-time::before { content:'🎃'; }
+[data-dd-afk-season=turkey] #chatwrap #userlist .glyphicon-time::before { content:'🦃'; }
+[data-dd-afk-season=snowflake] #chatwrap #userlist .glyphicon-time::before { content:'❄'; color:#b9d9ed; }
+[data-dd-afk-season=firework] #chatwrap #userlist .glyphicon-time::before { content:'🎆'; }
+
+/* A matching picture frame and compact episode marquee. Native title stays intact. */
+#videowrap #currenttitle { display:none; }
+#videowrap-header { display:flex; align-items:center; gap:7px; padding:7px 10px; margin-bottom:5px; border:1px solid #694348; border-radius:8px; background:linear-gradient(115deg,#302027a8,#16101490); box-shadow:0 2px 8px #0005; }
+#videowrap-header #dd-video-title { order:-1; flex:1 1 auto; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#f3d6bf; font-family:'Trebuchet MS','Segoe UI',sans-serif; font-weight:800; font-size:clamp(12px,1.1vw,16px); letter-spacing:.035em; text-shadow:0 1px 2px #0009; }
+#videowrap-header :is(.glyphicon,#dd-fit-video) { flex:0 0 auto; float:none; color:#e6bdc5; }
+#videowrap > .embed-responsive { box-sizing:border-box; border:1px solid #79515b; border-radius:9px; box-shadow:0 3px 14px #0006,0 0 8px #bc516b13; overflow:hidden; }
