@@ -89,3 +89,5 @@ Version 1.11.3: Footer credit reads Channel design and features by Orange, with 
 Clicking Orange also plays Toasty locally using the audio clip at https://instantsbutton.com/sound/mortal-kombat-toasty. No autoplay or room-wide chat action.
 
 Version 1.11.4: Orange credit appears inline beside the Powered by CyTube credit.
+
+Version 1.12.0: Reconnect-safe lifecycle recovery rebinds socket events and native formatter/name-color hooks, watches replacements by node identity, restores removed carousel/navigation and episode panels, retains last channel markup through native MOTD resets, recovers PM panels after native rebuilds, and resumes recovery when external JS is executed again. A two-second health check covers missed events. Validation: 13 isolated reconnect checks and PM rebuild recovery passed; no live disconnect was forced.
