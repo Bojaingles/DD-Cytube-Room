@@ -763,3 +763,6 @@ span.dd-namecolor { display: none !important; }
 #dd-channel-bar .dd-search-empty { text-align:center; color:#bd9faa; font-size:13px; padding:10px; margin:0; }
 #dd-channel-bar.dd-searching #dd-channel-rail { scroll-behavior:auto; }
 @media(max-width:767px) { #dd-channel-bar .dd-channel-search { width:140px; } }
+
+#dd-channel-bar .dd-room-navigation .navbar-collapse > .dd-channel-search { flex:0 0 160px; margin-left:0; margin-right:0; }
+@media(max-width:767px) { #dd-channel-bar .dd-room-navigation .navbar-collapse > .dd-channel-search { margin:6px 0; } }

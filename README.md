@@ -76,3 +76,5 @@ Support cards are scattered at varied intervals of 8–13 channel cards, with an
 
 Version 1.9.1: Removed the Info & support dropdown at the owner's request. Repeating support tiles, donation links, the animated Discord banner and episode synopsis remain available.
 Version 1.10.0: Rounded channel search matches every word in any order. Instant static results exclude support cards and loop copies. Clearing restores scrolling and position; Escape clears, empty results explain the state, and searching expands a collapsed strip.
+
+Version 1.10.1: Search sits directly beside Layout rather than beside the right-hand carousel controls. The total channel count is folded into its dynamic placeholder, for example Search 52 channels.
