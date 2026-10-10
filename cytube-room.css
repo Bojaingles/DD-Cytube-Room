@@ -796,3 +796,4 @@ span.dd-namecolor { display: none !important; }
 .dd-credit-person:hover .dd-credit-portrait,.dd-credit-person:focus-within .dd-credit-portrait,.dd-credit-person.dd-credit-open .dd-credit-portrait { opacity:1; visibility:visible; }
 
 #dd-design-credit { display:inline; margin:0; font-size:inherit; }
+#footer:has(#dd-design-credit) { display:block!important; }
