@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.DDRoom) return;
-  const version = '1.8.0';
+  const version = '1.9.0';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
   const started = Date.now();
@@ -407,6 +407,16 @@
       if (support) controls.prepend(support);
     }
     nav.classList.add('dd-room-navigation');
+    const brand = nav.querySelector('.navbar-brand');
+    if (brand && !brand.querySelector('.dd-network-logo')) {
+      const logo = document.createElement('img'); logo.className = 'dd-network-logo';
+      logo.src = 'https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png';
+      logo.alt = 'Doodoo Buttchump Network'; brand.replaceChildren(logo); brand.setAttribute('aria-label', 'Doodoo Buttchump Network · channel directory');
+    }
+    if (!nav.querySelector('.dd-discord-link')) {
+      const discord = document.querySelector('#motd a[href*="discord.gg"]');
+      if (discord) { const link = discord.cloneNode(true); link.className = 'dd-discord-link'; link.setAttribute('aria-label', 'Join the network Discord'); link.target = '_blank'; link.rel = 'noopener noreferrer'; nav.querySelector('.navbar-collapse')?.append(link); }
+    }
     document.documentElement.classList.add('dd-integrated-navigation');
     if (api.navigationResize) api.navigationResize.disconnect();
     const measure = () => {
@@ -472,10 +482,30 @@
     rail.id = 'dd-channel-rail';
     rail.tabIndex = 0;
     rail.setAttribute('aria-label', 'Shows; use left and right arrow keys to browse');
+    const donationLinks = Array.from(motd.querySelectorAll('a')).filter(a => /cash\.app|paypal\.com\/donate|amzn\.to/.test(a.href));
+    if (donationLinks.length) {
+      const card = document.createElement('div'); card.className = 'column dd-support-card';
+      const caption = document.createElement('p');
+      caption.textContent = Array.from(motd.querySelectorAll('font')).find(x => x.textContent.includes("If you'd like"))?.textContent.trim() || 'Support the network';
+      const slides = document.createElement('div'); slides.className = 'dd-support-slides';
+      donationLinks.forEach((a,i) => { const link = a.cloneNode(true); link.dataset.ddSupportSlide = i; link.setAttribute('aria-label', ['Donate with Cash App','Donate with PayPal','Support through Amazon'][i] || 'Support the network'); link.target = '_blank'; link.rel = 'noopener noreferrer'; slides.append(link); });
+      const nextSupport = button('›', 'Next support option'); nextSupport.className = 'dd-support-next';
+      card.append(caption, slides, nextSupport);
+      // Scatter occasional support cards through the primary loop. They remain
+      // presentation-only and never enter the saved channel list or its count.
+      const channelCards = Array.from(rail.querySelectorAll('.column'));
+      let slot = Math.min(channelCards.length - 1, 4 + Math.floor(Math.random() * 5));
+      if (!channelCards.length) rail.append(card);
+      else while (slot < channelCards.length) {
+        const ad = card.cloneNode(true); ad.dataset.ddSupportOffset = Math.floor(Math.random() * donationLinks.length);
+        channelCards[slot].after(ad); slot += 8 + Math.floor(Math.random() * 6);
+      }
+    }
     const cards = Array.from(rail.querySelectorAll('.column'));
     if (!cards.length) { previous.disabled = next.disabled = pause.disabled = true; rail.setAttribute('aria-label', 'No channels added'); }
-    count.textContent = cards.length + ' channels';
+    count.textContent = banners.querySelectorAll('.column').length + ' channels';
     for (const card of cards) {
+      if (card.classList.contains('dd-support-card')) continue;
       const link = card.querySelector('a');
       const img = card.querySelector('img');
       const label = decodeURIComponent(new URL(link.href, location.href).pathname.split('/').pop()).replace(/-/g, ' ');
@@ -493,11 +523,23 @@
       clone.dataset.ddLoopCopy = '1';
       clone.setAttribute('aria-hidden', 'true');
       clone.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
+      clone.querySelectorAll('button').forEach(b => b.tabIndex = -1);
       clone.querySelectorAll('a').forEach(a => { a.tabIndex = -1; a.removeAttribute('aria-current'); });
       return clone;
     };
     rail.prepend(...cards.map(copy));
     rail.append(...cards.map(copy));
+    let supportIndex = 0;
+    function rotateSupport(step = 0) {
+      if (!donationLinks.length) return;
+      supportIndex = (supportIndex + step) % donationLinks.length;
+      rail.querySelectorAll('[data-dd-support-slide]').forEach(a => { const index = (supportIndex + Number(a.closest('.dd-support-card').dataset.ddSupportOffset || 0)) % donationLinks.length; const active = Number(a.dataset.ddSupportSlide) === index; a.classList.toggle('dd-support-active', active); a.setAttribute('aria-hidden', String(!active)); a.inert = !active; });
+    }
+    rotateSupport();
+    rail.querySelectorAll('.dd-support-next').forEach(b => b.addEventListener('click', () => rotateSupport(1)));
+    const supportTimer = setInterval(() => {
+      if (!rail.hidden && !document.hidden && !reducedMotion() && !rail.querySelector('.dd-support-card:hover,.dd-support-card:focus-within')) rotateSupport(1);
+    }, 6000);
     let start = 0, period = 0, autoX = 0, frame = 0, lastFrame = 0;
     let keyboardInput = false, lastPointerType = 'mouse', paused = false, idleUntil = 0;
     let railPositioned = false;
@@ -629,7 +671,7 @@
       frame = requestAnimationFrame(drift);
     }
     frame = requestAnimationFrame(drift);
-    api.stopCarousel = () => { interactions.abort(); cancelAnimationFrame(frame); api.railResize?.disconnect(); };
+    api.stopCarousel = () => { clearInterval(supportTimer); interactions.abort(); cancelAnimationFrame(frame); api.railResize?.disconnect(); };
   }
   function fitViewingArea() {
     const main = document.getElementById('main');
@@ -787,7 +829,7 @@
   let playlistExpanded = false;
   try { playlistExpanded = sessionStorage.getItem('dd-playlist-expanded') === '1'; } catch (_) {}
   function episodeUI() {
-    roomPresentation(); channelManagerUI();
+    roomPresentation(); channelManagerUI(); episodeEditorUI();
     const title = document.getElementById('currenttitle');
     const host = document.getElementById('rightpane');
     const poll = document.getElementById('pollwrap');
@@ -924,6 +966,94 @@
     if (!menu || managerEntry?.isConnected) return;
     managerEntry = document.createElement('li'); managerEntry.id = 'dd-channel-manager-entry';
     const link = document.createElement('a'); link.href = '#'; link.textContent = 'Manage channels'; link.addEventListener('click', e => { e.preventDefault(); openChannelManager(); }); managerEntry.append(link); menu.append(managerEntry);
+  }
+
+  let episodeEditor, episodeEditBusy = false, episodeButtonsObserved;
+  function episodeEditAllowed() {
+    return Number(window.CLIENT?.rank) >= 2 && typeof window.hasPermission === 'function' && ['playlistadd','playlistmove','playlistdelete'].every(p => window.hasPermission(p));
+  }
+  function queueItem(row) {
+    const data = window.$?.(row).data();
+    return data?.media && Number.isFinite(Number(data.uid)) ? { uid:Number(data.uid),media:{...data.media},temp:!!data.temp } : null;
+  }
+  function playlistItems() { return Array.from(document.querySelectorAll('#queue > li')).map(queueItem).filter(Boolean); }
+  function waitPlaylist(event, predicate, action, timeout = 25000) {
+    return new Promise((resolve,reject) => {
+      const socket = window.socket;
+      let timer;
+      const clean = () => { clearTimeout(timer); socket.off(event, receive); socket.off('queueFail', fail); socket.off('disconnect', disconnected); };
+      const receive = data => { if (predicate(data)) { clean(); resolve(data); } };
+      const fail = data => { if (event === 'queue') { clean(); reject(new Error(data?.msg || 'CyTube could not add the replacement.')); } };
+      const disconnected = () => { clean(); reject(new Error('Connection lost. Check the playlist before trying again.')); };
+      socket.on(event,receive); socket.on('queueFail',fail); socket.on('disconnect',disconnected);
+      timer = setTimeout(() => { clean(); reject(new Error('No confirmation received. Check the playlist before trying again.')); },timeout);
+      try { action(); } catch (error) { clean(); reject(error); }
+    });
+  }
+  function openEpisodeEditor(row) {
+    if (!episodeEditAllowed() || episodeEditBusy) return;
+    const original = queueItem(row); if (!original) return;
+    episodeEditor?.remove();
+    const modal = document.createElement('dialog'); episodeEditor = modal; modal.id = 'dd-episode-editor'; modal.setAttribute('aria-labelledby','dd-edit-episode-title');
+    modal.innerHTML = '<h2 id="dd-edit-episode-title">Edit episode</h2><p>The replacement keeps this playlist position and its temporary/permanent setting.</p><form><label>Episode name<input name="title" maxlength="300" required></label><label>Episode link<input name="url" required></label><p id="dd-edit-provider-note"></p><p id="dd-edit-status" role="status"></p><footer><button type="button" id="dd-edit-cancel">Cancel</button><button type="submit">Save episode</button></footer></form>';
+    document.body.append(modal);
+    const form=modal.querySelector('form'), fields=form.elements, status=modal.querySelector('#dd-edit-status'), note=modal.querySelector('#dd-edit-provider-note');
+    fields.namedItem('title').value=original.media.title;
+    fields.namedItem('url').value=window.formatURL(original.media);
+    function providerNote() {
+      try { const p=window.parseMediaLink(fields.namedItem('url').value.trim()); fields.namedItem('title').disabled=p.type!=='fi'; note.textContent=p.type==='fi'?'You can rename this direct video file.':'This video service supplies its own title.'; } catch (_) { fields.namedItem('title').disabled=false; note.textContent='Paste a valid episode link.'; }
+    }
+    providerNote(); fields.namedItem('url').addEventListener('input',providerNote);
+    modal.querySelector('#dd-edit-cancel').addEventListener('click',()=>{if(!episodeEditBusy)modal.close();});
+    modal.addEventListener('cancel',e=>{if(episodeEditBusy)e.preventDefault();});
+    modal.addEventListener('close',()=>{modal.remove();if(episodeEditor===modal)episodeEditor=null;});
+    form.addEventListener('submit',async e=>{
+      e.preventDefault(); if(episodeEditBusy||!episodeEditAllowed())return;
+      let deletedOriginal=false; const trackDelete=d=>{if(d?.uid===original.uid)deletedOriginal=true;};
+      try {
+        const items=playlistItems(), position=items.findIndex(x=>x.uid===original.uid), live=items[position];
+        if(!live || live.media.id!==original.media.id || live.media.title!==original.media.title)throw new Error('This episode changed. Reopen its editor.');
+        if(original.uid===window.PL_CURRENT)throw new Error('This episode is playing. Edit it after playback moves to the next episode.');
+        const url=managerURL(fields.namedItem('url').value), parsed=window.parseMediaLink(url);
+        if(!parsed?.id||!parsed.type||['yp','cu'].includes(parsed.type))throw new Error('Use a link to one playable episode.');
+        if(items.some(x=>x.uid!==original.uid&&x.media.id===parsed.id&&x.media.type===parsed.type))throw new Error('That video is already elsewhere in the playlist.');
+        const title=fields.namedItem('title').value.trim(); if(parsed.type==='fi'&&!title)throw new Error('Enter an episode name.');
+        if(parsed.id===original.media.id&&parsed.type===original.media.type&&(parsed.type!=='fi'||title===original.media.title)){modal.close();return;}
+        const before=position?items[position-1].uid:'prepend', oldIDs=new Set(items.map(x=>x.uid));
+        episodeEditBusy=true; form.querySelectorAll('input,button').forEach(x=>x.disabled=true); window.socket.on('delete',trackDelete);
+        status.textContent='Adding and checking the replacement…';
+        const added=await waitPlaylist('queue',d=>d?.item&&!oldIDs.has(d.item.uid)&&d.item.media?.id===parsed.id&&d.item.media?.type===parsed.type&&d.item.queueby===window.CLIENT.name,()=>window.socket.emit('queue',{id:parsed.id,type:parsed.type,pos:'next',title:parsed.type==='fi'?title:false,temp:original.temp}));
+        const replacement=added.item;
+        if(replacement.temp!==original.temp||(parsed.type==='fi'&&replacement.media.title!==title))throw new Error('CyTube changed the replacement settings. Check both entries before continuing.');
+        if(before!=='prepend'&&!playlistItems().some(x=>x.uid===before))throw new Error('The playlist position changed during saving. Replacement added; check its position.');
+        if(window.PL_CURRENT===original.uid)throw new Error('The original started playing. Both entries are kept to avoid interrupting playback.');
+        status.textContent='Restoring playlist position…';
+        await waitPlaylist('moveVideo',d=>d?.from===replacement.uid&&d.after===before,()=>window.socket.emit('moveMedia',{from:replacement.uid,after:before}));
+        if(!deletedOriginal){
+          if(window.PL_CURRENT===original.uid)throw new Error('The original started playing. Both entries are kept to avoid interrupting playback.');
+          status.textContent='Removing the old entry…';
+          await waitPlaylist('delete',d=>d?.uid===original.uid,()=>window.socket.emit('delete',original.uid));
+        }
+        modal.close();
+      } catch(error){status.textContent=error.message;}
+      finally{window.socket.off('delete',trackDelete);episodeEditBusy=false;if(modal.isConnected){form.querySelectorAll('input,button').forEach(x=>x.disabled=false);providerNote();}}
+    });
+    modal.showModal();
+    if(original.uid===window.PL_CURRENT)status.textContent='Currently playing: save is available after the room moves to the next episode.';
+  }
+  function episodeEditorUI() {
+    const queue=document.getElementById('queue');if(!queue)return;
+    const decorate=()=>{
+      const allowed=episodeEditAllowed();
+      queue.querySelectorAll(':scope > li').forEach(row=>{
+        let edit=row.querySelector('.dd-edit-episode');
+        if(!allowed){edit?.remove();return;}
+        if(!edit){edit=button('Edit episode','Edit this episode');edit.className='btn btn-xs btn-default dd-edit-episode';edit.addEventListener('click',()=>openEpisodeEditor(row));(row.querySelector('.btn-group')||row).append(edit);}
+      });
+    };
+    decorate();
+    if(episodeButtonsObserved!==queue){episodeButtonsObserved=queue;new MutationObserver(decorate).observe(queue,{childList:true,subtree:true});}
+    if(!episodeEditAllowed()&&!episodeEditBusy)episodeEditor?.close();
   }
 
   function init() {
