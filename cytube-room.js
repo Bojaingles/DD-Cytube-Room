@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.DDRoom) return;
-  const version = '1.7.0';
+  const version = '1.8.0';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
   const started = Date.now();
@@ -444,7 +444,7 @@
     const motd = document.getElementById('motd');
     const wrap = document.getElementById('motdwrap');
     const banners = motd?.querySelector('.motd-banners');
-    if (!wrap || !banners?.querySelector('a')) {
+    if (!wrap || !banners) {
       restoreNavigation();
       document.getElementById('dd-channel-bar')?.remove();
       document.documentElement.classList.remove('dd-motd-ready');
@@ -473,6 +473,7 @@
     rail.tabIndex = 0;
     rail.setAttribute('aria-label', 'Shows; use left and right arrow keys to browse');
     const cards = Array.from(rail.querySelectorAll('.column'));
+    if (!cards.length) { previous.disabled = next.disabled = pause.disabled = true; rail.setAttribute('aria-label', 'No channels added'); }
     count.textContent = cards.length + ' channels';
     for (const card of cards) {
       const link = card.querySelector('a');
@@ -786,7 +787,7 @@
   let playlistExpanded = false;
   try { playlistExpanded = sessionStorage.getItem('dd-playlist-expanded') === '1'; } catch (_) {}
   function episodeUI() {
-    roomPresentation();
+    roomPresentation(); channelManagerUI();
     const title = document.getElementById('currenttitle');
     const host = document.getElementById('rightpane');
     const poll = document.getElementById('pollwrap');
@@ -831,6 +832,100 @@
       toggle.textContent = playlistExpanded ? '▾ Playlist controls' : '▸ Playlist controls';
     }
   }
+  // Room-wide carousel editing uses CyTube's permission-checked MOTD save.
+  let channelManager, managerEntry;
+  function managerAllowed() { return Number(window.CLIENT?.rank) >= 3; }
+  function managerURL(value, image = false) {
+    const raw = value.trim();
+    if (!raw || raw.length > 1500) throw new Error('Please enter a valid ' + (image ? 'image' : 'channel') + ' link.');
+    const url = new URL(raw, location.href);
+    if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password || (image && !/^https?:\/\//i.test(raw))) throw new Error('Use a full http or https ' + (image ? 'image' : 'channel') + ' link.');
+    return url.href;
+  }
+  function openChannelManager() {
+    if (!managerAllowed() || !window.socket?.emit) return;
+    channelManager?.remove();
+    const motd = document.getElementById('motd');
+    if (!motd?.querySelector('.motd-banners')) return;
+    const base = motd.innerHTML;
+    const source = motd.cloneNode(true);
+    let cards = Array.from(source.querySelectorAll('.motd-banners > .column')).map(x => x.cloneNode(true));
+    let editing = -1, saving = false, dirty = false;
+    const modal = document.createElement('dialog'); channelManager = modal;
+    modal.id = 'dd-channel-manager'; modal.setAttribute('aria-labelledby', 'dd-manager-title');
+    modal.innerHTML = '<header><h2 id="dd-manager-title">Manage channels</h2><button type="button" class="dd-manager-close" aria-label="Close channel manager">×</button></header><p>Add a banner image and choose where clicking it goes. Changes appear for everyone after saving.</p><form id="dd-card-form"><label>Channel name<input name="name" maxlength="100" required placeholder="e.g. American Dad"></label><label>Channel link<input name="channel" required placeholder="https://cytu.be/r/Channel-Name"></label><label>Hosted image link<input name="image" required placeholder="https://…/banner.png"></label><div class="dd-manager-form-actions"><button type="submit" id="dd-card-add">Add channel</button><button type="button" id="dd-card-reset" hidden>Cancel edit</button></div></form><p id="dd-manager-status" role="status"></p><div id="dd-manager-list"></div><footer><span id="dd-manager-count"></span><button type="button" id="dd-manager-cancel">Cancel</button><button type="button" id="dd-manager-save">Save to room</button></footer>';
+    document.body.append(modal);
+    const form = modal.querySelector('form'), fields = form.elements;
+    const status = modal.querySelector('#dd-manager-status'), list = modal.querySelector('#dd-manager-list'), save = modal.querySelector('#dd-manager-save');
+    const tell = text => { status.textContent = text; };
+    const reset = () => { editing = -1; form.reset(); modal.querySelector('#dd-card-add').textContent = 'Add channel'; modal.querySelector('#dd-card-reset').hidden = true; };
+    function label(card) { const a = card.querySelector('a'), img = card.querySelector('img'); return a?.getAttribute('aria-label') || img?.alt || decodeURIComponent(new URL(a.href).pathname.split('/').pop()).replace(/-/g, ' '); }
+    function render() {
+      list.replaceChildren();
+      cards.forEach((card, index) => {
+        const row = document.createElement('div'); row.className = 'dd-manager-card';
+        const image = document.createElement('img'); image.src = card.querySelector('img').src; image.alt = ''; image.loading = 'lazy'; image.referrerPolicy = 'no-referrer';
+        image.addEventListener('error', () => { image.classList.add('dd-image-error'); image.alt = 'Image unavailable'; });
+        const info = document.createElement('div'), name = document.createElement('strong'), link = document.createElement('a');
+        name.textContent = label(card); link.textContent = card.querySelector('a').getAttribute('href'); link.href = card.querySelector('a').href; link.target = '_blank'; link.rel = 'noopener noreferrer'; info.append(name, link);
+        const edit = button('Edit', 'Edit ' + label(card)), remove = button('Remove', 'Remove ' + label(card));
+        edit.disabled = remove.disabled = saving;
+        edit.addEventListener('click', () => { editing = index; fields.namedItem('name').value = label(card); fields.namedItem('channel').value = card.querySelector('a').href; fields.namedItem('image').value = card.querySelector('img').src; modal.querySelector('#dd-card-add').textContent = 'Update channel'; modal.querySelector('#dd-card-reset').hidden = false; fields.namedItem('name').focus(); });
+        remove.addEventListener('click', () => { cards.splice(index, 1); dirty = true; reset(); render(); tell('Channel removed from your draft. Save to apply, or Cancel to keep the current list.'); });
+        row.append(image, info, edit, remove); list.append(row);
+      });
+      modal.querySelector('#dd-manager-count').textContent = cards.length + ' channels';
+      save.disabled = saving || !dirty;
+    }
+    form.addEventListener('submit', e => {
+      e.preventDefault(); if (saving || !managerAllowed()) return;
+      try {
+        const name = fields.namedItem('name').value.trim(); if (!name) throw new Error('Please enter a channel name.');
+        const href = managerURL(fields.namedItem('channel').value), src = managerURL(fields.namedItem('image').value, true);
+        if (cards.some((c, i) => i !== editing && c.querySelector('a').href === href)) throw new Error('That channel is already in the carousel. Use Edit to change its banner.');
+        const card = document.createElement('div'); card.className = 'column'; const link = document.createElement('a'), img = document.createElement('img');
+        link.href = href; link.setAttribute('aria-label', name); img.src = src; img.alt = name; link.append(img); card.append(link);
+        if (editing >= 0) cards[editing] = card; else cards.push(card);
+        dirty = true; reset(); render(); tell('Draft updated. Save to room when ready.');
+      } catch (error) { tell(error.message); }
+    });
+    modal.querySelector('#dd-card-reset').addEventListener('click', reset);
+    const close = () => { if (!saving) modal.close(); };
+    modal.querySelector('.dd-manager-close').addEventListener('click', close); modal.querySelector('#dd-manager-cancel').addEventListener('click', close);
+    modal.addEventListener('cancel', e => { if (saving) e.preventDefault(); });
+    modal.addEventListener('close', () => { modal.remove(); if (channelManager === modal) channelManager = null; managerEntry?.querySelector('a')?.focus(); });
+    save.addEventListener('click', () => {
+      if (saving || !dirty || !managerAllowed()) return;
+      if (typeof window.hasPermission === 'function' && !window.hasPermission('motdedit')) { tell('Your account does not have permission to edit the room banner.'); return; }
+      if (form.elements.namedItem('name').value || form.elements.namedItem('channel').value || form.elements.namedItem('image').value) { tell('Add or update the channel above before saving, or use Cancel edit to clear the form.'); return; }
+      if (document.getElementById('motd')?.innerHTML !== base) { tell('The room was updated by another admin. Reopen this editor to load the latest list before saving.'); return; }
+      source.querySelector('.motd-banners').replaceChildren(...cards.map(x => x.cloneNode(true)));
+      const html = source.innerHTML;
+      if (new TextEncoder().encode(html).length > 20000) { tell('This list exceeds the room limit. Shorter image links or fewer channels will fit.'); return; }
+      saving = true; render(); form.querySelectorAll('input,button').forEach(x => x.disabled = true); tell('Saving to room…');
+      let timer;
+      const finish = (ok, text) => { clearTimeout(timer); window.socket.off?.('setMotd', ack); saving = false; form.querySelectorAll('input,button').forEach(x => x.disabled = false); if (ok) { dirty = false; modal.close(); } else { render(); tell(text); } };
+      const ack = html => {
+        const parsed = document.createElement('div'); parsed.innerHTML = typeof html === 'string' ? html : '';
+        const received = Array.from(parsed.querySelectorAll('.motd-banners > .column')).map(c => [c.querySelector('a')?.getAttribute('href'),c.querySelector('img')?.getAttribute('src')]);
+        const expected = cards.map(c => [c.querySelector('a')?.getAttribute('href'),c.querySelector('img')?.getAttribute('src')]);
+        finish(JSON.stringify(received) === JSON.stringify(expected), 'The room returned a different list. Reopen the editor to check the latest changes.');
+      };
+      if (!window.socket.on || !window.socket.off) { saving = false; render(); tell('Room connection unavailable. Reconnect and try again.'); return; }
+      window.socket.on('setMotd', ack);
+      timer = setTimeout(() => finish(false, 'Save was not confirmed. Reopen the editor to check the room before retrying.'), 10000);
+      window.socket.emit('setMotd', { motd: html });
+    });
+    render(); modal.showModal(); fields.namedItem('name').focus();
+  }
+  function channelManagerUI() {
+    if (!managerAllowed()) { managerEntry?.remove(); managerEntry = null; channelManager?.close(); return; }
+    const menu = Array.from(document.querySelectorAll('nav.navbar .dropdown')).find(x => x.querySelector(':scope > a')?.textContent.trim() === 'Layout')?.querySelector('.dropdown-menu');
+    if (!menu || managerEntry?.isConnected) return;
+    managerEntry = document.createElement('li'); managerEntry.id = 'dd-channel-manager-entry';
+    const link = document.createElement('a'); link.href = '#'; link.textContent = 'Manage channels'; link.addEventListener('click', e => { e.preventDefault(); openChannelManager(); }); managerEntry.append(link); menu.append(managerEntry);
+  }
+
   function init() {
     roomWatermark();
     nameColorUI();
