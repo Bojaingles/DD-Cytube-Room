@@ -82,3 +82,5 @@ Version 1.10.1: Search sits directly beside Layout rather than beside the right-
 Version 1.11.0: Short channel-search result rows are centered. Private-message windows gain dragging, resize grip and keyboard resizing, docking to the chat frame, drop shadows, and initials bubbles with unread highlighting when minimized. Up to 200 text messages per conversation and 30 conversations, drafts and window preferences are saved locally per account and room. Refresh restores open conversations. Stored text is restored using textContent, never HTML. This is browser-local history, not server synchronization or delivery while offline. Validation: isolated local checks cover receive/refresh/reopen, draft, minimized state, size, docking, dragging, centered search and account separation; no real PMs were sent for testing.
 
 Version 1.11.1: Minimized PM bubbles start at the bottom left and stack toward the right.
+
+Version 1.11.2: PM bubbles use native CyTube profile avatars when present, update when profiles change, retain the last known avatar across refresh/offline contacts, and fall back to initials for missing or failed images.

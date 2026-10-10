@@ -784,3 +784,6 @@ span.dd-namecolor { display: none !important; }
 #pmbar .dd-pm-bubble.dd-pm-unread { box-shadow:inset 0 0 0 3px #dcb376; }
 #pmbar .dd-pm-window :focus-visible { outline:2px solid #dcb376; outline-offset:-2px; }
 #pmbar .dd-pm-window { box-sizing:border-box; }
+
+#pmbar .dd-pm-bubble { padding:0; overflow:hidden; }
+#pmbar .dd-pm-avatar { display:block; width:100%; height:100%; object-fit:cover; border-radius:50%; pointer-events:none; }
