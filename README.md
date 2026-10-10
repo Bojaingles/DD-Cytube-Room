@@ -75,3 +75,4 @@ Version 1.9.0: Staff with playlist add/move/delete permissions get Edit episode 
 Support cards are scattered at varied intervals of 8–13 channel cards, with an initial offset of 5–9 cards. Individual cards start on randomized donation options. Loop copies repeat the same primary layout for smooth seams; channel counts and saved channel data exclude support tiles.
 
 Version 1.9.1: Removed the Info & support dropdown at the owner's request. Repeating support tiles, donation links, the animated Discord banner and episode synopsis remain available.
+Version 1.10.0: Rounded channel search matches every word in any order. Instant static results exclude support cards and loop copies. Clearing restores scrolling and position; Escape clears, empty results explain the state, and searching expands a collapsed strip.

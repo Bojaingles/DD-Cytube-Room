@@ -756,3 +756,10 @@ span.dd-namecolor { display: none !important; }
 #dd-edit-status { min-height:20px; color:#f3d6bf; }
 @media(max-width:767px) { #dd-channel-bar .dd-discord-link { justify-content:center; margin:5px; } }
 @media(prefers-reduced-motion:reduce) { #dd-channel-rail .dd-support-slides a { transition:none; } }
+#dd-channel-bar .dd-channel-search { width:160px; min-width:100px; height:29px; padding:4px 11px; border:1px solid #79515b; border-radius:16px; background:#1a111680; color:#ead6d8; font-size:12px; box-shadow:inset 0 1px 3px #0004; }
+#dd-channel-bar .dd-channel-search::placeholder { color:#bd9faa; }
+#dd-channel-bar .dd-channel-search:focus { outline:1px solid #dcb376; outline-offset:1px; }
+#dd-channel-bar #dd-channel-rail .column[hidden], #dd-channel-bar .dd-search-empty[hidden] { display:none!important; }
+#dd-channel-bar .dd-search-empty { text-align:center; color:#bd9faa; font-size:13px; padding:10px; margin:0; }
+#dd-channel-bar.dd-searching #dd-channel-rail { scroll-behavior:auto; }
+@media(max-width:767px) { #dd-channel-bar .dd-channel-search { width:140px; } }
