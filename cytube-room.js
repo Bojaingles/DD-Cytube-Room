@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.DDRoom) return;
-  const version = '1.10.1';
+  const version = '1.11.0';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
   const started = Date.now();
@@ -1085,7 +1085,127 @@
     if(!episodeEditAllowed()&&!episodeEditBusy)episodeEditor?.close();
   }
 
+  // PM history stays in this browser, scoped to the signed-in account and room.
+  function privateMessages() {
+    const host = document.getElementById('pmbar');
+    const owner = window.CLIENT?.name;
+    if (!owner && api.pmOwner) { api.pmStop?.(); host?.querySelectorAll('.pm-panel,.pm-panel-placeholder').forEach(p => p.remove()); api.pmOwner = null; }
+    if (!host || !owner || typeof window.initPm !== 'function' || !window.$) return;
+    if (api.pmOwner === owner) return;
+    api.pmStop?.();
+    const key = 'dd-pm-v1:' + location.pathname + ':' + owner.toLowerCase();
+    let records = Object.create(null), stopped = false, timer = 0;
+    const windows = new Map();
+    try {
+      const saved = JSON.parse(localStorage.getItem(key) || '{}');
+      for (const [name, value] of Object.entries(saved).slice(-30)) {
+        if (value && Array.isArray(value.lines)) records[name] = { ...value, lines: value.lines.filter(x => typeof x === 'string').slice(-200).map(x => x.slice(0,2400)) };
+      }
+    } catch (_) {}
+    if (api.pmOwner && api.pmOwner !== owner) host.querySelectorAll('.pm-panel,.pm-panel-placeholder').forEach(p => p.remove());
+    api.pmOwner = owner;
+    const base = window.initPm.ddBase || window.initPm;
+    function write() {
+      if (stopped || window.CLIENT?.name !== owner) return;
+      for (const [name, entry] of windows) {
+        if (!entry.panel.isConnected) { entry.state.open = false; continue; }
+        entry.state.lines = Array.from(entry.buffer.children).slice(-200).map(e => e.textContent.slice(0,2400));
+        entry.state.draft = entry.input.value.slice(0,320);
+        if (!entry.state.minimized) { entry.state.width = entry.panel.offsetWidth || entry.state.width; entry.state.height = entry.panel.offsetHeight || entry.state.height; }
+        records[name] = entry.state;
+      }
+      const names = Object.keys(records);
+      while (names.length > 30) delete records[names.shift()];
+      try { localStorage.setItem(key, JSON.stringify(records)); }
+      catch (_) { host.title = 'PM history could not be saved in this browser.'; }
+    }
+    function schedule() { clearTimeout(timer); timer = setTimeout(write,120); }
+    function initials(name) { return (name.match(/[A-Z]/g)?.slice(0,2).join('') || name.slice(0,2)).toUpperCase(); }
+    function place(entry) {
+      const {panel,state} = entry;
+      const vw = document.documentElement.clientWidth, vh = window.innerHeight;
+      const visible = Array.from(windows.values()).filter(e => e.panel.isConnected);
+      const index = Math.max(0,visible.indexOf(entry));
+      panel.classList.toggle('dd-pm-minimized', !!state.minimized);
+      panel.classList.toggle('dd-pm-docked', !!state.docked);
+      panel.classList.toggle('dd-pm-floating', !state.docked);
+      if (state.minimized) {
+        panel.style.cssText = 'position:fixed;left:auto;top:auto;bottom:18px;right:'+(18+index*58)+'px;width:48px;height:48px';
+      } else {
+        const w = Math.min(Math.max(250,Number(state.width)||340),Math.max(250,vw-24));
+        const h = Math.min(Math.max(220,Number(state.height)||380),Math.max(220,vh-24));
+        let x = Number(state.x), y = Number(state.y);
+        if (state.docked) {
+          const chat = document.getElementById('chatwrap')?.getBoundingClientRect();
+          x = (chat?.right || vw-12)-w-index*24; y = Math.min(chat?.bottom || vh-12,vh-12)-h-index*24;
+        }
+        if (!Number.isFinite(x)) x = vw-w-24-index*24;
+        if (!Number.isFinite(y)) y = vh-h-24-index*24;
+        x = Math.max(12,Math.min(vw-w-12,x)); y = Math.max(12,Math.min(vh-h-12,y));
+        panel.style.cssText = 'position:fixed;bottom:auto;right:auto;left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px';
+        state.x=x; state.y=y;
+      }
+      entry.body.style.display = state.minimized ? 'none' : 'flex';
+      entry.dock.textContent = state.docked ? '↗' : '↙';
+      entry.dock.setAttribute('aria-label',state.docked ? 'Detach private message window' : 'Attach private message window to chat');
+      entry.bubble.hidden = !state.minimized;
+      entry.heading.hidden = !!state.minimized;
+    }
+    function decorate(panel,name) {
+      const old = windows.get(name);
+      if (old?.panel === panel) return;
+      if (old) old.observer.disconnect();
+      const body=panel.querySelector('.panel-body'), heading=panel.querySelector('.panel-heading'), buffer=panel.querySelector('.pm-buffer'), input=panel.querySelector('.pm-input');
+      if (!body || !heading || !buffer || !input) return;
+      const state = records[name] || {lines:[],docked:true,minimized:false,width:340,height:380};
+      const restoring = !buffer.children.length;
+      if (restoring) for (const text of state.lines) { const row=document.createElement('div'); row.className='dd-pm-saved-line'; row.textContent=text; buffer.append(row); }
+      if (restoring && state.draft && !input.value) input.value=state.draft;
+      state.open=true; records[name]=state;
+      panel.classList.add('dd-pm-window'); panel.setAttribute('aria-label','Private messages with '+name);
+      window.$(heading).off('click'); heading.replaceChildren();
+      const title=document.createElement('span'); title.className='dd-pm-title'; title.textContent=name; title.title=name;
+      const dock=button('↗','Detach private message window');
+      const minimize=button('−','Minimize private message window');
+      const close=button('×','Close private message window');
+      heading.append(title,dock,minimize,close);
+      const bubble=button(initials(name),'Open private messages with '+name); bubble.className='dd-pm-bubble'; bubble.title=name;
+      panel.append(bubble);
+      const grip=document.createElement('div'); grip.className='dd-pm-resize'; grip.tabIndex=0; grip.setAttribute('role','button'); grip.setAttribute('aria-label','Resize private message window with arrow keys'); panel.append(grip);
+      const entry={panel,body,heading,buffer,input,state,dock,bubble}; windows.set(name,entry);
+      const observer=new MutationObserver(() => { if(state.minimized && buffer.children.length > (state.lines?.length||0)) bubble.classList.add('dd-pm-unread'); schedule(); });
+      entry.observer=observer; observer.observe(buffer,{childList:true,subtree:true,characterData:true});
+      input.addEventListener('input',schedule); input.addEventListener('keydown',()=>setTimeout(schedule,0));
+      dock.addEventListener('click',()=>{state.docked=!state.docked;place(entry);schedule();});
+      minimize.addEventListener('click',()=>{state.minimized=true;write();place(entry);schedule();});
+      bubble.addEventListener('click',()=>{state.minimized=false;place(entry);bubble.classList.remove('dd-pm-unread');panel.classList.remove('panel-primary');panel.classList.add('panel-default');buffer.scrollTop=buffer.scrollHeight;input.focus();schedule();});
+      close.addEventListener('click',()=>{write();state.open=false;observer.disconnect();panel.remove();document.getElementById('pm-placeholder-'+name)?.remove();schedule();});
+      function gesture(handle,resizing) {
+        handle.addEventListener('pointerdown',e=>{
+          if (e.button!==0 || (!resizing && e.target.closest('button'))) return;
+          e.preventDefault(); const r=panel.getBoundingClientRect();
+          const ox=e.clientX,oy=e.clientY; state.docked=false; state.x=r.x;state.y=r.y;state.width=r.width;state.height=r.height;
+          handle.setPointerCapture(e.pointerId);
+          const move=ev=>{if(resizing){state.width=Math.max(250,r.width+ev.clientX-ox);state.height=Math.max(220,r.height+ev.clientY-oy);}else{state.x=r.x+ev.clientX-ox;state.y=r.y+ev.clientY-oy;}place(entry);};
+          const end=()=>{handle.removeEventListener('pointermove',move);handle.removeEventListener('pointerup',end);handle.removeEventListener('pointercancel',end);handle.removeEventListener('lostpointercapture',end);schedule();};
+          handle.addEventListener('pointermove',move);handle.addEventListener('pointerup',end);handle.addEventListener('pointercancel',end);handle.addEventListener('lostpointercapture',end);
+        });
+      }
+      gesture(heading,false);gesture(grip,true);
+      grip.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const r=panel.getBoundingClientRect();state.width=r.width+(e.key==='ArrowRight'?20:e.key==='ArrowLeft'?-20:0);state.height=r.height+(e.key==='ArrowDown'?20:e.key==='ArrowUp'?-20:0);place(entry);schedule();});
+      place(entry); buffer.scrollTop=buffer.scrollHeight; schedule();
+    }
+    const wrapped=function(name){const result=base.apply(this,arguments);decorate(result[0],name);return result;};wrapped.ddBase=base;window.initPm=wrapped;
+    host.querySelectorAll('.pm-panel').forEach(p=>decorate(p,p.id.slice(3)));
+    for (const [name,state] of Object.entries(records)) if(state.open) wrapped(name);
+    const hostObserver=new MutationObserver(()=>{host.querySelectorAll('.pm-panel').forEach(p=>decorate(p,p.id.slice(3)));schedule();});hostObserver.observe(host,{childList:true});
+    const resize=()=>windows.forEach(e=>{if(e.panel.isConnected)place(e);});
+    window.addEventListener('resize',resize); window.addEventListener('pagehide',write);
+    api.pmStop=()=>{write();stopped=true;clearTimeout(timer);hostObserver.disconnect();windows.forEach(e=>e.observer.disconnect());window.removeEventListener('resize',resize);window.removeEventListener('pagehide',write);};
+  }
+
   function init() {
+    privateMessages();
     roomWatermark();
     nameColorUI();
     episodeUI();
@@ -1120,7 +1240,7 @@
   });
   init();
   // Detect login/rank changes and replacement title nodes without touching polls.
-  api.episodeMonitor = setInterval(episodeUI, 2000);
+  api.episodeMonitor = setInterval(() => { episodeUI(); privateMessages(); }, 2000);
   window.addEventListener('resize', fitViewingArea, { passive: true });
   window.visualViewport?.addEventListener('resize', fitViewingArea, { passive: true });
   if ('ResizeObserver' in window) {
