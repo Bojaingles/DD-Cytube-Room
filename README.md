@@ -87,3 +87,5 @@ Version 1.11.2: PM bubbles use native CyTube profile avatars when present, updat
 
 Version 1.11.3: Footer credit reads Channel design and features by Orange, with the supplied portrait on hover, keyboard focus or tap. The exact supplied JPEG is embedded in the external script.
 Clicking Orange also plays Toasty locally using the audio clip at https://instantsbutton.com/sound/mortal-kombat-toasty. No autoplay or room-wide chat action.
+
+Version 1.11.4: Orange credit appears inline beside the Powered by CyTube credit.
