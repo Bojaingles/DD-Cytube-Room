@@ -84,3 +84,6 @@ Version 1.11.0: Short channel-search result rows are centered. Private-message w
 Version 1.11.1: Minimized PM bubbles start at the bottom left and stack toward the right.
 
 Version 1.11.2: PM bubbles use native CyTube profile avatars when present, update when profiles change, retain the last known avatar across refresh/offline contacts, and fall back to initials for missing or failed images.
+
+Version 1.11.3: Footer credit reads Channel design and features by Orange, with the supplied portrait on hover, keyboard focus or tap. The exact supplied JPEG is embedded in the external script.
+Clicking Orange also plays Toasty locally using the audio clip at https://instantsbutton.com/sound/mortal-kombat-toasty. No autoplay or room-wide chat action.

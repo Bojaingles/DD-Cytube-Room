@@ -787,3 +787,10 @@ span.dd-namecolor { display: none !important; }
 
 #pmbar .dd-pm-bubble { padding:0; overflow:hidden; }
 #pmbar .dd-pm-avatar { display:block; width:100%; height:100%; object-fit:cover; border-radius:50%; pointer-events:none; }
+
+#dd-design-credit { color:#bd9faa; font-size:12px; margin:10px 0; text-align:center; }
+.dd-credit-person { position:relative; display:inline-block; }
+.dd-credit-name { border:0; background:none; padding:0; color:#edb077; font:inherit; cursor:pointer; }
+.dd-credit-name:hover,.dd-credit-name:focus-visible { color:#ffd1a3; text-decoration:underline; }
+.dd-credit-portrait { position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%); width:184px; height:184px; max-width:60vw; object-fit:cover; border:1px solid #986271; border-radius:10px; box-shadow:0 8px 28px #000b; opacity:0; visibility:hidden; pointer-events:none; z-index:1060; }
+.dd-credit-person:hover .dd-credit-portrait,.dd-credit-person:focus-within .dd-credit-portrait,.dd-credit-person.dd-credit-open .dd-credit-portrait { opacity:1; visibility:visible; }
