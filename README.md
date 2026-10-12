@@ -122,3 +122,5 @@ Unread minimized DM bubbles now pulse until opened and retain unread state acros
 Version 1.13.1: Click or keyboard-activate a chat username to insert @name at the chat cursor without sending or replacing the draft. Mentions appear as rounded badges, with a gold highlight for the recipient. Links, code, timestamps, emotes and username text are preserved. Delegation survives reconnects.
 
 Version 1.13.2: Device icons appear only in the user list. Chat continues learning device tags but does not display icons beside messages.
+
+Version 1.13.3: Added the English Stan's Best Friend test subtitles, sourced from https://www.opensubtitles.org/en/subtitles/9403894/american-dad-stan-s-best-friend-en. Exact video mapping: fi|https://u.pone.rs/fyinxbbu.mp4. Room calls it S08E14; source calls it S07E14. 394 cues, final caption ends at 21:47.805; video runtime is 21:53.408. Users enable CC and can adjust timing; synchronization remains subject to testing against dialogue. No other episodes are mapped.
