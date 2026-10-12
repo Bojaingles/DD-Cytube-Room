@@ -1,10 +1,20 @@
-/* American-Dad room enhancements. Original MOTD remains the source of truth. */
-(function () {
+/* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
+(async function () {
   'use strict';
   if (window.DDRoom) { window.DDRoom.recover?.(); return; }
-  const version = '1.14.2';
+  const version = '2.0.0';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
-  const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
+  if (!window.DDRoomProfiles) {
+    const configuredScript=window.CHANNEL?.opts?.externaljs;
+    const configURL=configuredScript && /(?:cdn\.jsdelivr\.net\/gh\/Bojaingles\/DD-Cytube-Room|raw\.githubusercontent\.com\/Bojaingles\/DD-Cytube-Room)/i.test(configuredScript) ? new URL('room-configs.js',configuredScript).href : 'https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@d63233a2268f20e75c3bc7020997ccf377b372b0/room-configs.js';
+    window.DDRoomProfilesLoading ||= new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=configURL;script.onload=resolve;script.onerror=()=>reject(Error('Room settings could not be loaded.'));document.head.append(script);});
+    try { await window.DDRoomProfilesLoading; } catch(error){console.error(error);return;}
+  }
+  if(window.DDRoom){window.DDRoom.recover?.();return;}
+  const roomKey=decodeURIComponent(location.pathname.split('/').pop()||'').toLowerCase();
+  const ROOM={motd:'<div class="motd-banners"></div>',brandName:'CyTube',favicon:'',logo:'',watermark:'',episodeGuide:false,compactEpisodeTitle:false,credit:false,preserveInfo:true,subtitles:{videos:{},episodes:{}},...(window.DDRoomProfiles?.[roomKey]||{})};
+  const ORIGINAL_MOTD=ROOM.motd;
+
   const started = Date.now();
   const pad = n => String(n).padStart(2, '0');
   const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -65,7 +75,7 @@
     // they cannot execute HTML, and failed probes leave the original link.
     return { type: 'probe', src: u.href };
   }
-  const api = window.DDRoom = { version, episode, dateText, classify };
+  const api = window.DDRoom = { version, room:roomKey, profile:ROOM, episode, dateText, classify };
   let buffer;
   function keepScroll(action) {
     // CyTube owns follow mode. Media can grow before its load callback runs,
@@ -216,7 +226,7 @@
     const raw = native.textContent.replace(/^Currently Playing:\s*/i, '').trim();
     const match = raw.match(/\b(s\d+e\d+(?:e\d+)?)\b\s*[-–—:]?\s*(.*)$/i);
     const longCode = raw.match(/\bSeason\s+\d{1,3}\s+Episode\s+\d{1,3}\b\s*[-–—:]?\s*(.*)$/i);
-    const text = match ? match[1].toUpperCase() + (match[2] ? ' · ' + match[2] : '') : longCode ? episode(raw).toUpperCase() + (longCode[1] ? ' · ' + longCode[1] : '') : raw.replace(/^American Dad!?\s*[-–—:]?\s*/i, '');
+    const text = !ROOM.compactEpisodeTitle ? raw : match ? match[1].toUpperCase() + (match[2] ? ' · ' + match[2] : '') : longCode ? episode(raw).toUpperCase() + (longCode[1] ? ' · ' + longCode[1] : '') : raw.replace(/^American Dad!?\s*[-–—:]?\s*/i, '');
     if (label.textContent !== text) { label.textContent = text; label.title = text; fitViewingArea(); }
   }
   function receiveNameColor(row, data) {
@@ -438,11 +448,12 @@
     }
     nav.classList.add('dd-room-navigation');
     const brand = nav.querySelector('.navbar-brand');
-    if (brand && !brand.querySelector('.dd-network-logo')) {
+    if (brand && ROOM.logo && !brand.querySelector('.dd-network-logo')) {
       const logo = document.createElement('img'); logo.className = 'dd-network-logo';
-      logo.src = 'https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png';
-      logo.alt = 'Doodoo Buttchump Network'; brand.replaceChildren(logo); brand.setAttribute('aria-label', 'Doodoo Buttchump Network · channel directory');
+      logo.src = ROOM.logo;
+      logo.alt = ROOM.brandName; brand.replaceChildren(logo); brand.setAttribute('aria-label', ROOM.brandName+' · channel directory');
     }
+    if(brand && !ROOM.logo){brand.textContent=ROOM.brandName;brand.setAttribute('aria-label',ROOM.brandName+' · channel directory');}
     if (!nav.querySelector('.dd-discord-link')) {
       const discord = document.querySelector('#motd a[href*="discord.gg"]');
       if (discord) { const link = discord.cloneNode(true); link.className = 'dd-discord-link'; link.setAttribute('aria-label', 'Join the network Discord'); link.target = '_blank'; link.rel = 'noopener noreferrer'; nav.querySelector('.navbar-collapse')?.append(link); }
@@ -467,12 +478,12 @@
     api.navigationResize?.disconnect();
   }
   function roomWatermark() {
-    if (!document.body || document.getElementById('dd-room-watermark')) return;
+    if (!ROOM.watermark || !document.body || document.getElementById('dd-room-watermark')) return;
     const watermark = document.createElement('div');
     watermark.id = 'dd-room-watermark';
     watermark.setAttribute('aria-hidden', 'true');
     const logo = document.createElement('img');
-    logo.src = 'https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png';
+    logo.src = ROOM.watermark;
     logo.alt = '';
     logo.draggable = false;
     logo.decoding = 'async';
@@ -703,6 +714,7 @@
       if (e.key === 'Home' || e.key === 'End') { e.preventDefault(); interact(); rail.scrollTo({ left: e.key === 'Home' ? (searching ? 0 : start) : (searching ? rail.scrollWidth - rail.clientWidth : start + period - rail.clientWidth), behavior: 'auto' }); }
     });
     bar.append(head, rail, empty);
+    if(ROOM.preserveInfo){const info=motd.cloneNode(true);info.removeAttribute('id');info.removeAttribute('style');info.querySelector('.motd-banners')?.remove();if(info.textContent.trim() || info.querySelector('img,a')){const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Room info';info.classList.add('dd-original-info');details.append(summary,info);head.prepend(details);}}
     const navigation = document.querySelector('nav.navbar') || navigationNode;
     if (navigation && !navigationHome) { navigationHome = document.createComment('Original CyTube navigation position'); navigation.before(navigationHome); }
     if (navigation) bar.prepend(navigation);
@@ -891,8 +903,9 @@
     const title = document.getElementById('currenttitle');
     const host = document.getElementById('rightpane');
     const poll = document.getElementById('pollwrap');
+    if(!ROOM.episodeGuide){episodePanel?.remove();episodePanel=null;}
     if (episodePanel && !episodePanel.isConnected) { episodePanel=null; episodeRaw=null; episodeRevision++; }
-    if (!episodePanel && title && (host || poll)) {
+    if (ROOM.episodeGuide && !episodePanel && title && (host || poll)) {
       episodePanel = document.createElement('section');
       episodePanel.id = 'dd-episode-info';
       episodePanel.setAttribute('aria-label', 'Current episode information');
@@ -1258,7 +1271,7 @@
 
   function footerCredit() {
     const footer=document.querySelector('footer');
-    if (!footer || document.getElementById('dd-design-credit')) return;
+    if (!ROOM.credit || !footer || document.getElementById('dd-design-credit')) return;
     const credit=document.createElement('span');credit.id='dd-design-credit';
     credit.append(document.createTextNode('Channel design and features by '));
     const name=document.createElement('button');name.type='button';name.className='dd-credit-name';name.textContent='Orange';
@@ -1277,7 +1290,7 @@
   }
 
   // Populate this master catalog later; subtitle assets need no server-side code.
-  const SUBTITLE_CATALOG = {"videos": {"fi|https://u.pone.rs/udycdptp.mp4": [{"lang": "en", "label": "English - Hot Water", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e01.en.srt"}], "fi|https://u.pone.rs/biekfdff.mp4": [{"lang": "en", "label": "English - Hurricane!", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e02.en.srt"}], "fi|https://u.pone.rs/fvxwyvci.mp4": [{"lang": "en", "label": "English - A Ward Show", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e03.en.srt"}], "fi|https://u.pone.rs/mfpusrbs.mp4": [{"lang": "en", "label": "English - The Worst Stan", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e04.en.srt"}], "fi|https://u.pone.rs/uohjxitr.mp4": [{"lang": "en", "label": "English - Virtual In-Stanity", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e05.en.srt"}], "fi|https://u.pone.rs/ukrixwib.mp4": [{"lang": "en", "label": "English - The Scarlett Getter", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e06.en.srt"}], "fi|https://u.pone.rs/lhyhjzhn.mp4": [{"lang": "en", "label": "English - Season's Beatings", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e07.en.srt"}], "fi|https://u.pone.rs/umbmwbql.mp4": [{"lang": "en", "label": "English - The Unbrave One", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e08.en.srt"}], "fi|https://u.pone.rs/zzaadmxz.mp4": [{"lang": "en", "label": "English - Stanny Tendergrass", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e09.en.srt"}], "fi|https://u.pone.rs/kswfkmxz.mp4": [{"lang": "en", "label": "English - Wheels & the Legman and the Case of Grandpa's Key", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e10.en.srt"}], "fi|https://u.pone.rs/kcioqmat.mp4": [{"lang": "en", "label": "English - Old Stan in the Mountain", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e11.en.srt"}], "fi|https://u.pone.rs/poerkkio.mp4": [{"lang": "en", "label": "English - The Wrestler", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e12.en.srt"}], "fi|https://u.pone.rs/bwjymkqb.mp4": [{"lang": "en", "label": "English - Dr. Klaustus", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e13.en.srt"}], "fi|https://u.pone.rs/fyinxbbu.mp4": [{"lang": "en", "label": "English - Stan's Best Friend", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e14.en.srt"}], "fi|https://u.pone.rs/mpyiejth.mp4": [{"lang": "en", "label": "English - Less Money, Mo' Problems", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e15.en.srt"}], "fi|https://u.pone.rs/unkizurp.mp4": [{"lang": "en", "label": "English - The Kidney Stays In the Picture", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e16.en.srt"}], "fi|https://u.pone.rs/xgtdnfrc.mp4": [{"lang": "en", "label": "English - Ricky Spanish", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e17.en.srt"}], "fi|https://u.pone.rs/jcgolxda.mp4": [{"lang": "en", "label": "English - Toy Whorey", "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e18.en.srt"}]}, "episodes": {}};
+  const SUBTITLE_CATALOG = ROOM.subtitles;
   let captionCatalog = window.DDSubtitleCatalog || SUBTITLE_CATALOG;
   const captionState = { key:'', cues:[], request:0, track:null, video:null, local:null, offset:0, enabled:false, selected:'auto', status:'Captions off', tracks:[], sourceKey:'' };
   const nativeCaptionTracks=new WeakMap();
@@ -1473,6 +1486,40 @@
     completion={matches,start,end:start+replacement.length,index,value:input.value,cursor:input.selectionStart};
   },{capture:true});
 
+  let uploadSyncBusy=false;
+  function uploadSyncUI(){
+    if(!Array.isArray(ROOM.uploads) || Number(window.CLIENT?.rank)<3 || !window.hasPermission?.('playlistadd') || !window.hasPermission?.('playlistmove'))return;
+    const layout=Array.from(document.querySelectorAll('nav a')).find(a=>a.textContent.trim()==='Layout');const list=layout?.parentElement.querySelector('.dropdown-menu');
+    if(!list || document.getElementById('dd-sync-uploads'))return;
+    const item=document.createElement('li'),trigger=document.createElement('a');trigger.id='dd-sync-uploads';trigger.href='#';trigger.textContent='Sync Steve1989 uploads';item.append(trigger);list.append(item);
+    trigger.addEventListener('click',async event=>{
+      event.preventDefault();if(uploadSyncBusy)return;
+      const modal=document.createElement('dialog');modal.id='dd-upload-sync';const heading=document.createElement('h2');heading.textContent='Complete Steve1989 playlist';const status=document.createElement('p');status.setAttribute('role','status');status.textContent='Checking existing entries…';const close=button('Close','Close playlist sync');close.disabled=true;close.addEventListener('click',()=>modal.close());modal.addEventListener('cancel',e=>{if(uploadSyncBusy)e.preventDefault();});modal.addEventListener('close',()=>modal.remove());modal.append(heading,status,close);document.body.append(modal);modal.showModal();uploadSyncBusy=true;
+      let added=0,failed=[],moved=0;
+      const entries=()=>Array.from(document.querySelectorAll('#queue > li')).map(row=>queueItem(row)).filter(Boolean);
+      const find=id=>entries().find(x=>x.media?.type==='yt' && x.media.id===id);
+      try{
+        for(const video of ROOM.uploads){
+          if(find(video.id))continue;
+          status.textContent='Adding '+video.title+' ('+added+' added)…';
+          const ids=new Set(entries().map(x=>x.uid));
+          try{await waitPlaylist('queue',d=>d?.item?.media?.type==='yt' && d.item.media.id===video.id && !ids.has(d.item.uid),()=>window.socket.emit('queue',{type:'yt',id:video.id,pos:'end',title:false,temp:false}));added++;}
+          catch(error){failed.push({id:video.id,title:video.title,error:error.message});if(!window.socket?.connected)throw error;}
+        }
+        let previous='prepend';
+        for(const video of ROOM.uploads){
+          const item=find(video.id);if(!item)continue;
+          const listNow=entries(),position=listNow.findIndex(x=>x.uid===item.uid);const actual=position>0?listNow[position-1].uid:'prepend';
+          if(actual!==previous && item.uid!==window.PL_CURRENT){status.textContent='Putting videos in upload order: '+video.title;await waitPlaylist('moveVideo',d=>d?.from===item.uid && d.after===previous,()=>window.socket.emit('moveMedia',{from:item.uid,after:previous}));moved++;}
+          previous=item.uid;
+        }
+        status.textContent='Finished: '+added+' videos added; '+moved+' entries moved into oldest-first upload order.'+(failed.length?' '+failed.length+' unavailable videos were skipped: '+failed.map(x=>x.title+' ('+x.error+')').join('; '):' No duplicates.');
+        api.lastUploadSync={added,moved,failed};
+      }catch(error){status.textContent='Sync stopped: '+error.message+' Added '+added+' videos so far. Run again to continue safely.';api.lastUploadSync={added,moved,failed,error:error.message};}
+      finally{uploadSyncBusy=false;close.disabled=false;}
+    });
+  }
+
   let recoveryTimer=0, connectedSocket;
   const recoveryEvents=['connect','reconnect','login','setMotd','channelOpts','channelCSSJS','changeMedia','mediaUpdate','userlist'];
   function recover() { clearTimeout(recoveryTimer); recoveryTimer=setTimeout(init,80); }
@@ -1506,7 +1553,7 @@
       }); bufferObserver.observe(buffer, { childList: true, subtree: true });
     }
     const motd = document.getElementById('motd');
-    if (motd && !motd.querySelector('.motd-banners')) motd.innerHTML = motdSource || ORIGINAL_MOTD;
+    if (motd && !motd.querySelector('.motd-banners')) { const existing=motd.innerHTML.trim();motd.innerHTML=existing ? existing+ORIGINAL_MOTD : motdSource || ORIGINAL_MOTD; }
     if (motd && motd !== observedMotd) {
       motdObserver?.disconnect(); observedMotd=motd;
       motd.dataset.ddObserved = '1';
@@ -1515,10 +1562,11 @@
     }
     carousel();
     const channelBar = document.getElementById('dd-channel-bar');
+    uploadSyncUI();
     if (channelBar && (!channelBar.querySelector('nav.navbar') || channelBar.querySelector('.dd-bar-head')?.parentElement !== channelBar.querySelector('.navbar-collapse'))) integrateNavigation(channelBar);
     let icon = document.querySelector('link[rel~="icon"]');
     if (!icon) { icon = document.createElement('link'); icon.rel = 'icon'; document.head.append(icon); }
-    icon.href = 'https://i.postimg.cc/5N5W08N0/Stan-Smith-Head.png';
+    if(ROOM.favicon)icon.href=ROOM.favicon;
   }
   // Delegation works for existing and subsequently edited MOTD anchors.
   document.addEventListener('click', e => {
