@@ -821,3 +821,5 @@ span.dd-namecolor { display: none !important; }
 #messagebuffer .dd-mention { display:inline; padding:1px 5px; border:1px solid #98627185; border-radius:6px; background:#66334555; color:#f0c5d5; font-weight:600; cursor:pointer; box-decoration-break:clone; }
 #messagebuffer .dd-mention-me { color:#ffe0a1; background:#8a663555; border-color:#dcb376; }
 #messagebuffer [data-dd-mention-name]:focus-visible { outline:2px solid #dcb376; outline-offset:2px; }
+
+#messagebuffer .dd-device-icon,#pmbar .dd-device-icon { display:none!important; }
