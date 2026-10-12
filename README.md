@@ -146,3 +146,5 @@ Season caption sources:
 - American Dad! - S08E16 - The Kidney Stays In the Picture — https://www.opensubtitles.org/en/subtitles/10130559/american-dad-the-kidney-stays-in-the-picture-en
 - American Dad! - S08E17 - Ricky Spanish — https://www.opensubtitles.org/en/subtitles/9403897/american-dad-ricky-spanish-en
 - American Dad! - S08E18 - Toy Whorey — https://www.opensubtitles.org/en/subtitles/9403898/american-dad-toy-whorey-en
+
+Version 1.14.1: Caption delay is saved locally per exact episode video and restored on episode changes, repeat playback and refresh. Other viewers retain independent timings. Legacy nonzero global delay migrates to the first current video only.
