@@ -1277,7 +1277,7 @@
     return cues.sort((a,b)=>a.start-b.start);
   }
   api.parseSubtitles=parseSubtitles;
-  api.setSubtitleCatalog=catalog=>{if(!catalog || typeof catalog!=='object')throw Error('Invalid subtitle catalog.');captionCatalog=catalog;captionState.sourceKey='';captionState.local=null;captionsUI();};
+  api.setSubtitleCatalog=catalog=>{if(!catalog || typeof catalog!=='object')throw Error('Invalid subtitle catalog.');captionCatalog=catalog;window.DDSubtitleCatalog=catalog;captionState.sourceKey='';captionState.local=null;captionsUI();};
   function captionMedia() {
     const media=window.PLAYER?.media || window.CHANNEL?.currentMedia || {};
     const video=document.querySelector('#videowrap video');
