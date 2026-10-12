@@ -124,3 +124,25 @@ Version 1.13.1: Click or keyboard-activate a chat username to insert @name at th
 Version 1.13.2: Device icons appear only in the user list. Chat continues learning device tags but does not display icons beside messages.
 
 Version 1.13.3: Added the English Stan's Best Friend test subtitles, sourced from https://www.opensubtitles.org/en/subtitles/9403894/american-dad-stan-s-best-friend-en. Exact video mapping: fi|https://u.pone.rs/fyinxbbu.mp4. Room calls it S08E14; source calls it S07E14. 394 cues, final caption ends at 21:47.805; video runtime is 21:53.408. Users enable CC and can adjust timing; synchronization remains subject to testing against dialogue. No other episodes are mapped.
+
+Version 1.14.0: All 18 room-season-8 episodes now have exact-video English subtitle mappings (OpenSubtitles season 7, matched by title). All files passed the runtime/parser checks; six candidates were replaced after end-time mismatches. Timing across every line has not been verified against playback; individual releases may need delay adjustments. Room-specific mention sounds default on independently of native general chat-sound settings, work in foreground/background tabs, expose a test button and respect the room mute toggle. Browser autoplay restrictions are reported in the settings panel. Tab completes partial @names; repeated Tab cycles, Shift+Tab reverses, and normal word completion remains native. 11 sound/autocomplete checks passed.
+
+Season caption sources:
+- American Dad! - S08E01 - Hot Water — https://www.opensubtitles.org/en/subtitles/4244198/american-dad-hot-water-en
+- American Dad! - S08E02 - Hurricane! — https://www.opensubtitles.org/en/subtitles/9403882/american-dad-hurricane-en
+- American Dad! - S08E03 - A Ward Show — https://www.opensubtitles.org/en/subtitles/9403883/american-dad-a-ward-show-en
+- American Dad! - S08E04 - The Worst Stan — https://www.opensubtitles.org/en/subtitles/9403884/american-dad-the-worst-stan-en
+- American Dad! - S08E05 - Virtual In-Stanity — https://www.opensubtitles.org/en/subtitles/4415585/american-dad-virtual-in-stanity-en
+- American Dad! - S08E06 - The Scarlett Getter — https://www.opensubtitles.org/en/subtitles/4419932/american-dad-the-scarlet-getter-en
+- American Dad! - S08E07 - Season's Beatings — https://www.opensubtitles.org/en/subtitles/4430625/american-dad-season-s-beatings-en
+- American Dad! - S08E08 - The Unbrave One — https://www.opensubtitles.org/en/subtitles/4446352/american-dad-the-unbrave-one-en
+- American Dad! - S08E09 - Stanny Tendergrass — https://www.opensubtitles.org/en/subtitles/10130537/american-dad-stanny-tendergrass-en
+- American Dad! - S08E10 - Wheels & the Legman and the Case of Grandpa's Key — https://www.opensubtitles.org/en/subtitles/10130540/american-dad-wheels-the-legman-and-the-case-of-grandpa-s-key-en
+- American Dad! - S08E11 - Old Stan in the Mountain — https://www.opensubtitles.org/en/subtitles/10130543/american-dad-old-stan-in-the-mountain-en
+- American Dad! - S08E12 - The Wrestler — https://www.opensubtitles.org/en/subtitles/9403892/american-dad-the-wrestler-en
+- American Dad! - S08E13 - Dr. Klaustus — https://www.opensubtitles.org/en/subtitles/9403893/american-dad-dr-klaustus-en
+- American Dad! - S08E14 - Stan's Best Friend — https://www.opensubtitles.org/en/subtitles/9403894/american-dad-stan-s-best-friend-en
+- American Dad! - S08E15 - Less Money, Mo' Problems — https://www.opensubtitles.org/en/subtitles/4499973/american-dad-less-money-mo-problems-en
+- American Dad! - S08E16 - The Kidney Stays In the Picture — https://www.opensubtitles.org/en/subtitles/10130559/american-dad-the-kidney-stays-in-the-picture-en
+- American Dad! - S08E17 - Ricky Spanish — https://www.opensubtitles.org/en/subtitles/9403897/american-dad-ricky-spanish-en
+- American Dad! - S08E18 - Toy Whorey — https://www.opensubtitles.org/en/subtitles/9403898/american-dad-toy-whorey-en
