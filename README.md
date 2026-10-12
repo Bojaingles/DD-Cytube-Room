@@ -91,3 +91,30 @@ Clicking Orange also plays Toasty locally using the audio clip at https://instan
 Version 1.11.4: Orange credit appears inline beside the Powered by CyTube credit.
 
 Version 1.12.0: Reconnect-safe lifecycle recovery rebinds socket events and native formatter/name-color hooks, watches replacements by node identity, restores removed carousel/navigation and episode panels, retains last channel markup through native MOTD resets, recovers PM panels after native rebuilds, and resumes recovery when external JS is executed again. A two-second health check covers missed events. Validation: 13 isolated reconnect checks and PM rebuild recovery passed; no live disconnect was forced.
+## Caption library setup
+
+The framework ships with an empty `SUBTITLE_CATALOG`; no subtitle directory or production subtitle files have been added. Add a master mapping to that object in cytube-room.js, or have a combined external script call `window.DDRoom.setSubtitleCatalog(masterCatalog)` after the room script starts. It also accepts `window.DDSubtitleCatalog` before startup.
+
+```js
+const masterCatalog = {
+  videos: {
+    'fi|https://host.example/actual-video.mp4': [
+      { lang: 'en', label: 'English', url: 'https://host.example/captions/pilot.vtt' }
+    ]
+  },
+  episodes: {
+    s01e01: [
+      { lang: 'en', label: 'English', url: 'https://host.example/captions/pilot.srt' }
+    ]
+  }
+};
+```
+
+Exact native video type/id keys take priority over episode codes. Use exact video mappings for different releases of the same episode; episode fallback assumes matching edits and timing. Catalog updates do not require reloading once applied through the API. Subtitle hosts must allow cross-origin reads from cytu.be. SRT and VTT are parsed locally as plain text, capped at 2 MB/20,000 cues. Files with no valid cues produce a readable error. Tracks, loads and episode changes are guarded against stale requests. Local SRT/VTT loading is optional and clears when the episode changes. Captions default off; enabled state, language preference and delay are browser-local.
+
+Direct HTML video uses native text tracks, including native fullscreen support. Other CyTube players use an overlay synchronized through the player's getTime API when available; provider-owned iframe fullscreen cannot display the room overlay. Caption controls can retry failed loads and return from a local file to the episode library. Loading files never uploads them.
+
+Version 1.13.0 also shares broad mobile/tablet/desktop labels with ordinary chat using a hidden channel filter, with automatic detection or a manual override under Name style. Labels are approximate and appear for other users after they send a tagged message. Commands, PMs and long messages are untouched. Native mention highlighting/notification settings remain available; explicit @username mentions are recognized and the sound is Toasty, including focused-tab pings with a short cooldown. Disabled sound preferences are respected. No live test messages are sent.
+
+Required active channel filter: DD device marker, regex ` ?\[dddev:(mobile|tablet|desktop)\]`, no flags, replacement ` <span class="dd-device-marker" data-device="\1"></span>`, Apply to links off. This lets room-script users see device icons while hiding marker text for other clients. It coexists with the existing shared name-color filter and preserves native emote matching.
+Unread minimized DM bubbles now pulse until opened and retain unread state across refreshes. Validation: 19 combined caption/device/mention checks plus unread pulse, refresh restoration and clearing checks passed locally. No production subtitle files were added.

@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   if (window.DDRoom) { window.DDRoom.recover?.(); return; }
-  const version = '1.12.0';
+  const version = '1.13.0';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   const ORIGINAL_MOTD = "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n";
   const started = Date.now();
@@ -260,9 +260,8 @@
       const color = ownNameColor();
       // Never change commands, PMs, empty messages, or long messages. The latter
       // keep their learned color without risking a partially truncated suffix.
-      if (event === 'chatMsg' && color && typeof data?.msg === 'string' && data.msg.trim() &&
-          !data.msg.trimStart().startsWith('/') && data.msg.length <= 280 && !/\[ddnc:/.test(data.msg)) {
-        args[1] = { ...data, msg: data.msg + ' [ddnc:' + color + ']' };
+      if (event === 'chatMsg' && typeof data?.msg === 'string' && data.msg.trim() && !data.msg.trimStart().startsWith('/') && data.msg.length <= 260 && !/\[dd(?:nc|dev):/.test(data.msg)) {
+        args[1] = { ...data, msg: data.msg + ' [dddev:' + ownDevice() + ']' + (color ? ' [ddnc:' + color + ']' : '') };
       }
       return original.apply(this, args);
     }
@@ -321,6 +320,7 @@
     panel.querySelector('#dd-close-names').addEventListener('click', () => { close(); trigger.focus(); });
     panel.addEventListener('keydown', event => { if (event.key === 'Escape') { close(); trigger.focus(); } });
     document.addEventListener('click', event => { if (!panel.contains(event.target) && !trigger.contains(event.target)) close(); });
+    const deviceLabel=document.createElement('label');deviceLabel.textContent='My device ';const deviceChoice=document.createElement('select');deviceChoice.setAttribute('aria-label','My device');[['auto','Automatic'],['mobile','Mobile'],['tablet','Tablet'],['desktop','Desktop']].forEach(([value,label])=>deviceChoice.add(new Option(label,value)));try{deviceChoice.value=localStorage.getItem('dd-device-choice')||'auto';}catch(_){}deviceLabel.append(deviceChoice);panel.append(deviceLabel);deviceChoice.addEventListener('change',()=>{try{localStorage.setItem('dd-device-choice',deviceChoice.value);}catch(_){}learnDevice(window.CLIENT?.name,ownDevice(),Date.now());refreshDevices();});
     const list = document.getElementById('userlist');
     if (list) new MutationObserver(refreshNames).observe(list, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
     document.querySelectorAll('#messagebuffer > div').forEach(row => {
@@ -337,8 +337,10 @@
     function format(data) {
       // CyTube's fast emote matcher splits on whitespace. A filtered color span
       // attached to the final word otherwise makes that word unrecognizable.
+      const deviceMarker = typeof data?.msg==='string' && data.msg.match(/<span class="dd-device-marker" data-device="(mobile|tablet|desktop)"><\/span>/i);
+      if(deviceMarker) data={...data,msg:data.msg.replace(deviceMarker[0],'').trimEnd()};
       const marker = typeof data?.msg === 'string' && data.msg.match(/<span class="dd-namecolor" data-color="([a-f0-9]{6}|default)"><\/span>\s*$/i);
-      const args = Array.from(arguments);
+      const args = Array.from(arguments); args[0]=data;
       if (marker) args[0] = { ...data, msg: data.msg.slice(0, marker.index) };
       const rendered = original.apply(this, args);
       const row = rendered?.[0];
@@ -348,6 +350,8 @@
         row.append(color);
       }
       receiveNameColor(row, data);
+      if(deviceMarker && data?.username)learnDevice(data.username,deviceMarker[1],Number(data.time)||0);
+      paintDevice(row?.querySelector('.username'),data?.username);
       if (row && data && Number.isFinite(Number(data.time))) {
         row.dataset.ddTime = String(data.time);
         const key = String(data.time) + ':' + String(data.username || '');
@@ -1169,6 +1173,7 @@
       entry.dock.textContent = state.docked ? '↗' : '↙';
       entry.dock.setAttribute('aria-label',state.docked ? 'Detach private message window' : 'Attach private message window to chat');
       entry.bubble.hidden = !state.minimized;
+      entry.bubble.classList.toggle('dd-pm-unread',!!state.unread);
       entry.heading.hidden = !!state.minimized;
     }
     function decorate(panel,name) {
@@ -1194,12 +1199,12 @@
       const grip=document.createElement('div'); grip.className='dd-pm-resize'; grip.tabIndex=0; grip.setAttribute('role','button'); grip.setAttribute('aria-label','Resize private message window with arrow keys'); panel.append(grip);
       const entry={panel,body,heading,buffer,input,state,dock,bubble}; windows.set(name,entry);
       updateAvatar(entry,name);
-      const observer=new MutationObserver(() => { if(state.minimized && buffer.children.length > (state.lines?.length||0)) bubble.classList.add('dd-pm-unread'); schedule(); });
+      const observer=new MutationObserver(() => { if(state.minimized && buffer.children.length > (state.lines?.length||0)) { state.unread=true; bubble.classList.add('dd-pm-unread'); } schedule(); });
       entry.observer=observer; observer.observe(buffer,{childList:true,subtree:true,characterData:true});
       input.addEventListener('input',schedule); input.addEventListener('keydown',()=>setTimeout(schedule,0));
       dock.addEventListener('click',()=>{state.docked=!state.docked;place(entry);schedule();});
       minimize.addEventListener('click',()=>{state.minimized=true;write();place(entry);schedule();});
-      bubble.addEventListener('click',()=>{state.minimized=false;place(entry);bubble.classList.remove('dd-pm-unread');panel.classList.remove('panel-primary');panel.classList.add('panel-default');buffer.scrollTop=buffer.scrollHeight;input.focus();schedule();});
+      bubble.addEventListener('click',()=>{state.minimized=false;state.unread=false;place(entry);bubble.classList.remove('dd-pm-unread');panel.classList.remove('panel-primary');panel.classList.add('panel-default');buffer.scrollTop=buffer.scrollHeight;input.focus();schedule();});
       close.addEventListener('click',()=>{write();state.open=false;observer.disconnect();panel.remove();document.getElementById('pm-placeholder-'+name)?.remove();schedule();});
       function gesture(handle,resizing) {
         handle.addEventListener('pointerdown',e=>{
@@ -1247,6 +1252,154 @@
     document.addEventListener('pointerdown',e=>{if(!wrap.contains(e.target)){wrap.classList.remove('dd-credit-open');name.setAttribute('aria-expanded','false');}});
   }
 
+  // Populate this master catalog later; subtitle assets need no server-side code.
+  const SUBTITLE_CATALOG = { videos: {}, episodes: {} };
+  let captionCatalog = window.DDSubtitleCatalog || SUBTITLE_CATALOG;
+  const captionState = { key:'', cues:[], request:0, track:null, video:null, local:null, offset:0, enabled:false, selected:'auto', status:'Captions off', tracks:[], sourceKey:'' };
+  const nativeCaptionTracks=new WeakMap();
+  const captionPreferences='dd-captions:'+location.pathname;
+  try { const prefs=JSON.parse(localStorage.getItem(captionPreferences)||'{}');captionState.enabled=!!prefs.enabled;captionState.selected=typeof prefs.selected==='string'?prefs.selected:'auto';captionState.offset=Math.max(-120,Math.min(120,Number(prefs.offset)||0)); } catch (_) {}
+  function parseSubtitles(text) {
+    if(typeof text!=='string' || text.length>2000000) throw Error('Subtitle file is too large.');
+    const stamp=value=>{const m=value.match(/^(?:(\d{1,3}):)?(\d{2}):(\d{2})[.,](\d{3})$/);return m?Number(m[1]||0)*3600+Number(m[2])*60+Number(m[3])+Number(m[4])/1000:NaN;};
+    const cues=[];
+    for(const block of text.replace(/^\uFEFF/,'').replace(/\r/g,'').split(/\n\s*\n/)) {
+      const lines=block.split('\n');const i=lines.findIndex(line=>line.includes('-->'));if(i<0)continue;
+      const parts=lines[i].trim().split(/\s+-->\s+/);const start=stamp(parts[0]),end=stamp((parts[1]||'').split(/\s/)[0]);
+      if(!Number.isFinite(start)||!Number.isFinite(end)||end<=start||end-start>120)continue;
+      // Render only decoded plain text; subtitle markup cannot execute code.
+      const raw=lines.slice(i+1).join('\n').replace(/<\d{2}:\d{2}[^>]*>/g,'').replace(/<[^>]*>/g,'');
+      const decode=document.createElement('textarea');decode.innerHTML=raw;const value=decode.value.trim();
+      if(value)cues.push({start,end,text:value.slice(0,4000)});
+      if(cues.length>20000)throw Error('Too many subtitle cues.');
+    }
+    if(!cues.length)throw Error('No readable SRT or VTT captions found.');
+    return cues.sort((a,b)=>a.start-b.start);
+  }
+  api.parseSubtitles=parseSubtitles;
+  api.setSubtitleCatalog=catalog=>{if(!catalog || typeof catalog!=='object')throw Error('Invalid subtitle catalog.');captionCatalog=catalog;captionState.sourceKey='';captionState.local=null;captionsUI();};
+  function captionMedia() {
+    const media=window.PLAYER?.media || window.CHANNEL?.currentMedia || {};
+    const video=document.querySelector('#videowrap video');
+    const id=String(media.id || video?.currentSrc || video?.getAttribute('src') || '');
+    const type=String(media.type || (video?'fi':''));
+    const code=episode(media.title || document.getElementById('currenttitle')?.textContent);
+    return {key:type+'|'+id+'|'+code,id,type,code,video};
+  }
+  function saveCaptionPrefs(){try{localStorage.setItem(captionPreferences,JSON.stringify({enabled:captionState.enabled,selected:captionState.selected,offset:captionState.offset}));}catch(_){}}
+  function clearNativeCaptions(){if(captionState.track){captionState.track.mode='hidden';for(const cue of Array.from(captionState.track.cues||[]))captionState.track.removeCue(cue);captionState.track.mode='disabled';}captionState.track=null;captionState.video=null;}
+  function applyCaptionCues(video){
+    clearNativeCaptions();
+    if(!video || !captionState.enabled || !captionState.cues.length || !window.VTTCue)return;
+    try {
+      let track=nativeCaptionTracks.get(video);if(!track){track=video.addTextTrack('subtitles','Room captions','und');nativeCaptionTracks.set(video,track);}
+      track.mode='hidden';
+      for(const old of Array.from(track.cues||[]))track.removeCue(old);
+      captionState.track=track;captionState.video=video;
+      for(const cue of captionState.cues){const end=cue.end+captionState.offset;if(end>0)track.addCue(new VTTCue(Math.max(0,cue.start+captionState.offset),end,cue.text));}
+      track.mode='showing';
+    } catch(_){clearNativeCaptions();}
+  }
+  let captionAbort;
+  async function loadCaptionSelection(media, force=false){
+    const choices=captionState.tracks;
+    const choice=captionState.local || choices.find(t=>(t.lang||t.label||'')===captionState.selected) || choices[0];
+    const source=captionState.enabled?(captionState.local?'local:'+captionState.local.name:choice?.url||''):'off';
+    const key=media.key+'|'+source;
+    if(!force && captionState.sourceKey===key)return;
+    captionState.sourceKey=key;const revision=++captionState.request;captionAbort?.abort();captionAbort=new AbortController();const controller=captionAbort;
+    captionState.cues=[];clearNativeCaptions();
+    captionState.status=!captionState.enabled?'Captions off':!choice?'No subtitles added for this episode yet.':'Loading captions…';
+    const status=document.getElementById('dd-caption-status');if(status)status.textContent=captionState.status;
+    if(!captionState.enabled || !choice)return;
+    try {
+      let text;
+      if(captionState.local)text=captionState.local.text;
+      else {
+        const url=new URL(choice.url,location.href);if(!['http:','https:'].includes(url.protocol)||url.username||url.password)throw Error('Invalid subtitle URL.');
+        const timeout=setTimeout(()=>controller.abort(),15000);
+        try {const response=await fetch(url.href,{signal:controller.signal,credentials:'omit'});if(!response.ok)throw Error('Subtitle file could not be loaded.');if(Number(response.headers.get('Content-Length'))>2000000)throw Error('Subtitle file is too large.');text=await response.text();}finally{clearTimeout(timeout);}
+      }
+      const cues=parseSubtitles(text);if(revision!==captionState.request || captionMedia().key!==media.key)return;
+      captionState.cues=cues;captionState.status=(choice.label||choice.lang||'Captions')+' ready';applyCaptionCues(captionMedia().video);
+    } catch(error){if(revision!==captionState.request)return;captionState.status=error.name==='AbortError'?'Subtitle loading stopped. Try again.':error.message;}
+    if(status?.isConnected)status.textContent=captionState.status;
+  }
+  function captionsUI(){
+    const host=document.getElementById('videowrap');if(!host)return;
+    if(window.DDSubtitleCatalog && captionCatalog!==window.DDSubtitleCatalog){captionCatalog=window.DDSubtitleCatalog;captionState.sourceKey='';}
+    let controls=document.getElementById('dd-caption-controls');
+    if(!controls){
+      controls=document.createElement('div');controls.id='dd-caption-controls';
+      const toggle=button('CC','Caption settings');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls','dd-caption-settings');
+      const panel=document.createElement('div');panel.id='dd-caption-settings';panel.hidden=true;
+      const enabled=document.createElement('input');enabled.type='checkbox';enabled.checked=captionState.enabled;
+      const enabledLabel=document.createElement('label');enabledLabel.append(enabled,document.createTextNode(' Show captions'));
+      const tracks=document.createElement('select');tracks.setAttribute('aria-label','Caption language');tracks.id='dd-caption-language';
+      const offset=document.createElement('input');offset.type='number';offset.min='-120';offset.max='120';offset.step='.25';offset.value=captionState.offset;offset.setAttribute('aria-label','Caption delay in seconds');
+      const offsetLabel=document.createElement('label');offsetLabel.append(document.createTextNode('Delay (seconds) '),offset);
+      const help=document.createElement('small');help.textContent='Positive delay shows captions later. Negative delay shows them earlier.';
+      const file=document.createElement('input');file.type='file';file.accept='.srt,.vtt';file.setAttribute('aria-label','Load your own SRT or VTT file');
+      const reset=button('Use episode subtitles','Use episode subtitles');const retry=button('Retry','Retry loading subtitles');
+      const status=document.createElement('p');status.id='dd-caption-status';status.setAttribute('role','status');status.textContent=captionState.status;
+      panel.append(enabledLabel,tracks,offsetLabel,help,file,reset,retry,status);controls.append(toggle,panel);
+      const header=document.getElementById('videowrap-header');(header||host).append(controls);
+      toggle.addEventListener('click',()=>{panel.hidden=!panel.hidden;toggle.setAttribute('aria-expanded',String(!panel.hidden));});
+      panel.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();}});
+      enabled.addEventListener('change',()=>{captionState.enabled=enabled.checked;saveCaptionPrefs();loadCaptionSelection(captionMedia(),true);toggle.classList.toggle('dd-caption-on',captionState.enabled);});
+      tracks.addEventListener('change',()=>{captionState.selected=tracks.value;captionState.local=null;captionState.enabled=true;enabled.checked=true;saveCaptionPrefs();loadCaptionSelection(captionMedia(),true);});
+      offset.addEventListener('change',()=>{captionState.offset=Math.max(-120,Math.min(120,Number(offset.value)||0));offset.value=captionState.offset;saveCaptionPrefs();applyCaptionCues(captionMedia().video);});
+      file.addEventListener('change',async()=>{const picked=file.files?.[0];if(!picked)return;const media=captionMedia();try{if(picked.size>2000000)throw Error('Subtitle file is too large.');const text=await picked.text();parseSubtitles(text);if(captionMedia().key!==media.key)return;captionState.local={name:picked.name,text};captionState.enabled=true;enabled.checked=true;saveCaptionPrefs();loadCaptionSelection(media,true);}catch(e){status.textContent=e.message;}file.value='';});
+      reset.addEventListener('click',()=>{captionState.local=null;loadCaptionSelection(captionMedia(),true);});retry.addEventListener('click',()=>loadCaptionSelection(captionMedia(),true));
+    }
+    const media=captionMedia();
+    if(media.key!==captionState.key){captionState.key=media.key;captionState.local=null;captionState.sourceKey='';captionState.cues=[];clearNativeCaptions();}
+    const byVideo=captionCatalog.videos?.[media.type+'|'+media.id];
+    const available=byVideo || captionCatalog.episodes?.[media.code] || [];
+    const tracks=Array.isArray(available)?available.filter(t=>t&&typeof t.url==='string'):[];
+    const signature=JSON.stringify(tracks);const select=document.getElementById('dd-caption-language');
+    if(select && select.dataset.catalog!==signature){captionState.tracks=tracks;select.dataset.catalog=signature;select.replaceChildren(new Option('Automatic','auto'));tracks.forEach(t=>select.add(new Option(t.label||t.lang||'Captions',t.lang||t.label||'')));select.value=captionState.selected;if(select.selectedIndex<0)select.value='auto';captionState.sourceKey='';}
+    controls.querySelector('button').classList.toggle('dd-caption-on',captionState.enabled);
+    let overlay=document.getElementById('dd-caption-overlay');
+    const surface=host.querySelector('.embed-responsive') || host.querySelector('#ytapiplayer')?.parentElement || host;
+    if(!overlay){overlay=document.createElement('div');overlay.id='dd-caption-overlay';overlay.setAttribute('aria-live','off');surface.append(overlay);}
+    if(overlay.parentElement!==surface)surface.append(overlay);
+    loadCaptionSelection(media);
+    if(captionState.cues.length && captionState.enabled && media.video!==captionState.video)applyCaptionCues(media.video);
+  }
+  let captionClockPending=0;
+  function paintCaptions(time){
+    const overlay=document.getElementById('dd-caption-overlay');if(!overlay)return;
+    if(!captionState.enabled || captionState.track || !Number.isFinite(time)){overlay.textContent='';return;}
+    const t=time-captionState.offset,cues=captionState.cues;let lo=0,hi=cues.length;
+    while(lo<hi){const mid=(lo+hi)>>1;if(cues[mid].start<=t)lo=mid+1;else hi=mid;}
+    const active=[];for(let i=lo-1;i>=0 && cues[i].start>=t-120;i--)if(cues[i].end>t)active.unshift(cues[i].text);
+    const text=active.slice(-8).join('\n');if(overlay.textContent!==text)overlay.textContent=text;
+  }
+  api.captionMonitor=setInterval(()=>{
+    if(!captionState.enabled || !captionState.cues.length){paintCaptions(NaN);return;}
+    const video=captionMedia().video;
+    if(video){paintCaptions(video.currentTime);return;}
+    if(typeof window.PLAYER?.getTime==='function' && Date.now()-captionClockPending>1000){captionClockPending=Date.now();const key=captionState.key;try{window.PLAYER.getTime(time=>{captionClockPending=0;if(key===captionState.key)paintCaptions(Number(time));});}catch(_){captionClockPending=0;paintCaptions(NaN);}}
+  },150);
+
+  const devices=new Map();
+  function ownDevice(){
+    let choice='';try{choice=localStorage.getItem('dd-device-choice');}catch(_){}if(['mobile','tablet','desktop'].includes(choice))return choice;
+    const ua=navigator.userAgent;
+    if(/iPad|Tablet|Kindle|Silk/i.test(ua) || (/Macintosh/.test(ua)&&navigator.maxTouchPoints>1) || (/Android/.test(ua)&&!/Mobile/.test(ua)))return 'tablet';
+    if(navigator.userAgentData?.mobile || /iPhone|iPod|Android.*Mobile|Windows Phone/i.test(ua))return 'mobile';
+    return 'desktop';
+  }
+  function learnDevice(name,type,time){if(!name)return;const key=name.toLowerCase(),old=devices.get(key);if(!old||time>=old.time)devices.set(key,{type,time});}
+  function paintDevice(name,nameText){if(!name||!nameText)return;const value=devices.get(nameText.toLowerCase());if(!value)return;let badge=name.parentElement.querySelector(':scope > .dd-device-icon');if(!badge){badge=document.createElement('span');badge.className='dd-device-icon';name.after(badge);}badge.textContent={mobile:'📱',tablet:'▣',desktop:'🖥️'}[value.type];badge.title={mobile:'Mobile',tablet:'Tablet',desktop:'Desktop'}[value.type];badge.setAttribute('aria-label',badge.title);}
+  function refreshDevices(){learnDevice(window.CLIENT?.name,ownDevice(),Date.now());document.querySelectorAll('#userlist .userlist_item').forEach(row=>{const name=row.children[1];paintDevice(name,window.$?.(row)?.data('name')||name?.textContent.trim());});}
+  function mentionHooks(){
+    if(typeof window.highlightsMe==='function'&&!window.highlightsMe.ddMentions){const base=window.highlightsMe;const hook=function(msg){const name=window.CLIENT?.name;if(name){const escaped=name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');if(new RegExp('(^|[\\s(])@'+escaped+'(?![\\w-])','i').test(String(msg)))return true;}return base.apply(this,arguments);};hook.ddMentions=true;window.highlightsMe=hook;}
+    if(window.CHATSOUND && window.CHATSOUND.dataset?.ddToasty!=='1'){window.CHATSOUND.src='https://storage.instantsbutton.com/mortal-kombat-toasty.mp3';window.CHATSOUND.volume=.5;window.CHATSOUND.dataset.ddToasty='1';}
+    if(typeof window.pingMessage==='function'&&!window.pingMessage.ddMentions){const base=window.pingMessage;let last=0;const hook=function(highlight){const result=base.apply(this,arguments);if(highlight && window.FOCUSED && !['never','off'].includes(window.USEROPTS?.boop) && Date.now()-last>1500){last=Date.now();const sound=window.CHATSOUND;if(sound){sound.currentTime=0;try{sound.play()?.catch(()=>{});}catch(_){}}}return result;};hook.ddMentions=true;window.pingMessage=hook;}
+  }
+
   let recoveryTimer=0, connectedSocket;
   const recoveryEvents=['connect','reconnect','login','setMotd','channelOpts','channelCSSJS','changeMedia','mediaUpdate','userlist'];
   function recover() { clearTimeout(recoveryTimer); recoveryTimer=setTimeout(init,80); }
@@ -1261,6 +1414,8 @@
   let observedBuffer, bufferObserver, observedMotd, motdObserver;
   function init() {
     bindRecovery();
+    refreshDevices(); mentionHooks();
+    captionsUI();
     footerCredit();
     privateMessages();
     roomWatermark();
