@@ -118,3 +118,5 @@ Version 1.13.0 also shares broad mobile/tablet/desktop labels with ordinary chat
 
 Required active channel filter: DD device marker, regex ` ?\[dddev:(mobile|tablet|desktop)\]`, no flags, replacement ` <span class="dd-device-marker" data-device="\1"></span>`, Apply to links off. This lets room-script users see device icons while hiding marker text for other clients. It coexists with the existing shared name-color filter and preserves native emote matching.
 Unread minimized DM bubbles now pulse until opened and retain unread state across refreshes. Validation: 19 combined caption/device/mention checks plus unread pulse, refresh restoration and clearing checks passed locally. No production subtitle files were added.
+
+Version 1.13.1: Click or keyboard-activate a chat username to insert @name at the chat cursor without sending or replacing the draft. Mentions appear as rounded badges, with a gold highlight for the recipient. Links, code, timestamps, emotes and username text are preserved. Delegation survives reconnects.
