@@ -138,6 +138,195 @@ window.DDRoomProfiles = {
             "label": "English - Toy Whorey",
             "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e18.en.srt"
           }
+        ],
+        "fi|https://u.pone.rs/fywapbzz.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Love American Dad! - Style",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e01.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/rcuuuqyh.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Killer Vacation",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e02.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/zjnckqdd.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Can I Be Frank (With You)",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e03.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/zbegippm.mp4": [
+          {
+            "lang": "en",
+            "label": "English - American Stepdad",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e04.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/pmksywhd.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Why Cant We Be Friends",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e05.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/xqcmikzd.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Adventures In Hayleysitting",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e06.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/lqgbwios.mp4": [
+          {
+            "lang": "en",
+            "label": "English - National Treasure 4 Baby Franny Shes Doing Well The Hole Story",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e07.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/nljjbnoq.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Finger Lenting Good",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e08.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/axnikwnz.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Adventures of Twill Ongenbone and His Boy Jabari",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e09.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/lgfxjrdz.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Blood Crieth Unto Heaven",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e10.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/kmlpuiqn.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Max Jets",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e11.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/jxtcnsba.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Naked To The Limit,One More Time",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e12.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/ciffhswn.mp4": [
+          {
+            "lang": "en",
+            "label": "English - For Black Eyes Only",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e13.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/cbesnaxn.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Spelling Bee My Baby",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e14.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/hxygvesl.mp4": [
+          {
+            "lang": "en",
+            "label": "English - The Missing Kink",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e15.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/yvdgitsw.mp4": [
+          {
+            "lang": "en",
+            "label": "English - The Boring Identity",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e16.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/zoooeasr.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Dementor",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e17.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/pozdvtmy.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Lost In Space",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e18.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/lonmsozq.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Da Flippity Flop",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s09e19.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/qdhhdodg.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Steve And Snots Testubular Adventure",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e01.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/jnokdvrb.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Poltergasm",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e02.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/fjvknkid.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Buck Wild",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e03.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/mgqlpeum.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Crotchwalkers",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e04.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/txnwxvad.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Kung Pao Turkey",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e05.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/oefksveh.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Independent Movie",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e06.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/gzaexluk.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Faking Bad",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e07.en.srt"
+          }
+        ],
+        "fi|https://u.pone.rs/ewqhwjao.mp4": [
+          {
+            "lang": "en",
+            "label": "English - Minstrel Krampus",
+            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@c16ef1393e7f26e552d1798197fae8b144b06ba9/american-dad-room-s10e08.en.srt"
+          }
         ]
       },
       "episodes": {}
