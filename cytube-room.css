@@ -828,7 +828,10 @@ span.dd-namecolor { display: none !important; }
 #dd-upload-sync::backdrop { background:#0502057a; }
 #dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }
 /* On a sideways phone, video comes first; browsing and chat remain below. */
-.dd-phone-landscape #mainpage { display:flex; flex-direction:column; }
+.dd-phone-landscape #mainpage > .container-fluid { display:flex; flex-direction:column; }
+.dd-phone-landscape #motdrow { order:3; flex-shrink:0; }
+.dd-phone-landscape #announcements, .dd-phone-landscape #drinkbarwrap { order:2; }
+.dd-phone-landscape #sitefooter { order:4; }
 .dd-phone-landscape #dd-channel-bar { order:3; flex-shrink:0; margin-top:12px; }
 .dd-phone-landscape #motdwrap { order:4; }
 .dd-phone-landscape #controlsrow { order:1; }
