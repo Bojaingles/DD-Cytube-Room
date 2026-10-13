@@ -1,14 +1,29 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  if (window.DDRoom) { window.DDRoom.recover?.(); return; }
-  const version = '2.0.1';
+  const version = '2.0.2';
+  const reloadDraftKey='dd-reload-draft:'+location.pathname;
+  function reloadRoom(){
+    const input=document.getElementById('chatline');
+    try{if(input?.value)sessionStorage.setItem(reloadDraftKey,JSON.stringify({value:input.value,time:Date.now()}));}catch(_){}
+    location.reload();
+  }
+  function repairNotice(message){
+    let notice=document.getElementById('dd-room-repair');
+    if(!notice){notice=document.createElement('div');notice.id='dd-room-repair';notice.setAttribute('role','status');notice.style.cssText='position:fixed;bottom:12px;left:12px;right:12px;z-index:10000;padding:12px;background:#261b20;color:#fff;border:1px solid #986271;border-radius:8px';const text=document.createElement('span'),reload=document.createElement('button');reload.type='button';reload.textContent='Reload room';reload.style.marginLeft='12px';reload.addEventListener('click',reloadRoom);notice.append(text,reload);document.body?.append(notice);}
+    notice.querySelector('span').textContent=message;
+  }
+  if (window.DDRoom) {
+    if(window.DDRoom.version!==version)repairNotice('Room features were updated. Reload to finish applying the update. Your chat draft will be kept.');
+    else window.DDRoom.recover?.();
+    return;
+  }
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   if (!window.DDRoomProfiles) {
     const configuredScript=window.CHANNEL?.opts?.externaljs;
     const configURL=configuredScript && /(?:cdn\.jsdelivr\.net\/gh\/Bojaingles\/DD-Cytube-Room|raw\.githubusercontent\.com\/Bojaingles\/DD-Cytube-Room)/i.test(configuredScript) ? new URL('room-configs.js',configuredScript).href : 'https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@d63233a2268f20e75c3bc7020997ccf377b372b0/room-configs.js';
-    window.DDRoomProfilesLoading ||= new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=configURL;script.onload=resolve;script.onerror=()=>reject(Error('Room settings could not be loaded.'));document.head.append(script);});
-    try { await window.DDRoomProfilesLoading; } catch(error){console.error(error);return;}
+    window.DDRoomProfilesLoading ||= new Promise((resolve,reject)=>{const script=document.createElement('script');const timeout=setTimeout(()=>{script.remove();reject(Error('Room settings timed out.'));},15000);script.src=configURL;script.onload=()=>{clearTimeout(timeout);resolve();};script.onerror=()=>{clearTimeout(timeout);script.remove();reject(Error('Room settings could not be loaded.'));};document.head.append(script);});
+    try { await window.DDRoomProfilesLoading; } catch(error){window.DDRoomProfilesLoading=null;console.error(error);repairNotice('Room features could not load. Try reloading the room.');return;}
   }
   if(window.DDRoom){window.DDRoom.recover?.();return;}
   const roomKey=decodeURIComponent(location.pathname.split('/').pop()||'').toLowerCase();
@@ -601,7 +616,8 @@
       }
       if (!cards.length || rail.hidden) return;
       start = cards[0].offsetLeft;
-      period = rail.querySelectorAll('[data-dd-loop-copy]')[cards.length].offsetLeft - start;
+      const nextLoop=rail.querySelectorAll('[data-dd-loop-copy]')[cards.length];
+      period = nextLoop ? nextLoop.offsetLeft - start : 0;
       previous.disabled = next.disabled = period <= rail.clientWidth;
     }
     function wrapPosition() {
@@ -1543,25 +1559,34 @@
     recoveryEvents.forEach(event=>current.on(event,recover));
   }
   api.recover=recover;
+  const failedFeatures=new Map();
+  function safeFeature(name,task){
+    const failure=failedFeatures.get(name);if(failure&&Date.now()-failure.time<10000)return;
+    try{task();failedFeatures.delete(name);}catch(error){failedFeatures.set(name,{time:Date.now(),message:String(error?.message||error)});console.warn('Room feature unavailable: '+name,error);}
+  }
+  function recoveryControls(){
+    const input=document.getElementById('chatline');
+    if(input){try{const saved=JSON.parse(sessionStorage.getItem(reloadDraftKey)||'null');if(saved){if(!input.value&&Date.now()-saved.time<300000)input.value=saved.value;sessionStorage.removeItem(reloadDraftKey);}}catch(_){}}
+  }
   let observedBuffer, bufferObserver, observedMotd, motdObserver;
   function init() {
-    bindRecovery();
-    refreshDevices();
-    captionsUI();
-    footerCredit();
-    privateMessages();
-    roomWatermark();
-    nameColorUI(); mentionHooks();
-    episodeUI();
-    fitViewingArea();
-    hookFormatter();
+    safeFeature('connection',bindRecovery);
+    safeFeature('devices',refreshDevices);
+    safeFeature('captions',captionsUI);
+    safeFeature('credit',footerCredit);
+    safeFeature('private messages',privateMessages);
+    safeFeature('watermark',roomWatermark);
+    safeFeature('name styles',nameColorUI);safeFeature('mentions',mentionHooks);
+    safeFeature('episode information',episodeUI);
+    safeFeature('layout',fitViewingArea);
+    safeFeature('chat formatting',hookFormatter);
     buffer = document.getElementById('messagebuffer');
     if (buffer && buffer !== observedBuffer) {
       bufferObserver?.disconnect(); observedBuffer=buffer;
       buffer.dataset.ddObserved = '1';
-      process(buffer);
+      safeFeature('chat messages',()=>process(buffer));
       bufferObserver = new MutationObserver(mutations => {
-        for (const m of mutations) for (const node of m.addedNodes) process(node);
+        for (const m of mutations) for (const node of m.addedNodes) safeFeature('chat messages',()=>process(node));
       }); bufferObserver.observe(buffer, { childList: true, subtree: true });
     }
     const motd = document.getElementById('motd');
@@ -1569,13 +1594,14 @@
     if (motd && motd !== observedMotd) {
       motdObserver?.disconnect(); observedMotd=motd;
       motd.dataset.ddObserved = '1';
-      carousel();
+      safeFeature('carousel',carousel);
       motdObserver=new MutationObserver(recover); motdObserver.observe(motd, { childList: true, subtree: true, characterData: true });
     }
-    carousel();
+    safeFeature('carousel',carousel);
     const channelBar = document.getElementById('dd-channel-bar');
-    uploadSyncUI();
-    if (channelBar && (!channelBar.querySelector('nav.navbar') || channelBar.querySelector('.dd-bar-head')?.parentElement !== channelBar.querySelector('.navbar-collapse'))) integrateNavigation(channelBar);
+    safeFeature('upload sync',uploadSyncUI);
+    if (channelBar && (!channelBar.querySelector('nav.navbar') || channelBar.querySelector('.dd-bar-head')?.parentElement !== channelBar.querySelector('.navbar-collapse'))) safeFeature('navigation',()=>integrateNavigation(channelBar));
+    safeFeature('recovery controls',recoveryControls);
     let icon = document.querySelector('link[rel~="icon"]');
     if (!icon) { icon = document.createElement('link'); icon.rel = 'icon'; document.head.append(icon); }
     if(ROOM.favicon)icon.href=ROOM.favicon;
@@ -1589,6 +1615,8 @@
   init();
   // Detect login/rank changes and replacement title nodes without touching polls.
   api.episodeMonitor = setInterval(init, 2000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)recover();});
+  window.addEventListener('pageshow',recover);
   window.addEventListener('resize', fitViewingArea, { passive: true });
   window.visualViewport?.addEventListener('resize', fitViewingArea, { passive: true });
   if ('ResizeObserver' in window) {
