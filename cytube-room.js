@@ -2,7 +2,7 @@
 (async function () {
   'use strict';
   if (window.DDRoom) { window.DDRoom.recover?.(); return; }
-  const version = '2.0.0';
+  const version = '2.0.1';
   // Original room HTML, unchanged; hosted inside JS to keep CyTube editors empty.
   if (!window.DDRoomProfiles) {
     const configuredScript=window.CHANNEL?.opts?.externaljs;
@@ -1498,6 +1498,18 @@
       let added=0,failed=[],moved=0;
       const entries=()=>Array.from(document.querySelectorAll('#queue > li')).map(row=>queueItem(row)).filter(Boolean);
       const find=id=>entries().find(x=>x.media?.type==='yt' && x.media.id===id);
+      const settledPosition=async(uid,after)=>{
+        const deadline=Date.now()+10000;let stable=0;
+        while(Date.now()<deadline){
+          if(!window.socket?.connected)throw Error('Connection lost. Run again to continue safely.');
+          const rows=entries(),index=rows.findIndex(x=>x.uid===uid);
+          const actual=index>0?rows[index-1].uid:index===0?'prepend':null;
+          stable=actual===after?stable+1:0;
+          if(stable>=3)return;
+          await new Promise(resolve=>setTimeout(resolve,150));
+        }
+        throw Error('Playlist position did not settle. Run again to continue safely.');
+      };
       try{
         for(const video of ROOM.uploads){
           if(find(video.id))continue;
@@ -1510,7 +1522,7 @@
         for(const video of ROOM.uploads){
           const item=find(video.id);if(!item)continue;
           const listNow=entries(),position=listNow.findIndex(x=>x.uid===item.uid);const actual=position>0?listNow[position-1].uid:'prepend';
-          if(actual!==previous && item.uid!==window.PL_CURRENT){status.textContent='Putting videos in upload order: '+video.title;await waitPlaylist('moveVideo',d=>d?.from===item.uid && d.after===previous,()=>window.socket.emit('moveMedia',{from:item.uid,after:previous}));moved++;}
+          if(actual!==previous && item.uid!==window.PL_CURRENT){status.textContent='Putting videos in upload order: '+video.title;await waitPlaylist('moveVideo',d=>d?.from===item.uid && d.after===previous,()=>window.socket.emit('moveMedia',{from:item.uid,after:previous}));await settledPosition(item.uid,previous);moved++;}
           previous=item.uid;
         }
         status.textContent='Finished: '+added+' videos added; '+moved+' entries moved into oldest-first upload order.'+(failed.length?' '+failed.length+' unavailable videos were skipped: '+failed.map(x=>x.title+' ('+x.error+')').join('; '):' No duplicates.');
