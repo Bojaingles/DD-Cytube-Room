@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '2.0.2';
+  const version = '2.0.3';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -764,6 +764,10 @@
     const chat = document.getElementById('chatwrap');
     const video = document.getElementById('videowrap');
     if (!main || !chat || !video) return;
+    const phone=/Android.*Mobile|iPhone|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints>0 && Math.min(screen.width,screen.height)<=600);
+    const orientation=screen.orientation?.type;
+    const landscape=phone && (orientation ? orientation.startsWith('landscape') : window.matchMedia('(orientation: landscape)').matches);
+    document.documentElement.classList.toggle('dd-phone-landscape',landscape);
     document.documentElement.classList.add('dd-fit-view');
     const top = main.getBoundingClientRect().top + window.scrollY;
     const toolbar = document.getElementById('controlsrow')?.getBoundingClientRect().height || 36;
@@ -776,14 +780,15 @@
     const videoHeader = document.getElementById('videowrap-header')?.getBoundingClientRect().height || 22;
     // Native +/- changes Bootstrap columns. Let that choice change height as
     // well: default fits the viewport; larger choices may extend below it.
-    const baseVideoHeight = narrow ? available * .45 : available;
-    const chosenHeight = columns > 7
+    const baseVideoHeight = landscape ? Math.max(180,(window.visualViewport?.height || window.innerHeight)-24) : narrow ? available * .45 : available;
+    const chosenHeight = landscape ? baseVideoHeight : columns > 7
       ? Math.max(baseVideoHeight * columns / 7, frameWidth / aspect + videoHeader)
       : Math.max(100, baseVideoHeight * columns / 7);
-    const height = narrow ? chosenHeight + available * .55 : chosenHeight;
+    const mobileChatHeight=landscape ? Math.max(260,window.innerHeight*.7) : available*.55;
+    const height = landscape || narrow ? chosenHeight + mobileChatHeight : chosenHeight;
     main.style.setProperty('--dd-view-height', height + 'px');
     main.style.setProperty('--dd-mobile-video-height', chosenHeight + 'px');
-    main.style.setProperty('--dd-mobile-chat-height', available * .55 + 'px');
+    main.style.setProperty('--dd-mobile-chat-height', mobileChatHeight + 'px');
     if (!video.dataset.ddSizeObserved) {
       video.dataset.ddSizeObserved = '1';
       new MutationObserver(fitViewingArea).observe(video, { attributes: true, attributeFilter: ['class'] });
@@ -1617,6 +1622,8 @@
   api.episodeMonitor = setInterval(init, 2000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)recover();});
   window.addEventListener('pageshow',recover);
+  window.addEventListener('orientationchange',()=>{requestAnimationFrame(()=>{fitViewingArea();setTimeout(fitViewingArea,250);});});
+  screen.orientation?.addEventListener?.('change',()=>requestAnimationFrame(fitViewingArea));
   window.addEventListener('resize', fitViewingArea, { passive: true });
   window.visualViewport?.addEventListener('resize', fitViewingArea, { passive: true });
   if ('ResizeObserver' in window) {
