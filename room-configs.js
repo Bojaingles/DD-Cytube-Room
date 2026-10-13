@@ -1,4 +1,4 @@
-/* Per-room settings for the shared CyTube framework. */
+/* Room-specific presentation and content for the shared CyTube engine. */
 window.DDRoomProfiles = {
   "american-dad": {
     "title": "American Dad!",
@@ -149,7 +149,7 @@ window.DDRoomProfiles = {
     "brandName": "MRE",
     "logo": "",
     "watermark": "",
-    "favicon": "",
+    "favicon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M7%202h18l2%2028H5z%22%20fill%3D%22%23b69462%22%20stroke%3D%22%233d3021%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M8%205h16M7%2027h18%22%20stroke%3D%22%23715738%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2211%22%20width%3D%2218%22%20height%3D%2210%22%20rx%3D%221%22%20fill%3D%22%23d5bc8e%22%2F%3E%3Ctext%20x%3D%2216%22%20y%3D%2219%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%228%22%20font-weight%3D%22900%22%20fill%3D%22%2330271c%22%3EMRE%3C%2Ftext%3E%3C%2Fsvg%3E",
     "episodeGuide": false,
     "compactEpisodeTitle": false,
     "credit": true,
@@ -333,7 +333,7 @@ window.DDRoomProfiles = {
       },
       {
         "id": "PiErAgbwH3Q",
-        "title": "1993 Frozen For 15 years Preserved MRE Pork Rice & BBQ Sauce Ration Pack US Military Food Review \u00e2\u02c6\u0161"
+        "title": "1993 Frozen For 15 years Preserved MRE Pork Rice & BBQ Sauce Ration Pack US Military Food Review âˆš"
       },
       {
         "id": "H-m4Qli5-z8",
@@ -341,7 +341,7 @@ window.DDRoomProfiles = {
       },
       {
         "id": "8yz6LHl3rRU",
-        "title": "1993 Frozen For 15-20 Years US MRE Omelet & Ham Military Ration Review Preserved Food \u00e2\u02c6\u0161"
+        "title": "1993 Frozen For 15-20 Years US MRE Omelet & Ham Military Ration Review Preserved Food âˆš"
       },
       {
         "id": "-BLmk2wJsYA",
@@ -349,7 +349,7 @@ window.DDRoomProfiles = {
       },
       {
         "id": "QNzZRPdF1L8",
-        "title": "1989 Vs 1993 US MRE Frozen For 15-20 Years Review Tuna & Noodles Double Military Ration Review \u00e2\u02c6\u0161"
+        "title": "1989 Vs 1993 US MRE Frozen For 15-20 Years Review Tuna & Noodles Double Military Ration Review âˆš"
       },
       {
         "id": "ResNGuc4z1A",
@@ -473,7 +473,7 @@ window.DDRoomProfiles = {
       },
       {
         "id": "ryh_HgKoy54",
-        "title": "2009 Israeli Manot Krav 4 Man 24 Hour Ration MRE Review Military Combat Army Food Tasting \u00d7\u017e\u00d7\u00a0\u00d7\u2022\u00d7\u00aa \u00d7\u00a7\u00d7\u00a8\u00d7\u2018"
+        "title": "2009 Israeli Manot Krav 4 Man 24 Hour Ration MRE Review Military Combat Army Food Tasting ×ž× ×•×ª ×§×¨×‘"
       },
       {
         "id": "P2YcXKDeHTc",
@@ -545,7 +545,7 @@ window.DDRoomProfiles = {
       },
       {
         "id": "jAmNcSMIvOU",
-        "title": "2014 Polish Army Individual Food Ration SR-3 MRE Review Indywidualne racje \u00c5\u00bcywno\u00c5\u203aciowe Meal Tasting"
+        "title": "2014 Polish Army Individual Food Ration SR-3 MRE Review Indywidualne racje Å¼ywnoÅ›ciowe Meal Tasting"
       },
       {
         "id": "hOiniyWbTRc",
