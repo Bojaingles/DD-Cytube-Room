@@ -827,3 +827,14 @@ span.dd-namecolor { display: none !important; }
 #dd-upload-sync { width:min(560px,90vw); max-height:80vh; overflow:auto; padding:22px; border:1px solid #986271; border-radius:12px; color:#ead6d8; background:#1a1116f5; box-shadow:0 18px 70px #0009; }
 #dd-upload-sync::backdrop { background:#0502057a; }
 #dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }
+/* On a sideways phone, video comes first; browsing and chat remain below. */
+.dd-phone-landscape #mainpage { display:flex; flex-direction:column; }
+.dd-phone-landscape #dd-channel-bar { order:3; flex-shrink:0; margin-top:12px; }
+.dd-phone-landscape #motdwrap { order:4; }
+.dd-phone-landscape #controlsrow { order:1; }
+.dd-phone-landscape #playlistrow { order:2; }
+.dd-phone-landscape #main { order:0; flex-direction:column; height:var(--dd-view-height); }
+.dd-phone-landscape #videowrap { order:0; width:100% !important; flex:0 0 var(--dd-mobile-video-height); height:var(--dd-mobile-video-height) !important; }
+.dd-phone-landscape #chatwrap { order:1; width:100% !important; flex:0 0 var(--dd-mobile-chat-height); height:var(--dd-mobile-chat-height) !important; }
+.dd-phone-landscape #videowrap-header { min-height:30px; }
+.dd-phone-landscape #videowrap .embed-responsive { flex:1 1 0; }
