@@ -818,7 +818,8 @@
   const episodeCacheKey = 'dd-episode-guide-v3:' + roomKey;
   let guideCache, guideRequest, guideRetryAt = 0;
   function validGuide(value) {
-    return Array.isArray(value) && value.length > 0 && value.every(e => e && typeof e.name === 'string' && Number.isInteger(e.id));
+    const dualDates = ROOM.guide?.url?.includes('bobobo-episodes.json');
+    return Array.isArray(value) && value.length > 0 && value.every(e => e && typeof e.name === 'string' && Number.isInteger(e.id) && (!dualDates || (e.japaneseAirdate && e.englishAirdate)));
   }
   async function episodeGuide() {
     if (!guideCache) {
