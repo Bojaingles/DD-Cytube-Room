@@ -141,7 +141,8 @@ window.DDRoomProfiles = {
         ]
       },
       "episodes": {}
-    }
+    },
+    "networkBot": "DooDooBOTChump"
   },
   "mre": {
     "title": "MRE",
@@ -1433,7 +1434,8 @@ window.DDRoomProfiles = {
       }
     ],
     "roomBadge": "https://bojaingles.github.io/DD-Cytube-Room/orangetv-logo.webp",
-    "networkName": "ORANGETV"
+    "networkName": "ORANGETV",
+    "networkBot": "DooDooBOTChump"
   },
   "adventure_time": {
     "title": "Adventure Time",
@@ -1480,7 +1482,8 @@ window.DDRoomProfiles = {
       }
     },
     "roomBadge": "https://bojaingles.github.io/DD-Cytube-Room/orangetv-logo.webp",
-    "networkName": "ORANGETV"
+    "networkName": "ORANGETV",
+    "networkBot": "DooDooBOTChump"
   },
   "bobobo-bo-bo-bobo": {
     "title": "Bobobo-bo Bo-bobo",
@@ -1505,6 +1508,7 @@ window.DDRoomProfiles = {
       "numbering": "absolute"
     },
     "roomBadge": "https://bojaingles.github.io/DD-Cytube-Room/orangetv-logo.webp",
-    "networkName": "ORANGETV"
+    "networkName": "ORANGETV",
+    "networkBot": "DooDooBOTChump"
   }
 };

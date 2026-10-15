@@ -18,6 +18,7 @@
     await Promise.all([load('link','cytube-room.css'),load('script','room-configs.js')]);
     previous?.remove();
     await load('script','cytube-room.js');
+    try{await load('script','room-network.js');}catch(error){console.warn('Shared bot features could not load; normal room features remain available.',error);}
     window.DDRoomLoaderRunning=false;
   }catch(error){
     window.DDRoomLoaderRunning=false;console.error('Room features:',error);

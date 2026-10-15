@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '2.2.3';
+  const version = '3.0.0';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -35,7 +35,7 @@
   const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const storageKey = 'dd-room-episodes:' + location.pathname;
   let history = {};
-  try { history = JSON.parse(sessionStorage.getItem(storageKey) || '{}'); } catch (_) {}
+  for(const store of ['sessionStorage','localStorage'])try{const saved=JSON.parse(window[store].getItem(storageKey)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))history={...history,...saved};}catch(_){}
   if (!history || typeof history !== 'object' || Array.isArray(history)) history = {};
   let saveTimer;
   function remember(key, code) {
@@ -43,7 +43,7 @@
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => {
       history = Object.fromEntries(Object.entries(history).slice(-600));
-      try { sessionStorage.setItem(storageKey, JSON.stringify(history)); } catch (_) {}
+      for(const store of ['sessionStorage','localStorage'])try{window[store].setItem(storageKey,JSON.stringify(history));}catch(_){}
     }, 300);
   }
   function episode(title) {
@@ -112,7 +112,9 @@
     card.className = 'dd-media';
     card.setAttribute('data-dd-media', spec.type);
     link.insertAdjacentElement('afterend', card);
-    const fail = () => keepScroll(() => card.remove());
+    const reveal = () => { link.classList.remove('dd-media-original'); };
+    const loaded = () => { link.classList.add('dd-media-original'); };
+    const fail = () => keepScroll(() => { reveal(); card.remove(); });
     if (spec.type === 'frame') {
       const frame = document.createElement('iframe');
       frame.src = spec.src;
@@ -121,6 +123,8 @@
       frame.allow = 'fullscreen; picture-in-picture; encrypted-media';
       frame.allowFullscreen = true;
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.addEventListener('load',loaded,{once:true});
+      frame.addEventListener('error',fail,{once:true});
       card.append(frame);
       return;
     }
@@ -132,7 +136,7 @@
       el.playsInline = true;
       el.preload = 'metadata';
       if (probe) el.hidden = true;
-      el.addEventListener('loadedmetadata', () => keepScroll(() => { el.hidden = false; }), { once: true });
+      el.addEventListener('loadedmetadata', () => keepScroll(() => { el.hidden = false; loaded(); }), { once: true });
       el.addEventListener('error', fail, { once: true });
       card.replaceChildren(el);
       el.src = spec.src;
@@ -143,7 +147,7 @@
     image.decoding = 'async';
     image.referrerPolicy = 'no-referrer';
     image.hidden = spec.type === 'probe';
-    image.addEventListener('load', () => keepScroll(() => { image.hidden = false; }), { once: true });
+    image.addEventListener('load', () => keepScroll(() => { image.hidden = false; loaded(); }), { once: true });
     image.addEventListener('error', () => spec.type === 'probe' ? video(true) : fail(), { once: true });
     const original = document.createElement('a');
     original.href = link.href;
@@ -168,7 +172,7 @@
     for (const link of links) {
       if (link.dataset.ddChecked || link.closest('.dd-media') || link.querySelector('img,video,iframe')) continue;
       link.dataset.ddChecked = '1';
-      const row = link.closest('#messagebuffer > div, #pollwrap .well:not(.poll-menu)');
+      const row = link.closest('#messagebuffer > div, #pollwrap .well:not(.poll-menu), .dd-announcement-card, .dd-archive-card');
       if (row && row.querySelectorAll('[data-dd-embed]').length >= 6) continue;
       const spec = classify(link.href);
       if (!spec) continue;
@@ -189,7 +193,7 @@
     return palette[(hash >>> 0) % palette.length];
   }
   function ownNameColor() {
-    try { const value = localStorage.getItem(nameColorKey + (window.CLIENT?.name || '').toLowerCase()); return validNameColor(value) ? value.toLowerCase() : ''; } catch (_) { return ''; }
+    try { const name=(window.CLIENT?.name || '').toLowerCase();const value = localStorage.getItem('dd-network-name-color:'+name)||localStorage.getItem(nameColorKey + name); return validNameColor(value) ? value.toLowerCase() : ''; } catch (_) { return ''; }
   }
   function paintName(node, name) {
     if (!node) return;
@@ -307,7 +311,7 @@
     panel.innerHTML = '<label>My name color <input type="color" id="dd-name-picker" value="#91bded"></label>' +
       '<p><span class="dd-name-preview" id="dd-own-preview">Your name</span></p>' +
       '<button type="button" id="dd-save-name">Save color</button><button type="button" id="dd-reset-name">Default color</button>' +
-      '<p>Everyone using the room script sees your color from your next regular chat message. Your choice is remembered on this browser.</p>' +
+      '<p>Your choice is remembered here and across bot rooms when the shared service is connected.</p>' +
       '<p>Staff badge on: <span class="dd-name-preview dd-mod">Moderator</span> · <span class="dd-name-preview dd-admin">Admin</span></p>' +
       '<label><input type="checkbox" id="dd-animate-names" checked> Animate staff names on my screen</label>' +
       '<p id="dd-name-status" role="status"></p><button type="button" id="dd-close-names">Close</button>';
@@ -332,9 +336,10 @@
     function save(value) {
       const name = window.CLIENT?.name;
       if (!name) { status.textContent = 'Sign in or choose a guest name first.'; return; }
-      try { localStorage.setItem(nameColorKey + name.toLowerCase(), value); }
+      try { localStorage.setItem(nameColorKey + name.toLowerCase(), value); localStorage.setItem('dd-network-name-color:'+name.toLowerCase(),value);localStorage.setItem('dd-network-name-color-time:'+name.toLowerCase(),String(Date.now())); }
       catch (_) { status.textContent = 'Your browser blocked saving this preference.'; return; }
       refreshNames(); status.textContent = 'Saved. Others will see it with your next regular message.';
+      if(api.network?.online)api.network.saveColor(value).then(()=>{status.textContent='Saved across bot rooms.';}).catch(()=>{status.textContent='Saved on this browser. Shared bot save unavailable; try again when connected.';});
     }
     panel.querySelector('#dd-save-name').addEventListener('click', () => save(picker.value.slice(1)));
     panel.querySelector('#dd-reset-name').addEventListener('click', () => save('default'));
@@ -894,6 +899,8 @@
     const raw = document.getElementById('currenttitle')?.textContent || '';
     if (!episodePanel || (!force && raw === episodeRaw)) return;
     episodeRaw = raw;
+    api.currentEpisodeInfo=null;
+    window.dispatchEvent(new CustomEvent('dd-episode-info'));
     const revision = ++episodeRevision;
     const info = playingEpisode(raw);
     const source = episodePanel.querySelector('.dd-episode-source');
@@ -913,6 +920,8 @@
         return;
       }
       panelText('.dd-episode-title', match.name);
+      api.currentEpisodeInfo=match;
+      window.dispatchEvent(new CustomEvent('dd-episode-info'));
       const meta = [info.code.toUpperCase()];
       if (match.japaneseAirdate) {
         const dateText = value => {
@@ -1014,6 +1023,7 @@
     modal.id = 'dd-channel-manager'; modal.setAttribute('aria-labelledby', 'dd-manager-title');
     modal.innerHTML = '<header><h2 id="dd-manager-title">Manage channels</h2><button type="button" class="dd-manager-close" aria-label="Close channel manager">×</button></header><p>Add a banner image and choose where clicking it goes. Changes appear for everyone after saving.</p><form id="dd-card-form"><label>Channel name<input name="name" maxlength="100" required placeholder="e.g. American Dad"></label><label>Channel link<input name="channel" required placeholder="https://cytu.be/r/Channel-Name"></label><label>Hosted image link<input name="image" required placeholder="https://…/banner.png"></label><div class="dd-manager-form-actions"><button type="submit" id="dd-card-add">Add channel</button><button type="button" id="dd-card-reset" hidden>Cancel edit</button></div></form><p id="dd-manager-status" role="status"></p><div id="dd-manager-list"></div><footer><span id="dd-manager-count"></span><button type="button" id="dd-manager-cancel">Cancel</button><button type="button" id="dd-manager-save">Save to room</button></footer>';
     document.body.append(modal);
+    if(api.network?.managed){modal.querySelector('#dd-manager-save').textContent='Save to all bot rooms';modal.querySelector('header + p').textContent='This is the shared channel list. Saving updates every active bot room.';}
     const form = modal.querySelector('form'), fields = form.elements;
     const status = modal.querySelector('#dd-manager-status'), list = modal.querySelector('#dd-manager-list'), save = modal.querySelector('#dd-manager-save');
     const tell = text => { status.textContent = text; };
@@ -1060,6 +1070,11 @@
       if (document.getElementById('motd')?.innerHTML !== base) { tell('The room was updated by another admin. Reopen this editor to load the latest list before saving.'); return; }
       source.querySelector('.motd-banners').replaceChildren(...cards.map(x => x.cloneNode(true)));
       const html = source.innerHTML;
+      if(api.network?.managed){
+        saving=true;render();form.querySelectorAll('input,button').forEach(x=>x.disabled=true);tell('Saving to all bot rooms…');
+        const sharedCards=cards.map(c=>({name:label(c),url:c.querySelector('a').href,image:c.querySelector('img').src}));
+        api.network.saveCarousel(sharedCards).then(()=>{dirty=false;saving=false;modal.close();}).catch(error=>{saving=false;form.querySelectorAll('input,button').forEach(x=>x.disabled=false);render();tell(error.message);});return;
+      }
       if (new TextEncoder().encode(html).length > 20000) { tell('This list exceeds the room limit. Shorter image links or fewer channels will fit.'); return; }
       saving = true; render(); form.querySelectorAll('input,button').forEach(x => x.disabled = true); tell('Saving to room…');
       let timer;
@@ -1580,7 +1595,8 @@
   const pollTemplates=new WeakMap();
   function pollMedia(poll) {
     poll.dataset.ddPollMedia='1';
-    for (const part of poll.querySelectorAll('h3,.option')) {
+    const parts=[...(poll.matches('h3,.option,.dd-network-text')?[poll]:[]),...poll.querySelectorAll('h3,.option,.dd-network-text')];
+    for (const part of parts) {
       const walker=document.createTreeWalker(part,NodeFilter.SHOW_TEXT);
       const nodes=[];
       while(walker.nextNode()) {
@@ -1605,7 +1621,7 @@
   function readPollTemplate(poll){
     if(pollTemplates.has(poll))return pollTemplates.get(poll);
     const title=poll.querySelector('h3');if(!title)return null;
-    const content=node=>{const clean=node.cloneNode(true);clean.querySelectorAll('.dd-media').forEach(e=>e.remove());clean.querySelectorAll('a[data-dd-poll-link]').forEach(e=>e.replaceWith(document.createTextNode(e.textContent)));clean.querySelectorAll('[data-dd-checked],[data-dd-embed]').forEach(e=>{e.removeAttribute('data-dd-checked');e.removeAttribute('data-dd-embed');});return clean.children.length?clean.innerHTML.trim():clean.textContent.trim();};
+    const content=node=>{const clean=node.cloneNode(true);clean.querySelectorAll('.dd-media').forEach(e=>e.remove());clean.querySelectorAll('a[data-dd-poll-link]').forEach(e=>e.replaceWith(document.createTextNode(e.textContent)));clean.querySelectorAll('.dd-media-original').forEach(e=>{e.classList.remove('dd-media-original');if(!e.className)e.removeAttribute('class');});clean.querySelectorAll('[data-dd-checked],[data-dd-embed]').forEach(e=>{e.removeAttribute('data-dd-checked');e.removeAttribute('data-dd-embed');});return clean.children.length?clean.innerHTML.trim():clean.textContent.trim();};
     const opts=Array.from(poll.querySelectorAll('.option')).map(option=>{const copy=option.cloneNode(true);copy.querySelector(':scope > button')?.remove();return content(copy);});
     return opts.length?{title:content(title),opts,obscured:false,retainVotes:false}:null;
   }
@@ -1666,6 +1682,17 @@
     rows.forEach((row,index)=>{row.querySelector('input').setAttribute('aria-label','Poll option '+(index+1));row.querySelector('[data-action="up"]').disabled=index===0;row.querySelector('[data-action="down"]').disabled=index===rows.length-1;row.querySelector('[data-action="remove"]').disabled=rows.length<=2;});
   }
 
+  api.renderPollMedia=pollMedia;
+  api.ownNameColor=ownNameColor;
+  api.applyNetworkState=function(state){
+    for(const [name,entry] of Object.entries(state.colors||{}))if(validNameColor(entry?.color)){
+      if(Number(entry.time)>=(nameColors.get(name)?.time||0))nameColors.set(name,{color:entry.color,time:Number(entry.time)});
+      if(name===(window.CLIENT?.name||'').toLowerCase())try{if(Number(entry.time)>=Number(localStorage.getItem('dd-network-name-color-time:'+name)||0)){localStorage.setItem('dd-network-name-color:'+name,entry.color);localStorage.setItem('dd-network-name-color-time:'+name,String(entry.time));}}catch(_){}
+    }
+    for(const [key,value] of Object.entries(state.timestamps||{}))if(/^s\d+e\d+$/i.test(value)&&!history[key])remember(key,value);
+    document.querySelectorAll('#messagebuffer > div').forEach(row=>{const code=history[row.dataset.ddTime+':'+row.dataset.ddName];if(code&&row.dataset.ddEpisode!==code){row.dataset.ddEpisode=code;delete row.dataset.ddStamped;stamp(row);}});
+    refreshNames();
+  };
   let recoveryTimer=0, connectedSocket;
   const recoveryEvents=['connect','reconnect','login','setMotd','channelOpts','channelCSSJS','changeMedia','mediaUpdate','userlist'];
   function recover() { clearTimeout(recoveryTimer); recoveryTimer=setTimeout(init,80); }
