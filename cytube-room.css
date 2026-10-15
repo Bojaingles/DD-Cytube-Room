@@ -841,3 +841,13 @@ span.dd-namecolor { display: none !important; }
 .dd-phone-landscape #chatwrap { order:1; width:100% !important; flex:0 0 var(--dd-mobile-chat-height); height:var(--dd-mobile-chat-height) !important; }
 .dd-phone-landscape #videowrap-header { min-height:30px; }
 .dd-phone-landscape #videowrap .embed-responsive { flex:1 1 0; }
+.dd-copy-poll { margin:0 8px 8px 0; }
+.dd-poll-draft-tools { margin:0 80px 12px 0; }
+.dd-poll-draft-tools button,.dd-poll-copy-guard button,.dd-poll-option-actions button { border:1px solid #79515b; border-radius:5px; background:#302027; color:#ead6d8; padding:5px 10px; }
+.dd-poll-copy-note,.dd-poll-copy-guard { padding:10px 12px; margin-bottom:12px; border:1px solid #79515b; border-radius:7px; background:#302027; color:#ead6d8; }
+.dd-poll-copy-guard button { margin-right:8px; }
+.dd-poll-option-row { display:flex; align-items:center; gap:6px; margin:8px 0; }
+.dd-poll-option-row .poll-menu-option { flex:1; min-width:0; margin:0; }
+.dd-poll-option-actions { display:flex; gap:3px; }
+.dd-poll-option-actions button { min-width:30px; min-height:32px; }
+.dd-poll-option-actions button:disabled { opacity:.35; cursor:default; }
