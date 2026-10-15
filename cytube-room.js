@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '2.1.0';
+  const version = '2.2.0';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -1564,6 +1564,71 @@
     });
   }
 
+  const pollTemplates=new WeakMap();
+  let pollToolsHost,pollToolsObserver,pollToolsSocket,pollCapture,pollToolsPending=false;
+  function readPollTemplate(poll){
+    if(pollTemplates.has(poll))return pollTemplates.get(poll);
+    const title=poll.querySelector('h3');if(!title)return null;
+    const content=node=>node.children.length?node.innerHTML.trim():node.textContent.trim();
+    const opts=Array.from(poll.querySelectorAll('.option')).map(option=>{const copy=option.cloneNode(true);copy.querySelector(':scope > button')?.remove();return content(copy);});
+    return opts.length?{title:content(title),opts,obscured:false,retainVotes:false}:null;
+  }
+  function pollDraftHasContent(menu){return Array.from(menu.querySelectorAll('input')).some(input=>input.type==='checkbox'?input.checked:!!input.value.trim());}
+  function copyPollToDraft(poll,replace=false){
+    if(!window.hasPermission?.('pollctl') || typeof window.showPollMenu!=='function')return;
+    const template=readPollTemplate(poll);if(!template)return;
+    const existing=document.querySelector('#pollwrap .poll-menu');
+    if(existing && pollDraftHasContent(existing) && !replace){
+      let guard=existing.querySelector('.dd-poll-copy-guard');if(!guard){guard=document.createElement('div');guard.className='dd-poll-copy-guard';guard.setAttribute('role','status');existing.prepend(guard);}
+      const text=document.createElement('p');text.textContent='A poll draft is already open. Replace it with this poll?';
+      const yes=button('Replace draft','Replace draft with copied poll'),no=button('Keep draft','Keep existing poll draft');yes.addEventListener('click',()=>copyPollToDraft(poll,true));no.addEventListener('click',()=>guard.remove());guard.replaceChildren(text,yes,no);guard.scrollIntoView({block:'nearest'});return;
+    }
+    window.showPollMenu();
+    const menu=document.querySelector('#pollwrap .poll-menu');if(!menu)return;
+    const fields=menu.querySelectorAll('input[type="text"]:not(.poll-menu-option)');if(fields.length<2)return;
+    fields[0].value=template.title;fields[1].value='';
+    const add=Array.from(menu.querySelectorAll('button')).find(b=>b.textContent.trim()==='Add Option');
+    let options=menu.querySelectorAll('.poll-menu-option');
+    while(options.length<template.opts.length && add){add.click();options=menu.querySelectorAll('.poll-menu-option');}
+    options.forEach((input,index)=>{input.value=template.opts[index]||'';});
+    const flags=menu.querySelectorAll('input[type="checkbox"]');if(flags[0])flags[0].checked=!!template.obscured;if(flags[1])flags[1].checked=!!template.retainVotes;
+    const note=document.createElement('p');note.className='dd-poll-copy-note';note.setAttribute('role','status');note.textContent='Copied as a new draft. Votes are not copied. Set a fresh timeout if needed. The current poll stays open until you publish a new one.';menu.prepend(note);
+    pollTools();fields[0].focus();menu.scrollIntoView({block:'nearest'});
+  }
+  function pollTools(){
+    const host=document.getElementById('pollwrap');if(!host)return;
+    const allowed=!!window.hasPermission?.('pollctl');
+    const socket=window.socket;
+    if(socket?.on && socket!==pollToolsSocket){
+      if(pollToolsSocket?.off&&pollCapture)pollToolsSocket.off('newPoll',pollCapture);
+      pollToolsSocket=socket;pollCapture=data=>queueMicrotask(()=>{
+        const poll=document.querySelector('#pollwrap .well.active');const timestamp=poll?.querySelector('.label');const value=timestamp&&window.$?.(timestamp).data('timestamp');
+        if(poll && (!value || Number(value)===Number(data.timestamp)) && typeof data.title==='string' && Array.isArray(data.options))pollTemplates.set(poll,{title:data.title,opts:data.options.map(String),obscured:!!data.obscured,retainVotes:!!data.retainVotes});
+        pollTools();
+      });socket.on('newPoll',pollCapture);
+    }
+    if(pollToolsHost!==host){pollToolsObserver?.disconnect();pollToolsHost=host;pollToolsObserver=new MutationObserver(()=>{if(pollToolsPending)return;pollToolsPending=true;queueMicrotask(()=>{pollToolsPending=false;safeFeature('poll tools',pollTools);});});pollToolsObserver.observe(host,{childList:true,subtree:true});}
+    host.querySelectorAll('.well:not(.poll-menu)').forEach(poll=>{
+      if(!poll.querySelector('h3')||!poll.querySelector('.option'))return;
+      let copy=poll.querySelector('.dd-copy-poll');
+      if(!allowed){copy?.remove();return;}
+      if(!copy){copy=button('Copy to new poll','Copy this poll to a new editable draft');copy.className='btn btn-default btn-sm dd-copy-poll';copy.addEventListener('click',()=>copyPollToDraft(poll));poll.querySelector('h3').before(copy);}
+      copy.disabled=false;
+    });
+    const menu=host.querySelector('.poll-menu');if(!menu)return;
+    if(!allowed){menu.querySelectorAll('.dd-poll-draft-tools,.dd-poll-copy-guard').forEach(e=>e.remove());menu.querySelectorAll('.dd-poll-option-row').forEach(row=>row.replaceWith(row.querySelector('input')));return;}
+    if(!menu.querySelector('.dd-poll-draft-tools')){
+      const tools=document.createElement('div');tools.className='dd-poll-draft-tools';const copy=button('Copy current poll','Copy current poll into this draft');copy.addEventListener('click',()=>{const poll=host.querySelector('.well.active:not(.poll-menu)')||host.querySelector('.well:not(.poll-menu)');if(poll)copyPollToDraft(poll);});tools.append(copy);menu.prepend(tools);
+    }
+    menu.querySelectorAll('.poll-menu-option').forEach(input=>{
+      if(input.closest('.dd-poll-option-row'))return;
+      const row=document.createElement('div');row.className='dd-poll-option-row';input.before(row);row.append(input);const actions=document.createElement('span');actions.className='dd-poll-option-actions';
+      for(const [text,label,action] of [['↑','Move option up','up'],['↓','Move option down','down'],['×','Remove option','remove']]){const control=button(text,label);control.dataset.action=action;control.addEventListener('click',()=>{if(action==='up'&&row.previousElementSibling?.classList.contains('dd-poll-option-row'))row.previousElementSibling.before(row);if(action==='down'&&row.nextElementSibling?.classList.contains('dd-poll-option-row'))row.nextElementSibling.after(row);if(action==='remove'&&menu.querySelectorAll('.poll-menu-option').length>2)row.remove();pollTools();});actions.append(control);}row.append(actions);
+    });
+    const rows=Array.from(menu.querySelectorAll('.dd-poll-option-row'));
+    rows.forEach((row,index)=>{row.querySelector('input').setAttribute('aria-label','Poll option '+(index+1));row.querySelector('[data-action="up"]').disabled=index===0;row.querySelector('[data-action="down"]').disabled=index===rows.length-1;row.querySelector('[data-action="remove"]').disabled=rows.length<=2;});
+  }
+
   let recoveryTimer=0, connectedSocket;
   const recoveryEvents=['connect','reconnect','login','setMotd','channelOpts','channelCSSJS','changeMedia','mediaUpdate','userlist'];
   function recover() { clearTimeout(recoveryTimer); recoveryTimer=setTimeout(init,80); }
@@ -1587,6 +1652,7 @@
   let observedBuffer, bufferObserver, observedMotd, motdObserver;
   function init() {
     safeFeature('connection',bindRecovery);
+    safeFeature('poll tools',pollTools);
     safeFeature('devices',refreshDevices);
     safeFeature('captions',captionsUI);
     safeFeature('credit',footerCredit);
