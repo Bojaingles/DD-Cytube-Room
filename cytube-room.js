@@ -837,7 +837,9 @@
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 8000);
       try {
-        const response = await fetch(ROOM.guide?.url || 'https://api.tvmaze.com/shows/215/episodes?specials=1', { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
+        const guideURL = new URL(ROOM.guide?.url || 'https://api.tvmaze.com/shows/215/episodes?specials=1', location.href);
+        if (ROOM.guide?.url) guideURL.searchParams.set('roomVersion', version);
+        const response = await fetch(guideURL.href, { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
         if (!response.ok) throw new Error('Guide unavailable');
         const episodes = await response.json();
         if (!validGuide(episodes)) throw new Error('Invalid guide');
