@@ -160,7 +160,7 @@ img:hover {
   left: 17px;
   width: 100px;
   height: 100px;
-  background: url("https://i.postimg.cc/Mp2r0XBB/Doodoo-Buttchump-Official-Room-Badge.png") no-repeat center;
+  background: var(--dd-room-badge-image, url("https://i.postimg.cc/Mp2r0XBB/Doodoo-Buttchump-Official-Room-Badge.png")) no-repeat center;
   background-size: contain;
   opacity: 0.5;
   pointer-events: none;
@@ -403,6 +403,9 @@ img:hover {
 .dd-branded-room body { isolation: isolate; }
 #dd-room-watermark { position: fixed; inset: 0; z-index: -1; pointer-events: none; display: grid; place-items: center; opacity: .23; overflow: hidden; }
 #dd-room-watermark img { width: min(94vw,1900px); height: 80vh; object-fit: contain; transform: none !important; filter: none !important; box-shadow: none !important; user-select: none; }
+.dd-orangetv #dd-room-watermark { opacity: .14; }
+.dd-orangetv #chatwrap::after { opacity: .65; }
+.dd-orangetv #chatwrap::before { content: 'ORANGETV'; position: absolute; bottom: 66px; left: 17px; width: 100px; text-align: center; color: #ffb55c; font: 700 10px/1.2 sans-serif; letter-spacing: .12em; opacity: .65; pointer-events: none; z-index: -1; }
 .dd-branded-room #chatwrap, .dd-branded-room #videowrap, .dd-branded-room #queue,
 .dd-branded-room #playlistrow, .dd-branded-room #rightpane, .dd-branded-room #leftpane,
 .dd-branded-room #pollwrap > .well { background-color: rgba(17,17,17,.38) !important; }
@@ -826,8 +829,7 @@ span.dd-namecolor { display: none !important; }
 
 #dd-upload-sync { width:min(560px,90vw); max-height:80vh; overflow:auto; padding:22px; border:1px solid #986271; border-radius:12px; color:#ead6d8; background:#1a1116f5; box-shadow:0 18px 70px #0009; }
 #dd-upload-sync::backdrop { background:#0502057a; }
-#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }
-/* On a sideways phone, video comes first; browsing and chat remain below. */
+#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }/* On a sideways phone, video comes first; browsing and chat remain below. */
 .dd-phone-landscape #mainpage > .container-fluid { display:flex; flex-direction:column; }
 .dd-phone-landscape #motdrow { order:3; flex-shrink:0; }
 .dd-phone-landscape #announcements, .dd-phone-landscape #drinkbarwrap { order:2; }

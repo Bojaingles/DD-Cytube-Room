@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '2.2.1';
+  const version = '2.2.2';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -493,6 +493,8 @@
     api.navigationResize?.disconnect();
   }
   function roomWatermark() {
+    if (ROOM.roomBadge) document.documentElement.style.setProperty('--dd-room-badge-image', 'url("'+ROOM.roomBadge.replace(/["\\]/g, '')+'")');
+    if (ROOM.networkName === 'ORANGETV') document.documentElement.classList.add('dd-orangetv');
     if (!ROOM.watermark || !document.body || document.getElementById('dd-room-watermark')) return;
     const watermark = document.createElement('div');
     watermark.id = 'dd-room-watermark';
