@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.0.1';
+  const version = '3.0.2';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -252,6 +252,31 @@
     const text = !ROOM.compactEpisodeTitle ? raw : match ? match[1].toUpperCase() + (match[2] ? ' · ' + match[2] : '') : longCode ? episode(raw).toUpperCase() + (longCode[1] ? ' · ' + longCode[1] : '') : raw.replace(/^American Dad!?\s*[-–—:]?\s*/i, '');
     if (label.textContent !== text) { label.textContent = text; label.title = text; fitViewingArea(); }
   }
+  function messageMarkers(value) {
+    let msg=String(value || ''),color='',device='',found;
+    const suffix=/\s*(?:\[ddnc:([a-f0-9]{6}|default)\]|\[dddev:(mobile|tablet|desktop)\]|<span\s+class="dd-namecolor"\s+data-color="([a-f0-9]{6}|default)"><\/span>|<span\s+class="dd-device-marker"\s+data-device="(mobile|tablet|desktop)"><\/span>)\s*$/i;
+    while((found=msg.match(suffix))){color ||= found[1]||found[3]||'';device ||= found[2]||found[4]||'';msg=msg.slice(0,found.index);}
+    return {msg,color,device};
+  }
+  let messageTimes={};
+  const messageTimesKey='dd-message-times:'+location.pathname;
+  try{messageTimes=JSON.parse(localStorage.getItem(messageTimesKey)||'{}')||{};}catch(_){}
+  for(const key of Object.keys(history))if(/^\d+:.+/.test(key))messageTimes[key]=true;
+  let timesSavePending=false;
+  function rememberTime(time,name){if(!Number.isFinite(Number(time))||Number(time)<=0||!name)return;const key=Number(time)+':'+name;if(messageTimes[key])return;messageTimes[key]=true;if(!timesSavePending){timesSavePending=true;queueMicrotask(()=>{timesSavePending=false;messageTimes=Object.fromEntries(Object.entries(messageTimes).slice(-1000));try{localStorage.setItem(messageTimesKey,JSON.stringify(messageTimes));}catch(_){}});}}
+  function restoreChatRows(){
+    const byClock=new Map();
+    for(const key of Object.keys(messageTimes)){const split=key.indexOf(':'),time=Number(key.slice(0,split)),name=key.slice(split+1);if(!time||!name)continue;const clock=new Date(time).toTimeString().split(' ')[0],id=name+':'+clock;const list=byClock.get(id)||[];list.push(time);byClock.set(id,list);}
+    document.querySelectorAll('#messagebuffer > div').forEach(row=>{
+      const name=row.dataset.ddName||row.querySelector('.username')?.textContent.replace(/:\s*$/,'').trim()||Array.from(row.classList).find(c=>c.startsWith('chat-msg-'))?.slice(9);if(!name)return;row.dataset.ddName=name;
+      if(!row.dataset.ddTime){const clock=row.querySelector('.timestamp')?.textContent.match(/^\[(\d{2}:\d{2}:\d{2})\]/)?.[1],times=byClock.get(name+':'+clock);if(times?.length===1)row.dataset.ddTime=String(times[0]);}
+      const walker=document.createTreeWalker(row,NodeFilter.SHOW_TEXT),texts=[];while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('.username,.timestamp,a,code,pre,.dd-media'))texts.push(n);}
+      let color='',device='';for(const node of texts){const parsed=messageMarkers(node.nodeValue);if(parsed.msg!==node.nodeValue){node.nodeValue=parsed.msg;color=parsed.color||color;device=parsed.device||device;}}
+      if(color){let marker=row.querySelector('.dd-namecolor');if(!marker){marker=document.createElement('span');marker.className='dd-namecolor';row.append(marker);}marker.setAttribute('data-color',color);}
+      receiveNameColor(row,{username:name,time:Number(row.dataset.ddTime)||0});if(device)learnDevice(name,device,Number(row.dataset.ddTime)||0);
+      const code=history[row.dataset.ddTime+':'+name];if(code&&code!==row.dataset.ddEpisode){row.dataset.ddEpisode=code;delete row.dataset.ddStamped;}stamp(row);
+    });
+  }
   function receiveNameColor(row, data) {
     if (!row || !data?.username) return;
     row.dataset.ddName = data.username;
@@ -362,6 +387,7 @@
       const name = row.querySelector('.username')?.textContent.replace(/:\s*$/, '').trim() || Array.from(row.classList).find(c => c.startsWith('chat-msg-'))?.slice(9);
       if (name) receiveNameColor(row, { username: name, time: Number(row.dataset.ddTime) || 0 });
     });
+    restoreChatRows();
     refreshNames();
   }
 
@@ -392,11 +418,8 @@
     function format(data) {
       // CyTube's fast emote matcher splits on whitespace. A filtered color span
       // attached to the final word otherwise makes that word unrecognizable.
-      const deviceMarker = typeof data?.msg==='string' && data.msg.match(/<span class="dd-device-marker" data-device="(mobile|tablet|desktop)"><\/span>/i);
-      if(deviceMarker) data={...data,msg:data.msg.replace(deviceMarker[0],'').trimEnd()};
-      const marker = typeof data?.msg === 'string' && data.msg.match(/<span class="dd-namecolor" data-color="([a-f0-9]{6}|default)"><\/span>\s*$/i);
-      const args = Array.from(arguments); args[0]=data;
-      if (marker) args[0] = { ...data, msg: data.msg.slice(0, marker.index) };
+      const parsed=messageMarkers(data?.msg),deviceMarker=parsed.device?[null,parsed.device]:null,marker=parsed.color?[null,parsed.color]:null;
+      const args=Array.from(arguments);data={...data,msg:parsed.msg};args[0]=data;
       const rendered = original.apply(this, args);
       const row = rendered?.[0];
       if (row && marker) {
@@ -410,6 +433,7 @@
       row?.querySelectorAll('.dd-device-icon').forEach(icon=>icon.remove());
       if (row && data && Number.isFinite(Number(data.time))) {
         row.dataset.ddTime = String(data.time);
+        rememberTime(data.time,data.username);
         const key = String(data.time) + ':' + String(data.username || '');
         let code = history[key] || '';
         // Never label replayed history with whichever episode happens to be on.
@@ -441,6 +465,7 @@
   function process(root) {
     if (!(root instanceof Element) || root.closest('.dd-media')) return;
     root.querySelectorAll('.dd-device-icon').forEach(icon=>icon.remove());
+    if(root.id==='messagebuffer'||root.parentElement?.id==='messagebuffer')restoreChatRows();
     decorateMentions(root);
     stamp(root);
     root.querySelectorAll('[data-dd-time]').forEach(stamp);
@@ -1695,6 +1720,8 @@
     }
     for(const [key,value] of Object.entries(state.timestamps||{}))if(/^s\d+e\d+$/i.test(value)&&!history[key])remember(key,value);
     document.querySelectorAll('#messagebuffer > div').forEach(row=>{const code=history[row.dataset.ddTime+':'+row.dataset.ddName];if(code&&row.dataset.ddEpisode!==code){row.dataset.ddEpisode=code;delete row.dataset.ddStamped;stamp(row);}});
+    for(const item of state.messages||[])rememberTime(item.time,item.username);
+    restoreChatRows();
     refreshNames();
   };
   let recoveryTimer=0, connectedSocket;
