@@ -493,16 +493,16 @@ img:hover {
 /* Staff name treatments retain CyTube's native rank and badge toggle. */
 #userlist .userlist_item > .userlist_op,
 #messagebuffer > div > .userlist_op > .username,
-.dd-name-preview.dd-mod { color: #ffd65c !important; animation: dd-gold-shimmer 3s ease-in-out infinite; }
+:is(.dd-name-preview,.dd-staff-name).dd-mod { color: #ffd65c !important; animation: dd-gold-shimmer 3s ease-in-out infinite; }
 #userlist .userlist_item > .userlist_owner,
 #messagebuffer > div > .userlist_owner > .username,
-.dd-name-preview.dd-admin { color: #ff9aaf !important; background: linear-gradient(100deg,#ff9aaf,#ffd96a,#99f4aa,#89dfff,#c4a1ff,#ff9aaf); background-size: 220% 100%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: dd-rainbow-name 7s linear infinite; }
+:is(.dd-name-preview,.dd-staff-name).dd-admin { color: #ff9aaf !important; background: linear-gradient(100deg,#ff9aaf,#ffd96a,#99f4aa,#89dfff,#c4a1ff,#ff9aaf); background-size: 220% 100%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: dd-rainbow-name 7s linear infinite; }
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner),
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username,
-.dd-name-preview:is(.dd-mod,.dd-admin) { position: relative; }
+:is(.dd-name-preview,.dd-staff-name):is(.dd-mod,.dd-admin) { position: relative; }
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
-.dd-name-preview:is(.dd-mod,.dd-admin)::after { content: ''; position: absolute; inset: -3px 0; pointer-events: none; background: radial-gradient(ellipse 2px 4px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 4px 1px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 2px 3px at 84% 65%,#fff 65%,transparent 100%), radial-gradient(ellipse 3px 1px at 84% 65%,#fff 65%,transparent 100%); animation: dd-name-sparkle 3.6s ease-in-out infinite; }
+:is(.dd-name-preview,.dd-staff-name):is(.dd-mod,.dd-admin)::after { content: ''; position: absolute; inset: -3px 0; pointer-events: none; background: radial-gradient(ellipse 2px 4px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 4px 1px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 2px 3px at 84% 65%,#fff 65%,transparent 100%), radial-gradient(ellipse 3px 1px at 84% 65%,#fff 65%,transparent 100%); animation: dd-name-sparkle 3.6s ease-in-out infinite; }
 @keyframes dd-gold-shimmer { 0%,100% { text-shadow: 0 0 2px #ad7200; } 50% { text-shadow: 0 0 3px #ffe9a0,0 0 9px #dca72e; } }
 @keyframes dd-rainbow-name { to { background-position: 220% 0; } }
 @keyframes dd-name-sparkle { 0%,100% { opacity: .18; } 50% { opacity: .85; } }
@@ -531,7 +531,7 @@ span.dd-namecolor { display: none !important; }
 /* Compact staff badges: native role classes keep the Name Color toggle working. */
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner),
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username,
-.dd-name-preview:is(.dd-mod,.dd-admin) {
+:is(.dd-name-preview,.dd-staff-name):is(.dd-mod,.dd-admin) {
   display: inline-block;
   padding: 0 4px;
   margin-right: 2px;
@@ -542,13 +542,13 @@ span.dd-namecolor { display: none !important; }
 }
 #userlist .userlist_item > .userlist_op,
 #messagebuffer > div > .userlist_op > .username,
-.dd-name-preview.dd-mod {
+:is(.dd-name-preview,.dd-staff-name).dd-mod {
   border-color: #bd913f;
   box-shadow: inset 0 0 5px #ffd65c12, 0 1px 3px #0008;
 }
 #userlist .userlist_item > .userlist_owner,
 #messagebuffer > div > .userlist_owner > .username,
-.dd-name-preview.dd-admin {
+:is(.dd-name-preview,.dd-staff-name).dd-admin {
   border-color: #c39ae4;
   box-shadow: inset 0 0 5px #a2bfff15, 0 0 4px #ff89c52b;
   filter: drop-shadow(0 0 2px #ff9ac54d) drop-shadow(0 0 5px #91caff40);
@@ -666,10 +666,10 @@ span.dd-namecolor { display: none !important; }
 /* Fine, independently scattered glitter across staff badges. */
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::before,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::before,
-.dd-name-preview:is(.dd-mod,.dd-admin)::before,
+:is(.dd-name-preview,.dd-staff-name):is(.dd-mod,.dd-admin)::before,
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
-.dd-name-preview:is(.dd-mod,.dd-admin)::after {
+:is(.dd-name-preview,.dd-staff-name):is(.dd-mod,.dd-admin)::after {
   content: ''; position: absolute; inset: -2px -1px; pointer-events: none;
   border-radius: inherit; opacity: .14;
   background: var(--dd-glitter-a, radial-gradient(circle at 17% 16%,#fff9 0 .55px,transparent 1.2px),radial-gradient(circle at 68% 82%,#fff9 0 .55px,transparent 1.2px));
@@ -677,7 +677,7 @@ span.dd-namecolor { display: none !important; }
 }
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
-.dd-name-preview:is(.dd-mod,.dd-admin)::after {
+:is(.dd-name-preview,.dd-staff-name):is(.dd-mod,.dd-admin)::after {
   background: var(--dd-glitter-b,radial-gradient(circle at 38% 85%,#fff9 0 .55px,transparent 1.2px),radial-gradient(circle at 89% 21%,#fff9 0 .55px,transparent 1.2px));
   animation-duration: var(--dd-glitter-time-b,2.7s); animation-delay: var(--dd-glitter-delay-b,-1.5s);
 }
@@ -829,8 +829,7 @@ span.dd-namecolor { display: none !important; }
 
 #dd-upload-sync { width:min(560px,90vw); max-height:80vh; overflow:auto; padding:22px; border:1px solid #986271; border-radius:12px; color:#ead6d8; background:#1a1116f5; box-shadow:0 18px 70px #0009; }
 #dd-upload-sync::backdrop { background:#0502057a; }
-#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }
-/* On a sideways phone, video comes first; browsing and chat remain below. */
+#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }/* On a sideways phone, video comes first; browsing and chat remain below. */
 .dd-phone-landscape #mainpage > .container-fluid { display:flex; flex-direction:column; }
 .dd-phone-landscape #motdrow { order:3; flex-shrink:0; }
 .dd-phone-landscape #announcements, .dd-phone-landscape #drinkbarwrap { order:2; }

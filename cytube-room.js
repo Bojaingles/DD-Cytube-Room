@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.0.2';
+  const version = '3.0.3';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -197,7 +197,12 @@
   }
   function paintName(node, name) {
     if (!node) return;
-    const ranked = node.matches('.userlist_op,.userlist_owner,.userlist_siteadmin') || node.parentElement?.matches('.userlist_op,.userlist_owner,.userlist_siteadmin');
+    const listed=[...document.querySelectorAll('#userlist .userlist_item')].find(row=>(window.$?.(row)?.data('name')||row.children[1]?.textContent.trim()||'').toLowerCase()===name.toLowerCase());
+    const listName=listed?.children[1];
+    const nativeRank=listed?Number(window.$?.(listed)?.data('rank')):NaN;
+    const rank=Number.isFinite(nativeRank)?nativeRank:listName?.matches('.userlist_owner,.userlist_siteadmin')?3:listName?.matches('.userlist_op')?2:name.toLowerCase()===(window.CLIENT?.name||'').toLowerCase()?Number(window.CLIENT.rank):0;
+    if(node.matches('.username'))for(const [cls,on]of [['dd-staff-name',rank>=2],['dd-admin',rank>=3],['dd-mod',rank===2]])if(node.classList.contains(cls)!==on)node.classList.toggle(cls,on);
+    const ranked = rank>=2 || node.matches('.userlist_op,.userlist_owner,.userlist_siteadmin') || node.parentElement?.matches('.userlist_op,.userlist_owner,.userlist_siteadmin');
     if (ranked && !node.dataset.ddGlitter) {
       node.dataset.ddGlitter = '1';
       for (const layer of ['a', 'b']) {
