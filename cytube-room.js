@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '2.2.0';
+  const version = '2.2.1';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -815,7 +815,7 @@
     });
   }
   // TVmaze data is CC BY-SA; the panel links to its source and license.
-  const episodeCacheKey = 'dd-episode-guide-v2:' + roomKey;
+  const episodeCacheKey = 'dd-episode-guide-v3:' + roomKey;
   let guideCache, guideRequest, guideRetryAt = 0;
   function validGuide(value) {
     return Array.isArray(value) && value.length > 0 && value.every(e => e && typeof e.name === 'string' && Number.isInteger(e.id));
@@ -909,7 +909,15 @@
       }
       panelText('.dd-episode-title', match.name);
       const meta = [info.code.toUpperCase()];
-      if (/^\d{4}-\d{2}-\d{2}$/.test(match.airdate || '')) {
+      if (match.japaneseAirdate) {
+        const dateText = value => {
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return 'Not listed';
+          const [y,m,d] = value.split('-').map(Number);
+          return new Date(y,m-1,d).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        };
+        meta.push('Original Japanese air date: ' + dateText(match.japaneseAirdate));
+        meta.push('English air date (US): ' + dateText(match.englishAirdate));
+      } else if (/^\d{4}-\d{2}-\d{2}$/.test(match.airdate || '')) {
         const [y,m,d] = match.airdate.split('-').map(Number);
         meta.push('First aired ' + new Date(y,m-1,d).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }));
       }
