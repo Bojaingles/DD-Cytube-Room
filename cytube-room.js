@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '2.2.2';
+  const version = '2.2.3';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -168,7 +168,7 @@
     for (const link of links) {
       if (link.dataset.ddChecked || link.closest('.dd-media') || link.querySelector('img,video,iframe')) continue;
       link.dataset.ddChecked = '1';
-      const row = link.closest('#messagebuffer > div');
+      const row = link.closest('#messagebuffer > div, #pollwrap .well:not(.poll-menu)');
       if (row && row.querySelectorAll('[data-dd-embed]').length >= 6) continue;
       const spec = classify(link.href);
       if (!spec) continue;
@@ -1578,11 +1578,34 @@
   }
 
   const pollTemplates=new WeakMap();
+  function pollMedia(poll) {
+    poll.dataset.ddPollMedia='1';
+    for (const part of poll.querySelectorAll('h3,.option')) {
+      const walker=document.createTreeWalker(part,NodeFilter.SHOW_TEXT);
+      const nodes=[];
+      while(walker.nextNode()) {
+        const node=walker.currentNode;
+        if(!node.parentElement.closest('a,button,.dd-media,script,style,code'))nodes.push(node);
+      }
+      for(const node of nodes) {
+        const text=node.textContent, pattern=/https?:\/\/[^\s<>"']+/gi;
+        let match,last=0;const fragment=document.createDocumentFragment();
+        while((match=pattern.exec(text))) {
+          const url=match[0].replace(/[.,!?;:)\]]+$/,'');
+          if(!classify(url))continue;
+          fragment.append(document.createTextNode(text.slice(last,match.index)));
+          const link=document.createElement('a');link.href=url;link.textContent=url;link.target='_blank';link.rel='noopener noreferrer';link.dataset.ddPollLink='1';fragment.append(link);last=match.index+url.length;
+        }
+        if(last){fragment.append(document.createTextNode(text.slice(last)));node.replaceWith(fragment);}
+      }
+      media(part);
+    }
+  }
   let pollToolsHost,pollToolsObserver,pollToolsSocket,pollCapture,pollToolsPending=false;
   function readPollTemplate(poll){
     if(pollTemplates.has(poll))return pollTemplates.get(poll);
     const title=poll.querySelector('h3');if(!title)return null;
-    const content=node=>node.children.length?node.innerHTML.trim():node.textContent.trim();
+    const content=node=>{const clean=node.cloneNode(true);clean.querySelectorAll('.dd-media').forEach(e=>e.remove());clean.querySelectorAll('a[data-dd-poll-link]').forEach(e=>e.replaceWith(document.createTextNode(e.textContent)));clean.querySelectorAll('[data-dd-checked],[data-dd-embed]').forEach(e=>{e.removeAttribute('data-dd-checked');e.removeAttribute('data-dd-embed');});return clean.children.length?clean.innerHTML.trim():clean.textContent.trim();};
     const opts=Array.from(poll.querySelectorAll('.option')).map(option=>{const copy=option.cloneNode(true);copy.querySelector(':scope > button')?.remove();return content(copy);});
     return opts.length?{title:content(title),opts,obscured:false,retainVotes:false}:null;
   }
@@ -1623,6 +1646,7 @@
     if(pollToolsHost!==host){pollToolsObserver?.disconnect();pollToolsHost=host;pollToolsObserver=new MutationObserver(()=>{if(pollToolsPending)return;pollToolsPending=true;queueMicrotask(()=>{pollToolsPending=false;safeFeature('poll tools',pollTools);});});pollToolsObserver.observe(host,{childList:true,subtree:true});}
     host.querySelectorAll('.well:not(.poll-menu)').forEach(poll=>{
       if(!poll.querySelector('h3')||!poll.querySelector('.option'))return;
+      pollMedia(poll);
       let copy=poll.querySelector('.dd-copy-poll');
       if(!allowed){copy?.remove();return;}
       if(!copy){copy=button('Copy to new poll','Copy this poll to a new editable draft');copy.className='btn btn-default btn-sm dd-copy-poll';copy.addEventListener('click',()=>copyPollToDraft(poll));poll.querySelector('h3').before(copy);}
