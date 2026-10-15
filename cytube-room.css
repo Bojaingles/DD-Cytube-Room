@@ -829,7 +829,8 @@ span.dd-namecolor { display: none !important; }
 
 #dd-upload-sync { width:min(560px,90vw); max-height:80vh; overflow:auto; padding:22px; border:1px solid #986271; border-radius:12px; color:#ead6d8; background:#1a1116f5; box-shadow:0 18px 70px #0009; }
 #dd-upload-sync::backdrop { background:#0502057a; }
-#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }/* On a sideways phone, video comes first; browsing and chat remain below. */
+#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }
+/* On a sideways phone, video comes first; browsing and chat remain below. */
 .dd-phone-landscape #mainpage > .container-fluid { display:flex; flex-direction:column; }
 .dd-phone-landscape #motdrow { order:3; flex-shrink:0; }
 .dd-phone-landscape #announcements, .dd-phone-landscape #drinkbarwrap { order:2; }
@@ -904,3 +905,8 @@ span.dd-namecolor { display: none !important; }
 #dd-global-panel.dd-global-compact .dd-global-reset { padding:0 4px; line-height:16px; }
 #dd-global-panel.dd-global-compact #dd-global-input { padding:4px; }
 #dd-global-panel.dd-global-compact > #dd-global-status { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* Shared clipboard previews, always above their destination input. */
+.dd-image-composer,#dd-upload-bar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:7px;border:1px solid #71333d;border-radius:7px;background:rgba(24,17,20,.94);max-width:100%;box-sizing:border-box}.dd-image-composer[hidden],#dd-upload-bar[hidden]{display:none}.dd-upload-thumbnail{width:64px;height:54px;object-fit:contain;border-radius:4px;background:#151515}.dd-image-composer span{font-size:11px}.dd-global-name{cursor:pointer}
+
+#dd-global-panel form,.dd-poll-option-row{flex-wrap:wrap}.dd-image-composer{flex:0 0 100%;width:100%;order:-1}.dd-image-composer button{padding:4px 8px;border:1px solid #79515b;border-radius:5px;background:#302027;color:#ead6d8}.pm-buffer .dd-media{max-width:100%}.pm-buffer .dd-media img{max-width:100%;height:auto}

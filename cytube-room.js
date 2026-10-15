@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.1.1';
+  const version = '3.2.0';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -406,8 +406,8 @@
       if(found){fragment.append(document.createTextNode(text.slice(last)));node.replaceWith(fragment);}
     }
   }
-  function insertMention(name){
-    const input=document.getElementById('chatline');if(!input || !name)return;
+  function insertMention(name,input=document.getElementById('chatline')){
+    if(!input || !name)return;
     const start=input.selectionStart??input.value.length,end=input.selectionEnd??start;
     const before=input.value.slice(0,start),after=input.value.slice(end);
     const addition=(before && !/\s$/.test(before)?' ':'')+'@'+name+' '+(after && /^\s/.test(after)?'':'');
@@ -1246,7 +1246,7 @@
       if (stopped || window.CLIENT?.name !== owner) return;
       for (const [name, entry] of windows) {
         if (!entry.panel.isConnected) { entry.state.open = false; continue; }
-        entry.state.lines = Array.from(entry.buffer.children).slice(-200).map(e => e.textContent.slice(0,2400));
+        entry.state.lines = Array.from(entry.buffer.children).slice(-200).map(e => (e.textContent+' '+Array.from(e.querySelectorAll('a[href]')).map(a=>a.href).filter(url=>!e.textContent.includes(url)).join(' ')).trim().slice(0,2400));
         entry.state.draft = entry.input.value.slice(0,320);
         if (!entry.state.minimized) { entry.state.width = entry.panel.offsetWidth || entry.state.width; entry.state.height = entry.panel.offsetHeight || entry.state.height; }
         records[name] = entry.state;
@@ -1315,7 +1315,7 @@
       if (!body || !heading || !buffer || !input) return;
       const state = records[name] || {lines:[],docked:true,minimized:false,width:340,height:380};
       const restoring = !buffer.children.length;
-      if (restoring) for (const text of state.lines) { const row=document.createElement('div'); row.className='dd-pm-saved-line'; row.textContent=text; buffer.append(row); }
+      if (restoring) for (const text of state.lines) { const row=document.createElement('div'); row.className='dd-pm-saved-line dd-network-text'; row.textContent=text;row.dataset.ddPmDecorated='1';decorateMentions(row);api.renderPollMedia?.(row); buffer.append(row); }
       if (restoring && state.draft && !input.value) input.value=state.draft;
       state.open=true; records[name]=state;
       panel.classList.add('dd-pm-window'); panel.setAttribute('aria-label','Private messages with '+name);
@@ -1330,7 +1330,8 @@
       const grip=document.createElement('div'); grip.className='dd-pm-resize'; grip.tabIndex=0; grip.setAttribute('role','button'); grip.setAttribute('aria-label','Resize private message window with arrow keys'); panel.append(grip);
       const entry={panel,body,heading,buffer,input,state,dock,bubble}; windows.set(name,entry);
       updateAvatar(entry,name);
-      const observer=new MutationObserver(() => { if(state.minimized && buffer.children.length > (state.lines?.length||0)) { state.unread=true; bubble.classList.add('dd-pm-unread'); } schedule(); });
+      const observer=new MutationObserver((changes) => { for(const change of changes)for(const row of change.addedNodes){if(row.nodeType!==1||row.parentElement!==buffer||row.dataset.ddPmDecorated)continue;row.dataset.ddPmDecorated='1';row.classList.add('dd-network-text');decorateMentions(row);api.renderPollMedia?.(row);if(row.querySelector('.dd-mention-me')&&!String(row.querySelector('.username')?.textContent||row.textContent).trim().startsWith(owner+':'))playMentionSound();} if(state.minimized && buffer.children.length > (state.lines?.length||0)) { state.unread=true; bubble.classList.add('dd-pm-unread'); } schedule(); });
+      for(const row of buffer.children){row.dataset.ddPmDecorated='1';row.classList.add('dd-network-text');decorateMentions(row);api.renderPollMedia?.(row);}
       entry.observer=observer; observer.observe(buffer,{childList:true,subtree:true,characterData:true});
       input.addEventListener('input',schedule); input.addEventListener('keydown',()=>setTimeout(schedule,0));
       dock.addEventListener('click',()=>{state.docked=!state.docked;place(entry);schedule();});
@@ -1561,10 +1562,11 @@
       check.addEventListener('change',()=>{try{localStorage.setItem('dd-mention-sounds',String(check.checked));}catch(_){}if(check.checked)playMentionSound(true);});test.addEventListener('click',()=>playMentionSound(true));
     }
   }
+  api.decorateMentions=decorateMentions;api.insertMention=insertMention;api.playMentionSound=playMentionSound;
   let completion;
-  document.addEventListener('input',event=>{if(event.target.id==='chatline')completion=null;});
+  document.addEventListener('input',event=>{if(event.target.matches?.('#chatline,#dd-global-input,.pm-input'))completion=null;});
   document.addEventListener('keydown',event=>{
-    const input=event.target;if(input.id!=='chatline'||event.key!=='Tab'||event.ctrlKey||event.altKey||event.metaKey||event.isComposing)return;
+    const input=event.target;if(!input.matches?.('#chatline,#dd-global-input,.pm-input')||event.key!=='Tab'||event.ctrlKey||event.altKey||event.metaKey||event.isComposing)return;
     const cursor=input.selectionStart??input.value.length;
     const cycling=completion && completion.value===input.value && cursor===completion.cursor && input.selectionEnd===cursor;
     let matches,start,end,index;
@@ -1572,7 +1574,7 @@
     else {
       const match=input.value.slice(0,cursor).match(/(?:^|\s)@([A-Za-z0-9_-]*)$/);if(!match)return;
       const prefix=match[1].toLowerCase();
-      matches=Array.from(document.querySelectorAll('#userlist .userlist_item')).map(row=>window.$?.(row)?.data('name')||row.children[1]?.textContent.trim()).filter(name=>name&&name.toLowerCase().startsWith(prefix));matches=Array.from(new Set(matches)).sort((a,b)=>a.localeCompare(b));if(!matches.length)return;
+      matches=Array.from(document.querySelectorAll('#userlist .userlist_item')).map(row=>window.$?.(row)?.data('name')||row.children[1]?.textContent.trim()).filter(name=>name&&name.toLowerCase().startsWith(prefix));matches.push(...Array.from(document.querySelectorAll('.dd-global-name')).map(n=>n.textContent),...(input.closest('.pm-panel')?[input.closest('.pm-panel').id.slice(3)]:[]));matches=matches.filter(n=>n&&n.toLowerCase().startsWith(prefix));matches=Array.from(new Set(matches)).sort((a,b)=>a.localeCompare(b));if(!matches.length)return;
       start=cursor-match[1].length-1;end=input.selectionEnd??cursor;index=event.shiftKey?matches.length-1:0;
     }
     const replacement='@'+matches[index]+' ';if(input.maxLength>0 && input.value.length-(end-start)+replacement.length>input.maxLength)return;
