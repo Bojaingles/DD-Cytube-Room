@@ -1568,7 +1568,7 @@
   document.addEventListener('keydown',event=>{
     const input=event.target;if(!input.matches?.('#chatline,#dd-global-input,.pm-input')||event.key!=='Tab'||event.ctrlKey||event.altKey||event.metaKey||event.isComposing)return;
     const cursor=input.selectionStart??input.value.length;
-    const cycling=completion && completion.value===input.value && cursor===completion.cursor && input.selectionEnd===cursor;
+    const cycling=completion && completion.input===input && completion.value===input.value && cursor===completion.cursor && input.selectionEnd===cursor;
     let matches,start,end,index;
     if(cycling){({matches,start,end,index}=completion);index=(index+(event.shiftKey?-1:1)+matches.length)%matches.length;}
     else {
@@ -1579,7 +1579,7 @@
     }
     const replacement='@'+matches[index]+' ';if(input.maxLength>0 && input.value.length-(end-start)+replacement.length>input.maxLength)return;
     event.preventDefault();event.stopImmediatePropagation();input.setRangeText(replacement,start,end,'end');input.dispatchEvent(new Event('input',{bubbles:true}));
-    completion={matches,start,end:start+replacement.length,index,value:input.value,cursor:input.selectionStart};
+    completion={input,matches,start,end:start+replacement.length,index,value:input.value,cursor:input.selectionStart};
   },{capture:true});
 
   let uploadSyncBusy=false;
