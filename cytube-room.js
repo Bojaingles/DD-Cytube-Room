@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.1.0';
+  const version = '3.1.1';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -172,7 +172,7 @@
     for (const link of links) {
       if (link.dataset.ddChecked || link.closest('.dd-media') || link.querySelector('img,video,iframe')) continue;
       link.dataset.ddChecked = '1';
-      const row = link.closest('#messagebuffer > div, #pollwrap .well:not(.poll-menu), .dd-announcement-card, .dd-archive-card');
+      const row = link.closest('#messagebuffer > div, #pollwrap .well:not(.poll-menu), .dd-announcement-card, .dd-archive-card, .dd-global-message');
       if (row && row.querySelectorAll('[data-dd-embed]').length >= 6) continue;
       const spec = classify(link.href);
       if (!spec) continue;

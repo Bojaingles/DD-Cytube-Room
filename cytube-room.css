@@ -898,3 +898,9 @@ span.dd-namecolor { display: none !important; }
 #dd-global-panel .dd-global-reset { align-self:flex-end; font-size:10px; }
 .dd-still-names .dd-global-name,.dd-still-names .dd-global-name::before,.dd-still-names .dd-global-name::after { animation:none!important; }
 @media(prefers-reduced-motion:reduce) { .dd-global-name,.dd-global-name::before,.dd-global-name::after { animation:none!important; } }
+/* Compact global controls remain inside short/landscape chat frames. */
+#dd-global-panel.dd-global-compact { padding:3px; gap:2px; }
+#dd-global-panel.dd-global-compact > small:first-child { display:none; }
+#dd-global-panel.dd-global-compact .dd-global-reset { padding:0 4px; line-height:16px; }
+#dd-global-panel.dd-global-compact #dd-global-input { padding:4px; }
+#dd-global-panel.dd-global-compact > #dd-global-status { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
