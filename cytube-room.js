@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.0.0';
+  const version = '3.0.1';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -234,6 +234,10 @@
     const month = Number(parts.find(p => p.type === 'month').value), day = Number(parts.find(p => p.type === 'day').value);
     return (month === 12 && day >= 29) || (month === 1 && day <= 4) ? 'firework' : month === 10 ? 'pumpkin' : month === 11 ? 'turkey' : month === 12 ? 'snowflake' : 'moon';
   }
+  function cleanEpisodeTitle(value) {
+    const text=String(value || '');
+    return ROOM.guide?.titleCleanupPattern ? text.replace(new RegExp(ROOM.guide.titleCleanupPattern,'i'),'').trim() : text;
+  }
   function roomPresentation() {
     document.documentElement.dataset.ddAfkSeason = seasonalAFK();
     const native = document.getElementById('currenttitle');
@@ -242,7 +246,7 @@
     if (!label || label.parentElement !== native.parentElement) {
       label?.remove(); label = document.createElement('span'); label.id = 'dd-video-title'; native.after(label);
     }
-    const raw = native.textContent.replace(/^Currently Playing:\s*/i, '').trim();
+    const raw = cleanEpisodeTitle(native.textContent.replace(/^Currently Playing:\s*/i, '').trim());
     const match = raw.match(/\b(s\d+e\d+(?:e\d+)?)\b\s*[-–—:]?\s*(.*)$/i);
     const longCode = raw.match(/\bSeason\s+\d{1,3}\s+Episode\s+\d{1,3}\b\s*[-–—:]?\s*(.*)$/i);
     const text = !ROOM.compactEpisodeTitle ? raw : match ? match[1].toUpperCase() + (match[2] ? ' · ' + match[2] : '') : longCode ? episode(raw).toUpperCase() + (longCode[1] ? ' · ' + longCode[1] : '') : raw.replace(/^American Dad!?\s*[-–—:]?\s*/i, '');
@@ -867,7 +871,7 @@
     return String(value).normalize('NFKD').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]/g, '');
   }
   function playingEpisode(raw) {
-    const title = String(raw || '').replace(/^Currently Playing:\s*/i, '').trim();
+    const title = cleanEpisodeTitle(String(raw || '').replace(/^Currently Playing:\s*/i, '').trim());
     const prefix = new RegExp(ROOM.guide?.titlePattern || '^American[ ._-]+Dad!?', 'i');
     if (!ROOM.guide && !prefix.test(title)) return null;
     const absolute = ROOM.guide?.numbering === 'absolute' ? title.replace(prefix,'').replace(/^[\s:._–—-]+/,'').match(/^(\d{1,3})\s*[-–—:.]\s*(.+)$/) : null;
