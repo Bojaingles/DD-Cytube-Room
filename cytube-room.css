@@ -829,7 +829,8 @@ span.dd-namecolor { display: none !important; }
 
 #dd-upload-sync { width:min(560px,90vw); max-height:80vh; overflow:auto; padding:22px; border:1px solid #986271; border-radius:12px; color:#ead6d8; background:#1a1116f5; box-shadow:0 18px 70px #0009; }
 #dd-upload-sync::backdrop { background:#0502057a; }
-#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }/* On a sideways phone, video comes first; browsing and chat remain below. */
+#dd-upload-sync button { padding:7px 13px; border:1px solid #79515b; border-radius:5px; background:#3a252e; color:#ead6d8; }
+/* On a sideways phone, video comes first; browsing and chat remain below. */
 .dd-phone-landscape #mainpage > .container-fluid { display:flex; flex-direction:column; }
 .dd-phone-landscape #motdrow { order:3; flex-shrink:0; }
 .dd-phone-landscape #announcements, .dd-phone-landscape #drinkbarwrap { order:2; }
@@ -876,3 +877,6 @@ span.dd-namecolor { display: none !important; }
 #dd-trivia-bubble button { float:right; border:0; border-radius:4px; background:#4c3038; color:#fff; }
 #dd-upload-bar { padding:8px; margin:5px 0; border:1px solid #79515b; border-radius:7px; color:#ead6d8; background:#271b23; font-size:12px; overflow-wrap:anywhere; }
 #dd-upload-bar[hidden] { display:none!important; }
+#dd-name-settings { max-height:min(520px,55vh); overflow-y:auto; overscroll-behavior:contain; }
+#dd-network-status { display:block; margin:8px 0 3px; }
+#dd-trivia-option { display:block; margin:10px 0; line-height:1.4; }
