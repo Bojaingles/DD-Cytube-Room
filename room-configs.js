@@ -1440,13 +1440,42 @@ window.DDRoomProfiles = {
     "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Adventure_Time_logo2.png",
     "watermark": "",
     "favicon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M8%2051V17C8%207%2018%205%2022%2017h20C46%205%2056%207%2056%2017v34c0%207-6%2010-12%2010H20c-6%200-12-3-12-10Z%22%20fill%3D%22%23fafafa%22%20stroke%3D%22%23202328%22%20stroke-width%3D%223%22%2F%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2238%22%20rx%3D%2220%22%20ry%3D%2217%22%20fill%3D%22%23ffdbb1%22%20stroke%3D%22%23202328%22%20stroke-width%3D%222%22%2F%3E%3Ccircle%20cx%3D%2223%22%20cy%3D%2235%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2235%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M25%2043q7%207%2014%200%22%20fill%3D%22none%22%20stroke%3D%22%23202328%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E",
-    "episodeGuide": false,
+    "episodeGuide": true,
     "compactEpisodeTitle": false,
     "credit": true,
     "preserveInfo": true,
     "subtitles": {
       "videos": {},
       "episodes": {}
+    },
+    "guide": {
+      "showName": "Adventure Time",
+      "source": "TVmaze",
+      "url": "https://bojaingles.github.io/DD-Cytube-Room/adventure-time-episodes.json",
+      "titlePattern": "^(?:Adventure[ ._-]+Time!?|Distant[ ._-]+Lands|Fionna\\s*(?:&|and)\\s*Cake\\s+Ep(?:isode)?\\s*\\d+)",
+      "numbering": "season",
+      "aliases": {
+        "s01e11wizard": 30016,
+        "s01e25hishero": 30030,
+        "s01e26gutgrinder": 30031,
+        "s03e01conquestofcuteness": 30058,
+        "s03e09fionnaandcake": 30066,
+        "s03e19hollyjollysecrets": 30076,
+        "s03e20hollyjollysecretspart2": 30077,
+        "s05e24anotherfivemoreshortgraybles": 30133,
+        "s05e50lemonhope1": 30159,
+        "s05e51lemonhope2": 30160,
+        "s06e23thepajamawar": 109673,
+        "s06e24evergreen": 109674,
+        "s06e35graybles1000plus": 155496,
+        "s07e14e15themoreyoumoeandthemoeyouknow": 507278,
+        "s07e21kingsransom": 556714,
+        "s07e24thehallofegress": 628745,
+        "s08e04ladyrainicornofthecrystaldimension": 687499,
+        "distantlandsobsidian": 1821929,
+        "distantlandstogetheragain": 1821931,
+        "distantlandswizardcity": 1821930
+      }
     }
   },
   "bobobo-bo-bo-bobo": {
@@ -1456,13 +1485,20 @@ window.DDRoomProfiles = {
     "logo": "https://static.wikia.nocookie.net/logopedia/images/e/ed/BoBoBo-Bo_Bo-BoBo_logo.png/revision/latest/scale-to-width-down/185?cb=20210213070840",
     "watermark": "",
     "favicon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M6%2034C-2%2028%203%2020%207%2019%203%2010%2012%205%2017%208%2019-1%2030-1%2033%204%2040-3%2049%201%2049%207%2058%205%2064%2013%2059%2019%2068%2025%2062%2034%2056%2035Z%22%20fill%3D%22%23ffe233%22%20stroke%3D%22%23382506%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M15%2028h35l-2%2023-9%2010H26L16%2051Z%22%20fill%3D%22%23e8ad74%22%20stroke%3D%22%2333241d%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M13%2028h42l-3%2014H37l-4-8-4%208H16Z%22%20fill%3D%22%2315171d%22%2F%3E%3Cpath%20d%3D%22m18%2031%209%201-7%206m22-7%208%201-7%206%22%20fill%3D%22none%22%20stroke%3D%22%23536273%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22m32%2038-3%208h6%22%20fill%3D%22none%22%20stroke%3D%22%23754e34%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M24%2049h18l-5%206h-9Z%22%20fill%3D%22white%22%20stroke%3D%22%2333241d%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E",
-    "episodeGuide": false,
+    "episodeGuide": true,
     "compactEpisodeTitle": false,
     "credit": true,
     "preserveInfo": true,
     "subtitles": {
       "videos": {},
       "episodes": {}
+    },
+    "guide": {
+      "showName": "Bobobo-bo Bo-bobo",
+      "source": "Wikipedia",
+      "url": "https://bojaingles.github.io/DD-Cytube-Room/bobobo-episodes.json",
+      "titlePattern": "^Bobobo[ ._-]*bo[ ._-]*Bo[ ._-]*bobo!?",
+      "numbering": "absolute"
     }
   }
 };

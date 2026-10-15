@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '2.0.4';
+  const version = '2.1.0';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -815,7 +815,7 @@
     });
   }
   // TVmaze data is CC BY-SA; the panel links to its source and license.
-  const episodeCacheKey = 'dd-american-dad-guide-v1';
+  const episodeCacheKey = 'dd-episode-guide-v2:' + roomKey;
   let guideCache, guideRequest, guideRetryAt = 0;
   function validGuide(value) {
     return Array.isArray(value) && value.length > 0 && value.every(e => e && typeof e.name === 'string' && Number.isInteger(e.id));
@@ -837,7 +837,7 @@
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 8000);
       try {
-        const response = await fetch('https://api.tvmaze.com/shows/215/episodes?specials=1', { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
+        const response = await fetch(ROOM.guide?.url || 'https://api.tvmaze.com/shows/215/episodes?specials=1', { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
         if (!response.ok) throw new Error('Guide unavailable');
         const episodes = await response.json();
         if (!validGuide(episodes)) throw new Error('Invalid guide');
@@ -858,19 +858,29 @@
   }
   function playingEpisode(raw) {
     const title = String(raw || '').replace(/^Currently Playing:\s*/i, '').trim();
-    if (!/^American[ ._-]+Dad\b/i.test(title)) return null;
-    const code = episode(title);
-    const name = title.replace(/^American[ ._-]+Dad!?\s*/i, '')
-      .replace(/\bS\d{1,3}\s*E\d{1,3}\b|\bSeason\s+\d{1,3}\s+Episode\s+\d{1,3}\b/i, '')
+    const prefix = new RegExp(ROOM.guide?.titlePattern || '^American[ ._-]+Dad!?', 'i');
+    if (!ROOM.guide && !prefix.test(title)) return null;
+    const absolute = ROOM.guide?.numbering === 'absolute' ? title.replace(prefix,'').replace(/^[\s:._–—-]+/,'').match(/^(\d{1,3})\s*[-–—:.]\s*(.+)$/) : null;
+    const numbered = title.match(/\bS(\d{1,3})\s*E(\d{1,3})\b|\bSeason\s+(\d{1,3})\s+Episode\s+(\d{1,3})\b/i);
+    const code = absolute ? 'E'+absolute[1] : episode(title);
+    const name = (absolute ? absolute[2] : title.replace(prefix, ''))
+      .replace(/\bS\d{1,3}\s*E\d{1,3}(?:E\d{1,3})*\b|\bSeason\s+\d{1,3}\s+Episode\s+\d{1,3}\b/i, '')
       .replace(/\.(mp4|mkv|webm|avi)$/i, '').replace(/^[\s:._–—-]+|[\s_–—-]+$/g, '').trim();
-    return { code, name, title };
+    return { code, name, title, season:numbered?Number(numbered[1]||numbered[3]):null, number:absolute?Number(absolute[1]):numbered?Number(numbered[2]||numbered[4]):null, absolute:!!absolute || ROOM.guide?.numbering === 'absolute' };
   }
   function guideMatch(info, entries) {
     // Season numbering varies by provider. Never fall back to a conflicting
     // season/episode number when a title cannot be confidently matched.
-    if (!info?.name) return null;
+    if (!info) return null;
+    const alias=ROOM.guide?.aliases?.[titleKey(info.title)];
+    if(alias)return entries.find(e=>e.id===alias)||null;
     const matches = entries.filter(e => titleKey(e.name) === titleKey(info.name));
-    return matches.length === 1 ? matches[0] : null;
+    if(matches.length===1)return matches[0];
+    if(ROOM.guide && info.number!==null){
+      const numbered=entries.filter(e=>e.number===info.number && (info.absolute || e.season===info.season));
+      if(numbered.length===1 && (info.absolute || !info.name || matches.includes(numbered[0])))return numbered[0];
+    }
+    return null;
   }
   Object.assign(api, { playingEpisode, guideMatch });
   let episodePanel, episodeTitleNode, episodeObserver, episodeRaw, episodeRevision = 0;
@@ -885,7 +895,7 @@
     source.hidden = true;
     panelText('.dd-episode-meta', info?.code.toUpperCase() || '');
     panelText('.dd-episode-title', info?.name || info?.title || 'Episode information');
-    panelText('.dd-episode-synopsis', info ? 'Loading episode information…' : 'Episode information appears when an American Dad! episode is playing.');
+    panelText('.dd-episode-synopsis', info ? 'Loading episode information…' : 'Episode information appears when a '+(ROOM.guide?.showName || 'American Dad!')+' episode is playing.');
     episodePanel.dataset.state = info ? 'loading' : 'idle';
     if (!info) return;
     try {
@@ -908,7 +918,8 @@
       template.innerHTML = String(match.summary || '').replace(/<\/(p|div)>|<br\s*\/?\s*>/gi, ' ');
       template.content.querySelectorAll('script,style').forEach(e => e.remove());
       panelText('.dd-episode-synopsis', template.content.textContent.trim() || 'No synopsis available for this episode yet.');
-      source.querySelector('a').href = 'https://www.tvmaze.com/episodes/' + match.id;
+      source.querySelector('a').href = match.url || 'https://www.tvmaze.com/episodes/' + match.id;
+      source.querySelector('a').textContent = ROOM.guide?.source || 'TVmaze';
       source.hidden = false;
       episodePanel.dataset.state = 'ready';
     } catch (_) {
