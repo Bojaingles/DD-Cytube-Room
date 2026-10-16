@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.4.0';
+  const version = '3.4.1';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -1051,7 +1051,9 @@
     if (!motd?.querySelector('.motd-banners')) return;
     const base = motd.innerHTML;
     const source = motd.cloneNode(true);
-    let cards = Array.from(source.querySelectorAll('.motd-banners > .column')).map(x => x.cloneNode(true));
+    // Edit the active shared carousel only. Some native MOTDs also contain
+    // separate legacy banner groups, which must not be merged into this draft.
+    let cards = Array.from(source.querySelector('.motd-banners').querySelectorAll(':scope > .column')).map(x => x.cloneNode(true));
     let editing = -1, saving = false, dirty = false;
     const modal = document.createElement('dialog'); channelManager = modal;
     modal.id = 'dd-channel-manager'; modal.setAttribute('aria-labelledby', 'dd-manager-title');
