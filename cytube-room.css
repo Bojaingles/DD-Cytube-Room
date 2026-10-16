@@ -493,16 +493,16 @@ img:hover {
 /* Staff name treatments retain CyTube's native rank and badge toggle. */
 #userlist .userlist_item > .userlist_op,
 #messagebuffer > div > .userlist_op > .username,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name).dd-mod { color: #ffd65c !important; animation: dd-gold-shimmer 3s ease-in-out infinite; }
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)).dd-mod { color: #ffd65c !important; animation: dd-gold-shimmer 3s ease-in-out infinite; }
 #userlist .userlist_item > .userlist_owner,
 #messagebuffer > div > .userlist_owner > .username,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name).dd-admin { color: #ff9aaf !important; background: linear-gradient(100deg,#ff9aaf,#ffd96a,#99f4aa,#89dfff,#c4a1ff,#ff9aaf); background-size: 220% 100%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: dd-rainbow-name 7s linear infinite; }
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)).dd-admin { color: #ff9aaf !important; background: linear-gradient(100deg,#ff9aaf,#ffd96a,#99f4aa,#89dfff,#c4a1ff,#ff9aaf); background-size: 220% 100%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: dd-rainbow-name 7s linear infinite; }
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner),
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name):is(.dd-mod,.dd-admin) { position: relative; }
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)):is(.dd-mod,.dd-admin) { position: relative; }
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name):is(.dd-mod,.dd-admin)::after { content: ''; position: absolute; inset: -3px 0; pointer-events: none; background: radial-gradient(ellipse 2px 4px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 4px 1px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 2px 3px at 84% 65%,#fff 65%,transparent 100%), radial-gradient(ellipse 3px 1px at 84% 65%,#fff 65%,transparent 100%); animation: dd-name-sparkle 3.6s ease-in-out infinite; }
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)):is(.dd-mod,.dd-admin)::after { content: ''; position: absolute; inset: -3px 0; pointer-events: none; background: radial-gradient(ellipse 2px 4px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 4px 1px at 12% 25%,#fff9d0 70%,transparent 100%), radial-gradient(ellipse 2px 3px at 84% 65%,#fff 65%,transparent 100%), radial-gradient(ellipse 3px 1px at 84% 65%,#fff 65%,transparent 100%); animation: dd-name-sparkle 3.6s ease-in-out infinite; }
 @keyframes dd-gold-shimmer { 0%,100% { text-shadow: 0 0 2px #ad7200; } 50% { text-shadow: 0 0 3px #ffe9a0,0 0 9px #dca72e; } }
 @keyframes dd-rainbow-name { to { background-position: 220% 0; } }
 @keyframes dd-name-sparkle { 0%,100% { opacity: .18; } 50% { opacity: .85; } }
@@ -531,7 +531,7 @@ span.dd-namecolor { display: none !important; }
 /* Compact staff badges: native role classes keep the Name Color toggle working. */
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner),
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name):is(.dd-mod,.dd-admin) {
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)):is(.dd-mod,.dd-admin) {
   display: inline-block;
   padding: 0 4px;
   margin-right: 2px;
@@ -542,13 +542,13 @@ span.dd-namecolor { display: none !important; }
 }
 #userlist .userlist_item > .userlist_op,
 #messagebuffer > div > .userlist_op > .username,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name).dd-mod {
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)).dd-mod {
   border-color: #bd913f;
   box-shadow: inset 0 0 5px #ffd65c12, 0 1px 3px #0008;
 }
 #userlist .userlist_item > .userlist_owner,
 #messagebuffer > div > .userlist_owner > .username,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name).dd-admin {
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)).dd-admin {
   border-color: #c39ae4;
   box-shadow: inset 0 0 5px #a2bfff15, 0 0 4px #ff89c52b;
   filter: drop-shadow(0 0 2px #ff9ac54d) drop-shadow(0 0 5px #91caff40);
@@ -666,10 +666,10 @@ span.dd-namecolor { display: none !important; }
 /* Fine, independently scattered glitter across staff badges. */
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::before,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::before,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name):is(.dd-mod,.dd-admin)::before,
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)):is(.dd-mod,.dd-admin)::before,
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name):is(.dd-mod,.dd-admin)::after {
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)):is(.dd-mod,.dd-admin)::after {
   content: ''; position: absolute; inset: -2px -1px; pointer-events: none;
   border-radius: inherit; opacity: .14;
   background: var(--dd-glitter-a, radial-gradient(circle at 17% 16%,#fff9 0 .55px,transparent 1.2px),radial-gradient(circle at 68% 82%,#fff9 0 .55px,transparent 1.2px));
@@ -677,7 +677,7 @@ span.dd-namecolor { display: none !important; }
 }
 #userlist .userlist_item > :is(.userlist_op,.userlist_owner)::after,
 #messagebuffer > div > :is(.userlist_op,.userlist_owner) > .username::after,
-:is(.dd-name-preview,.dd-staff-name,.dd-global-name):is(.dd-mod,.dd-admin)::after {
+:is(.dd-name-preview,.dd-staff-name,:is(.dd-global-name,.dd-network-user-name)):is(.dd-mod,.dd-admin)::after {
   background: var(--dd-glitter-b,radial-gradient(circle at 38% 85%,#fff9 0 .55px,transparent 1.2px),radial-gradient(circle at 89% 21%,#fff9 0 .55px,transparent 1.2px));
   animation-duration: var(--dd-glitter-time-b,2.7s); animation-delay: var(--dd-glitter-delay-b,-1.5s);
 }
@@ -892,13 +892,13 @@ span.dd-namecolor { display: none !important; }
 #dd-global-messages article { padding:7px 3px; border-bottom:1px solid #69434844; }
 .dd-global-meta { display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:11px; color:#bd9fa6; }
 .dd-global-meta a { color:#dab986; }
-.dd-global-name { font-size:13px; }
+:is(.dd-global-name,.dd-network-user-name) { font-size:13px; }
 #dd-global-panel form { display:flex; gap:5px; }
 #dd-global-input { flex:1; min-width:0; border:1px solid #694348; border-radius:5px; padding:7px; color:#eee; background:#17151a; }
 #dd-global-panel small { font-size:10px; color:#c9afb5; }
 #dd-global-panel .dd-global-reset { align-self:flex-end; font-size:10px; }
-.dd-still-names .dd-global-name,.dd-still-names .dd-global-name::before,.dd-still-names .dd-global-name::after { animation:none!important; }
-@media(prefers-reduced-motion:reduce) { .dd-global-name,.dd-global-name::before,.dd-global-name::after { animation:none!important; } }
+.dd-still-names :is(.dd-global-name,.dd-network-user-name),.dd-still-names :is(.dd-global-name,.dd-network-user-name)::before,.dd-still-names :is(.dd-global-name,.dd-network-user-name)::after { animation:none!important; }
+@media(prefers-reduced-motion:reduce) { :is(.dd-global-name,.dd-network-user-name),:is(.dd-global-name,.dd-network-user-name)::before,:is(.dd-global-name,.dd-network-user-name)::after { animation:none!important; } }
 /* Compact global controls remain inside short/landscape chat frames. */
 #dd-global-panel.dd-global-compact { padding:3px; gap:2px; }
 #dd-global-panel.dd-global-compact > small:first-child { display:none; }
@@ -907,7 +907,7 @@ span.dd-namecolor { display: none !important; }
 #dd-global-panel.dd-global-compact > #dd-global-status { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
 /* Shared clipboard previews, always above their destination input. */
-.dd-image-composer,#dd-upload-bar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:7px;border:1px solid #71333d;border-radius:7px;background:rgba(24,17,20,.94);max-width:100%;box-sizing:border-box}.dd-image-composer[hidden],#dd-upload-bar[hidden]{display:none}.dd-upload-thumbnail{width:64px;height:54px;object-fit:contain;border-radius:4px;background:#151515}.dd-image-composer span{font-size:11px}.dd-global-name{cursor:pointer}
+.dd-image-composer,#dd-upload-bar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:7px;border:1px solid #71333d;border-radius:7px;background:rgba(24,17,20,.94);max-width:100%;box-sizing:border-box}.dd-image-composer[hidden],#dd-upload-bar[hidden]{display:none}.dd-upload-thumbnail{width:64px;height:54px;object-fit:contain;border-radius:4px;background:#151515}.dd-image-composer span{font-size:11px}:is(.dd-global-name,.dd-network-user-name){cursor:pointer}
 
 #dd-global-panel form,.dd-poll-option-row{flex-wrap:wrap}.dd-image-composer{flex:0 0 auto;width:100%}#dd-global-panel form>.dd-image-composer,.dd-poll-option-row>.dd-image-composer{flex-basis:100%;order:-1}.dd-image-composer button{padding:4px 8px;border:1px solid #79515b;border-radius:5px;background:#302027;color:#ead6d8}.pm-buffer .dd-media{max-width:100%}.pm-buffer .dd-media img{max-width:100%;height:auto}
 
@@ -926,3 +926,10 @@ span.dd-namecolor { display: none !important; }
 .dd-network-bot{position:sticky;top:-4px;z-index:1;margin:-4px -5px 7px;padding:9px 5px;background:linear-gradient(120deg,#3e2c39,#211c29);border-bottom:2px solid #bb8496;box-shadow:0 3px 8px #0007}.dd-network-robot{display:block;font-size:19px;line-height:23px}.dd-network-bot .dd-network-user-name{font-weight:bold}.dd-native-network-bot{border-bottom:2px solid #bb8496!important;background:#39263288!important;margin-bottom:6px!important}
 
 #dd-global-status:empty{display:none}#dd-network-users .user-dropdown{min-width:180px;max-height:230px;overflow:auto;background:#241820;color:#ead6d8;border:1px solid #986271;border-radius:7px;padding:8px;box-shadow:0 8px 22px #000b}
+
+/* Shared messages retain the native CyTube frame and compact inline rhythm. */
+#dd-global-panel{border:0!important;border-radius:0!important;background:transparent!important;padding:0!important;gap:0;box-shadow:none!important}#dd-global-messages{padding:0 4px;font-size:13px;line-height:1.45}#dd-global-messages article{padding:1px 0!important;border:0!important;min-height:0}.dd-global-meta{display:inline!important;font-size:inherit!important;line-height:inherit}.dd-global-meta time{font-size:10px;color:#baa7af;margin-right:3px}.dd-global-meta a{display:inline-block;vertical-align:middle;margin-right:3px}:is(.dd-global-name,.dd-network-user-name){font-size:inherit!important;margin-right:3px}.dd-global-message>.dd-network-text{display:inline!important}.dd-global-meta>button{display:none!important}.dd-global-message:hover .dd-global-meta>button,.dd-global-message:focus-within .dd-global-meta>button{display:inline-block!important;font-size:9px;padding:0 3px!important;margin:0 2px;line-height:14px}#dd-global-panel form{padding-top:4px}#dd-global-input{border-radius:4px;padding:5px 7px;font-size:13px}.dd-global-message .dd-media{display:block!important}.dd-room-user-icon{width:15px;height:15px;object-fit:contain;vertical-align:middle}.dd-user-room-icons{display:inline-flex!important;align-items:center;gap:2px;flex:none}.dd-user-room-icons a{line-height:15px}.dd-user-room-icons img{width:13px;height:13px}#dd-network-users{background:transparent!important;padding:0 3px!important}.dd-network-user{display:flex;align-items:center;gap:4px;padding:2px 1px!important;text-align:left!important;border:0!important;min-height:22px}.dd-network-user-name{width:auto;flex:1;text-align:left!important;display:inline-block;font-size:13px;padding:0}.dd-network-device{flex:none;font-size:10px}.dd-network-bot{margin:0 0 4px!important;padding:4px 1px!important;top:0;border-bottom:1px solid #986271!important;box-shadow:none!important;background:#30212bf5!important}.dd-network-robot{display:inline;font-size:14px;line-height:18px;flex:none}#chatheader .dd-global-reset{font-size:10px;line-height:16px;padding:2px 6px;margin-left:5px;flex:none}.dd-network-chat-label,#dd-network-user-count{display:none!important}
+
+#chatwrap.dd-global-open>#messagebuffer{visibility:visible!important}#chatwrap.dd-global-open>#messagebuffer>*{visibility:hidden!important}#chatwrap.dd-global-open #userlist>.userlist_item{visibility:hidden!important}
+
+#chatwrap.dd-global-open>#messagebuffer>* *{visibility:hidden!important}

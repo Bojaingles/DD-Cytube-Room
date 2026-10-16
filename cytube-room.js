@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.3.0';
+  const version = '3.4.0';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -1574,7 +1574,7 @@
     else {
       const match=input.value.slice(0,cursor).match(/(?:^|\s)@([A-Za-z0-9_-]*)$/);if(!match)return;
       const prefix=match[1].toLowerCase();
-      matches=Array.from(document.querySelectorAll('#userlist .userlist_item')).map(row=>window.$?.(row)?.data('name')||row.children[1]?.textContent.trim()).filter(name=>name&&name.toLowerCase().startsWith(prefix));matches.push(...Array.from(document.querySelectorAll('.dd-global-name,.dd-network-user-name')).map(n=>n.textContent),...(input.closest('.pm-panel')?[input.closest('.pm-panel').id.slice(3)]:[]));matches=matches.filter(n=>n&&n.toLowerCase().startsWith(prefix));matches=Array.from(new Set(matches)).sort((a,b)=>a.localeCompare(b));if(!matches.length)return;
+      matches=Array.from(document.querySelectorAll('#userlist .userlist_item')).map(row=>window.$?.(row)?.data('name')||row.children[1]?.textContent.trim()).filter(name=>name&&name.toLowerCase().startsWith(prefix));matches.push(...Array.from(document.querySelectorAll('.dd-global-name,.dd-network-user-name')).map(n=>n.dataset.ddMentionName||n.textContent.replace(/:$/,'')),...(input.closest('.pm-panel')?[input.closest('.pm-panel').id.slice(3)]:[]));matches=matches.filter(n=>n&&n.toLowerCase().startsWith(prefix));matches=Array.from(new Set(matches)).sort((a,b)=>a.localeCompare(b));if(!matches.length)return;
       start=cursor-match[1].length-1;end=input.selectionEnd??cursor;index=event.shiftKey?matches.length-1:0;
     }
     const replacement='@'+matches[index]+' ';if(input.maxLength>0 && input.value.length-(end-start)+replacement.length>input.maxLength)return;
@@ -1719,7 +1719,7 @@
   }
 
   api.renderPollMedia=pollMedia;api.ownDevice=ownDevice;
-  api.ownNameColor=ownNameColor;
+  api.ownNameColor=ownNameColor;api.sharedNameColor=(name,color)=>{const own=name.toLowerCase()===(window.CLIENT?.name||'').toLowerCase()?ownNameColor():'';const chosen=own||color||nameColors.get(name.toLowerCase())?.color;return validNameColor(chosen)&&chosen!=='default'?chosen:defaultNameColor(name);};api.paintSharedName=paintName;
   api.applyNetworkState=function(state){
     for(const [name,entry] of Object.entries(state.colors||{}))if(validNameColor(entry?.color)){
       if(Number(entry.time)>=(nameColors.get(name)?.time||0))nameColors.set(name,{color:entry.color,time:Number(entry.time)});
