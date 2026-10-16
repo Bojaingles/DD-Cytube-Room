@@ -919,3 +919,10 @@ span.dd-namecolor { display: none !important; }
 @keyframes dd-ticker-roll{to{transform:translateX(-50%)}}@keyframes dd-ticker-glow{50%{opacity:.55;text-shadow:0 0 7px #ffc16b}}
 @media(max-width:600px){#dd-announcement-ticker{gap:6px;margin:4px 7px;font-size:12px}.dd-ticker-label{font-size:8px;letter-spacing:0}.dd-ticker-group{min-width:300px}}
 @media(prefers-reduced-motion:reduce){#dd-announcement-ticker *{animation:none!important}.dd-ticker-viewport{overflow-x:auto}.dd-ticker-group[aria-hidden]{display:none}}
+
+/* One permanent shared main chat, with actual native room state kept separate. */
+#dd-network-users{position:absolute;z-index:3;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;padding:4px 5px;background:rgba(15,12,16,.85)}.dd-network-user{text-align:center;padding:5px 0;border-bottom:1px solid #79515b26}.dd-network-user-name{display:block;max-width:100%;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:0;background:none;color:#d7bde7;font:inherit;cursor:pointer;text-align:center}.dd-network-user small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;color:#b5a0a7}.dd-network-chat-label,#dd-network-user-count{font-size:11px;color:#d6bcc4;margin-left:8px}.dd-local-notice{font-size:11px;color:#bdabb6;font-style:italic}.dd-global-message .channel-emote{max-width:140px;max-height:140px}.dd-global-open #chatline{visibility:hidden}#dd-network-user-count{font-weight:normal}
+
+.dd-network-bot{position:sticky;top:-4px;z-index:1;margin:-4px -5px 7px;padding:9px 5px;background:linear-gradient(120deg,#3e2c39,#211c29);border-bottom:2px solid #bb8496;box-shadow:0 3px 8px #0007}.dd-network-robot{display:block;font-size:19px;line-height:23px}.dd-network-bot .dd-network-user-name{font-weight:bold}.dd-native-network-bot{border-bottom:2px solid #bb8496!important;background:#39263288!important;margin-bottom:6px!important}
+
+#dd-global-status:empty{display:none}#dd-network-users .user-dropdown{min-width:180px;max-height:230px;overflow:auto;background:#241820;color:#ead6d8;border:1px solid #986271;border-radius:7px;padding:8px;box-shadow:0 8px 22px #000b}

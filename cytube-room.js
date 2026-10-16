@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.2.0';
+  const version = '3.3.0';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -406,7 +406,7 @@
       if(found){fragment.append(document.createTextNode(text.slice(last)));node.replaceWith(fragment);}
     }
   }
-  function insertMention(name,input=document.getElementById('chatline')){
+  function insertMention(name,input=document.getElementById('dd-global-input')||document.getElementById('chatline')){
     if(!input || !name)return;
     const start=input.selectionStart??input.value.length,end=input.selectionEnd??start;
     const before=input.value.slice(0,start),after=input.value.slice(end);
@@ -1531,7 +1531,7 @@
   }
   function learnDevice(name,type,time){if(!name)return;const key=name.toLowerCase(),old=devices.get(key);if(!old||time>=old.time)devices.set(key,{type,time});}
   function paintDevice(name,nameText){if(!name||!nameText)return;const value=devices.get(nameText.toLowerCase());if(!value)return;let badge=name.parentElement.querySelector(':scope > .dd-device-icon');if(!badge){badge=document.createElement('span');badge.className='dd-device-icon';name.after(badge);}badge.textContent={mobile:'📱',tablet:'▣',desktop:'🖥️'}[value.type];badge.title={mobile:'Mobile',tablet:'Tablet',desktop:'Desktop'}[value.type];badge.setAttribute('aria-label',badge.title);}
-  function refreshDevices(){learnDevice(window.CLIENT?.name,ownDevice(),Date.now());document.querySelectorAll('#userlist .userlist_item').forEach(row=>{const name=row.children[1];paintDevice(name,window.$?.(row)?.data('name')||name?.textContent.trim());});}
+  function refreshDevices(){learnDevice(window.CLIENT?.name,ownDevice(),Date.now());document.querySelectorAll('#userlist .userlist_item').forEach(row=>{const name=row.children[1],text=window.$?.(row)?.data('name')||name?.textContent.trim(),bot=String(text).toLowerCase()===String(ROOM.networkBot||'DooDooBOTChump').toLowerCase();if(bot){let icon=row.querySelector('.dd-device-icon');if(!icon){icon=document.createElement('span');icon.className='dd-device-icon';name?.after(icon);}icon.textContent='🤖';icon.title='Network bot';icon.setAttribute('aria-label','Network bot');row.classList.add('dd-native-network-bot');if(row.parentElement.firstElementChild!==row)row.parentElement.prepend(row);}else paintDevice(name,text);});}
   let lastMentionSound=0;
   function mentionSoundEnabled(){try{return localStorage.getItem('dd-mention-sounds')!=='false';}catch(_){return true;}}
   function playMentionSound(force=false){
@@ -1574,7 +1574,7 @@
     else {
       const match=input.value.slice(0,cursor).match(/(?:^|\s)@([A-Za-z0-9_-]*)$/);if(!match)return;
       const prefix=match[1].toLowerCase();
-      matches=Array.from(document.querySelectorAll('#userlist .userlist_item')).map(row=>window.$?.(row)?.data('name')||row.children[1]?.textContent.trim()).filter(name=>name&&name.toLowerCase().startsWith(prefix));matches.push(...Array.from(document.querySelectorAll('.dd-global-name')).map(n=>n.textContent),...(input.closest('.pm-panel')?[input.closest('.pm-panel').id.slice(3)]:[]));matches=matches.filter(n=>n&&n.toLowerCase().startsWith(prefix));matches=Array.from(new Set(matches)).sort((a,b)=>a.localeCompare(b));if(!matches.length)return;
+      matches=Array.from(document.querySelectorAll('#userlist .userlist_item')).map(row=>window.$?.(row)?.data('name')||row.children[1]?.textContent.trim()).filter(name=>name&&name.toLowerCase().startsWith(prefix));matches.push(...Array.from(document.querySelectorAll('.dd-global-name,.dd-network-user-name')).map(n=>n.textContent),...(input.closest('.pm-panel')?[input.closest('.pm-panel').id.slice(3)]:[]));matches=matches.filter(n=>n&&n.toLowerCase().startsWith(prefix));matches=Array.from(new Set(matches)).sort((a,b)=>a.localeCompare(b));if(!matches.length)return;
       start=cursor-match[1].length-1;end=input.selectionEnd??cursor;index=event.shiftKey?matches.length-1:0;
     }
     const replacement='@'+matches[index]+' ';if(input.maxLength>0 && input.value.length-(end-start)+replacement.length>input.maxLength)return;
@@ -1718,7 +1718,7 @@
     rows.forEach((row,index)=>{row.querySelector('input').setAttribute('aria-label','Poll option '+(index+1));row.querySelector('[data-action="up"]').disabled=index===0;row.querySelector('[data-action="down"]').disabled=index===rows.length-1;row.querySelector('[data-action="remove"]').disabled=rows.length<=2;});
   }
 
-  api.renderPollMedia=pollMedia;
+  api.renderPollMedia=pollMedia;api.ownDevice=ownDevice;
   api.ownNameColor=ownNameColor;
   api.applyNetworkState=function(state){
     for(const [name,entry] of Object.entries(state.colors||{}))if(validNameColor(entry?.color)){
