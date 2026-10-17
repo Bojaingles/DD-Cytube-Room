@@ -406,7 +406,7 @@
       if(found){fragment.append(document.createTextNode(text.slice(last)));node.replaceWith(fragment);}
     }
   }
-  function insertMention(name,input=document.getElementById('dd-global-input')||document.getElementById('chatline')){
+  function insertMention(name,input=document.querySelector('#chatwrap.dd-global-open #dd-global-input')||document.getElementById('chatline')){
     if(!input || !name)return;
     const start=input.selectionStart??input.value.length,end=input.selectionEnd??start;
     const before=input.value.slice(0,start),after=input.value.slice(end);
