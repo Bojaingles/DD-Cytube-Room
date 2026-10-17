@@ -1,149 +1,5 @@
-/* Room-specific presentation and content for the shared CyTube engine. */
+/* ORANGETV room-specific presentation and content for the shared CyTube engine. */
 window.DDRoomProfiles = {
-  "american-dad": {
-    "title": "American Dad!",
-    "motd": "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n",
-    "favicon": "https://i.postimg.cc/5N5W08N0/Stan-Smith-Head.png",
-    "logo": "https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png",
-    "brandName": "Doodoo Buttchump Network",
-    "watermark": "https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png",
-    "episodeGuide": true,
-    "compactEpisodeTitle": true,
-    "credit": true,
-    "preserveInfo": false,
-    "subtitles": {
-      "videos": {
-        "fi|https://u.pone.rs/udycdptp.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Hot Water",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e01.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/biekfdff.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Hurricane!",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e02.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/fvxwyvci.mp4": [
-          {
-            "lang": "en",
-            "label": "English - A Ward Show",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e03.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/mfpusrbs.mp4": [
-          {
-            "lang": "en",
-            "label": "English - The Worst Stan",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e04.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/uohjxitr.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Virtual In-Stanity",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e05.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/ukrixwib.mp4": [
-          {
-            "lang": "en",
-            "label": "English - The Scarlett Getter",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e06.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/lhyhjzhn.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Season's Beatings",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e07.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/umbmwbql.mp4": [
-          {
-            "lang": "en",
-            "label": "English - The Unbrave One",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e08.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/zzaadmxz.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Stanny Tendergrass",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e09.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/kswfkmxz.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Wheels & the Legman and the Case of Grandpa's Key",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e10.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/kcioqmat.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Old Stan in the Mountain",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e11.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/poerkkio.mp4": [
-          {
-            "lang": "en",
-            "label": "English - The Wrestler",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e12.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/bwjymkqb.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Dr. Klaustus",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e13.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/fyinxbbu.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Stan's Best Friend",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e14.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/mpyiejth.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Less Money, Mo' Problems",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e15.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/unkizurp.mp4": [
-          {
-            "lang": "en",
-            "label": "English - The Kidney Stays In the Picture",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e16.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/xgtdnfrc.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Ricky Spanish",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e17.en.srt"
-          }
-        ],
-        "fi|https://u.pone.rs/jcgolxda.mp4": [
-          {
-            "lang": "en",
-            "label": "English - Toy Whorey",
-            "url": "https://cdn.jsdelivr.net/gh/Bojaingles/DD-Cytube-Room@8650d74a54042e3668b2e17c1f61d557f0c1d28a/american-dad-room-s08e18.en.srt"
-          }
-        ]
-      },
-      "episodes": {}
-    },
-    "networkBot": "DooDooBOTChump"
-  },
   "mre": {
     "title": "MRE",
     "motd": "<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>",
@@ -1435,7 +1291,7 @@ window.DDRoomProfiles = {
     ],
     "roomBadge": "https://bojaingles.github.io/DD-Cytube-Room/orangetv-logo.webp",
     "networkName": "ORANGETV",
-    "networkBot": "DooDooBOTChump"
+    "networkBot": "MyNwah"
   },
   "adventure_time": {
     "title": "Adventure Time",
@@ -1483,7 +1339,7 @@ window.DDRoomProfiles = {
     },
     "roomBadge": "https://bojaingles.github.io/DD-Cytube-Room/orangetv-logo.webp",
     "networkName": "ORANGETV",
-    "networkBot": "DooDooBOTChump"
+    "networkBot": "MyNwah"
   },
   "bobobo-bo-bo-bobo": {
     "title": "Bobobo-bo Bo-bobo",
@@ -1509,154 +1365,7 @@ window.DDRoomProfiles = {
     },
     "roomBadge": "https://bojaingles.github.io/DD-Cytube-Room/orangetv-logo.webp",
     "networkName": "ORANGETV",
-    "networkBot": "DooDooBOTChump"
-  },
-  "south-park-show": {
-    "title": "South Park",
-    "brandName": "South Park",
-    "motd": "\r\n\r\n<br />\r\n<br />\r\n\r\n<br />\r\n\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nThis channel is a proud part of:<br /></font></center>\r\n\r\n<br />\r\n\r\n\r\n</div>\r\n\r\n\r\n<center>\r\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\r\n  \r\n</center>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n\r\n\r\n\r\n<div class=\"motd-banners\">\r\n\r\n  \r\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\r\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\r\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\r\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\r\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\r\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\r\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\r\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\r\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\r\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\r\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\r\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\r\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\r\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\r\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\r\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\r\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\r\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\r\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\r\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\r\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\r\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\r\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\r\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\r\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\r\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\r\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\r\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\r\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\r\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\r\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\r\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\r\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\r\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\r\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\r\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\r\n\r\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\r\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\r\n\r\n\r\n\r\n\r\n  \r\n\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<br />\r\n<br />\r\n<div class=\"motd-rocksalt\">\r\n<center><font size=\"5\">\r\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n<br />\r\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\r\n\r\n<br />\r\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\r\n\r\n\r\n<br />\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n\r\n<center>\r\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\r\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\r\n  </a>\r\n</center>\r\n\r\n\r\n\r\n<br />\r\n<br /> \r\n\r\n\r\n",
-    "logo": "https://bojaingles.github.io/DD-Cytube-Room/south-park-logo.svg",
-    "favicon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M5%2036C5%2017%2015%204%2032%204s27%2013%2027%2032v18H5Z%22%20fill%3D%22%23ed790b%22%20stroke%3D%22%23623c22%22%20stroke-width%3D%223%22%2F%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2231%22%20rx%3D%2220%22%20ry%3D%2223%22%20fill%3D%22%239d5023%22%2F%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2230%22%20rx%3D%2214%22%20ry%3D%2218%22%20fill%3D%22%23ffe2b4%22%2F%3E%3Cellipse%20cx%3D%2226%22%20cy%3D%2227%22%20rx%3D%227%22%20ry%3D%2210%22%20fill%3D%22white%22%2F%3E%3Cellipse%20cx%3D%2238%22%20cy%3D%2227%22%20rx%3D%227%22%20ry%3D%2210%22%20fill%3D%22white%22%2F%3E%3Ccircle%20cx%3D%2228%22%20cy%3D%2227%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%2227%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M24%2047l8-12%208%2012M32%2035v22%22%20fill%3D%22none%22%20stroke%3D%22%23593b2b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E",
-    "watermark": "https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png",
-    "episodeGuide": true,
-    "compactEpisodeTitle": true,
-    "credit": true,
-    "preserveInfo": false,
-    "subtitles": {
-      "videos": {},
-      "episodes": {}
-    },
-    "guide": {
-      "showName": "South Park",
-      "source": "TVmaze",
-      "url": "https://bojaingles.github.io/DD-Cytube-Room/south-park-episodes.json",
-      "titlePattern": "^South[ ._-]+Park!?",
-      "titleCleanupPattern": "\\s*(?:\\((?=[^)]*(?:\\d{3,4}p|x26[45]|HEVC|BluRay|WEB[ ._-]?DL))[^)]*\\)|\\[(?=[^\\]]*(?:\\d{3,4}p|x26[45]|HEVC|BluRay|WEB[ ._-]?DL))[^\\]]*\\])(?:\\[UTR\\])?\\s*$",
-      "numbering": "season",
-      "aliases": {
-        "southparks01e04biggayal": 7922,
-        "southparks01e09mrhankey": 7927,
-        "southparks02e03chikenlover": 7934,
-        "southparks02e17gnomes": 7948,
-        "southparks03e01rainforestshmainforest": 7950,
-        "southparks03e03thesuccubus": 7952,
-        "southparks03e14theredbadgeofgayness": 7963,
-        "southparks03e17worldwiderecorderconcert": 7966,
-        "southparks04e01thetoothfairytats": 7967,
-        "southparks04e02cartmanssillyhatecrime": 7968,
-        "southparks04e04quintuplets": 7970,
-        "southparks04e08somethingyoucandowithyourfinger": 7974,
-        "southparks04e09dothehandicappedgotohell": 7975,
-        "southparks04e10probably": 7976,
-        "southparks04e14pip": 7980,
-        "southparks05e11theentity": 7994,
-        "southparks06e14thedeathcampoftolerance": 8011,
-        "southparks07e12allaboutmormons": 8026,
-        "southparks08e04yougotfdinthea": 8033,
-        "southparks10e12gogodgo": 8069,
-        "southparks11e05fantasticeasterspecia": 8076,
-        "southparks12e08thechinaprobrem": 8093,
-        "southparks12e11pandemic2": 8096,
-        "southparks17e07blackfriday": 8162,
-        "southparks17e08asonofassandfire": 8163,
-        "southparks26e05dikinbaushotdogs": 2501581,
-        "southparks00e01jesusvsfrosty": 153067,
-        "southparks00e02jesusvssanta": 153068,
-        "southparks15sixdaystoairthemakingofsouthpark": 8176
-      }
-    },
-    "networkBot": "DooDooBOTChump"
-  },
-  "uncensored-family-guy": {
-    "title": "Family Guy",
-    "brandName": "Family Guy",
-    "motd": "\n\n<br />\n<br />\n\n<br />\n\n<div class=\"motd-rocksalt\">\n<center><font size=\"5\">\nThis channel is a proud part of:<br /></font></center>\n\n<br />\n\n\n</div>\n\n\n<center>\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\n  \n</center>\n\n\n<div class=\"motd-rocksalt\">\n\n<br />\n\n<br />\n<font size=\"25\"><font color=\"red\"><b>MOVIE CHANNELS</b></font>\n\n  </font>\n\n\n\n<br />\n<br />\n\n\n\n<div class=\"motd-rocksalt\">\n\n\n  <div style=\"text-align:center;margin:24px 0\">\n    <a href=\"#videowrap\" class=\"motd-cta-3d motd-scroll-video\">\n      👇 SCROLL TO VIDEO 👇\n    </a>\n  </div>\n\n</div>\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<br />\n<br />\n\n\n\n<div class=\"motd-banners\">\n\n  \n    <div class=\"column\"><a href=\"Non-Stop-Action\"><img src=\"https://bit.ly/4qWyEe1\" /></a></div>\n    <div class=\"column\"><a href=\"24-7-Comedy\"><img src=\"https://bit.ly/3LcqdfC\" /></a></div>\n    <div class=\"column\"><a href=\"Gore-and-More\"><img src=\"https://bit.ly/49kFBj9\" /></a></div>\n    <div class=\"column\"><a href=\"Ed-Wood\"><img src=\"https://bit.ly/3Nt8wc9\" /></a></div>\n\n\n\n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\n    <div class=\"column\"><a href=\"https://cytu.be/r/TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\n    <div class=\"column\"><a href=\"Joe-Bob-Briggs\"><img src=\"https://bit.ly/4aUxH19\" /></a></div>\n\n\n \n    <div class=\"column\"><a href=\"hammer-horror\"><img src=\"https://bit.ly/3YAofIW\" /></a></div>\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\n    <div class=\"column\"><a href=\"Kaiju-Central\"><img src=\"https://bit.ly/4jLfZQc\" /></a></div>\n    <div class=\"column\"><a href=\"troma-entertainment\"><img src=\"https://bit.ly/48pKDck\" /></a></div>\n\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<br />\n<br />\n\n\n\n<br />\n\n<div class=\"motd-rocksalt\">\n\n\n\n\n<font size=\"25\"><font color=\"red\"><b>T.V. CHANNELS</b></font>\n\n  </font></div>\n\n\n\n<br />\n<br />\n<br />\n\n\n<div class=\"motd-banners\">\n\n    <div class=\"column\"><a href=\"Sanford-and-Son\"><img src=\"https://bit.ly/49FRCi1\" /></a></div>\n    <div class=\"column\"><a href=\"reno-911\"><img src=\"https://bit.ly/49GMrhV\" /></a></div>\n    <div class=\"column\"><a href=\"https://cytu.be/r/The-Sopranos\"><img src=\"https://bit.ly/4bxDDgK\" /></a></div>\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\n\n\n    <div class=\"column\"><a href=\"Sketch-Comedy\"><img src=\"https://bit.ly/459cGvX\" /></a></div>\n    <div class=\"column\"><a href=\"Back-When-Mtv-Was-Cool\"><img src=\"https://bit.ly/4jIl3EX\" /></a></div>\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\n \n  \n\n\n\n\n\n    <div class=\"column\">\n      <a href=\"30-Rock\">\n        <img src=\"https://bit.ly/49mfQiz\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Classic-Trailer-Park-Boys\">\n        <img src=\"https://bit.ly/49FSeUR\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Classic-Nickelodeon\">\n        <img src=\"https://bit.ly/4b4Dhy9\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"SaturdayMorningCartoonsChannel\">\n        <img src=\"https://bit.ly/3NmtOZ2\" />\n      </a>\n  </div>\n  \n\n\n\n\n\n    <div class=\"column\">\n      <a href=\"Classic-TV\">\n        <img src=\"https://bit.ly/3NvwBz7\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"classic-tv-2\">\n        <img src=\"https://bit.ly/3Libv6O\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Classic-TV-3\">\n        <img src=\"https://bit.ly/49GNhLB\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Best-of-SNL\">\n        <img src=\"https://bit.ly/49mQL78\" />\n      </a>\n  </div>\n  \n\n\n\n\n\n\n    <div class=\"column\">\n      <a href=\"Tales-From-The-Crypt\">\n        <img src=\"https://bit.ly/3LKZ0AH\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"The-Muppets\">\n        <img src=\"https://bit.ly/4qQbA0p\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Nothing-But-Commercials\">\n        <img src=\"https://bit.ly/4qYpIoB\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Its-Always-Sunny\">\n        <img src=\"https://bit.ly/3LCp9BD\" />\n      </a>\n    </div>\n\n\n\n\n    <div class=\"column\">\n      <a href=\"Trailer-Park-Boys-Channel\">\n        <img src=\"https://bit.ly/45boHB6\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Malcolm-in-the-Middle\">\n        <img src=\"https://bit.ly/49j4mfC\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"The-Office\">\n        <img src=\"https://bit.ly/3YAzp0j\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Married-with-Children\">\n        <img src=\"https://bit.ly/4qwPAb2\" />\n      </a>\n    </div>\n\n\n\n\n\n\n\n    <div class=\"column\">\n      <a href=\"Twilight-Zone\">\n        <img src=\"https://bit.ly/4sJSNFY\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"arrested-development\">\n        <img src=\"https://bit.ly/49Z4LTJ\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Fox-Kids-Channel\">\n        <img src=\"https://bit.ly/4pGnqtg\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"i-love-lucy\">\n        <img src=\"https://bit.ly/3YEOI87\" />\n      </a>\n    </div>\n\n\n\n\n\n\n    <div class=\"column\">\n      <a href=\"breaking-bad\">\n        <img src=\"https://bit.ly/4jYVGil\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Better-Call-Saul\">\n        <img src=\"https://bit.ly/4pEu8jk\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"gilligans-island\">\n        <img src=\"https://bit.ly/4qRRRgO\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"whose-line-is-it-anyway\">\n        <img src=\"https://bit.ly/4qSB3q8\" />\n      </a>\n    </div>\n\n\n\n\n\n\n    <div class=\"column\">\n      <a href=\"kids-in-the-hall\">\n        <img src=\"https://bit.ly/4sGoIXQ\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"https://cytu.be/r/Sliders\">\n        <img src=\"https://bit.ly/4sULFGW\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Disney-Channel-Classic\">\n        <img src=\"https://bit.ly/4jIjXJa\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"TheX-Files\">\n        <img src=\"https://bit.ly/4buu567\" />\n      </a>\n    </div>\n\n\n\n\n\n\n    <div class=\"column\">\n      <a href=\"Twin-Peaks-Show\">\n        <img src=\"https://bit.ly/4aiBfK6\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Eastbound-and-Down\">\n        <img src=\"https://bit.ly/49pQ90e\" />\n      </a>\n    </div>\n    <div class=\"column\">\n      <a href=\"Star-Trek-TNG\">\n        <img src=\"https://bit.ly/4pgHSk9\" />\n      </a>\n    </div>\n\n   <div class=\"column\"><a href=\"Doctor-Who-Classic\"><img src=\"https://bit.ly/4jKa9yu\" /></a></div>  \n\n\n<div class=\"column\"><a href=\"spike-tv-man-cave\"><img src=\"https://bit.ly/4a25FPj\" /></a></div>     </div>\n    \n\n\n\n\n\n  \n\n\n\n\n<div class=\"motd-rocksalt\">\n\n<br />\n<br />\n<font size=\"25\"><font color=\"red\"><b>ANIMATION CHANNELS</b></font>\n\n  </font></div>\n\n\n\n\n\n<br />\n<br />\n\n\n<div class=\"motd-banners\">\n\n  \n\n    <div class=\"column\"><a href=\"Family-Guy-Show\"><img src=\"https://bit.ly/49UXx42\" /></a></div>\n    <div class=\"column\"><a href=\"AnimeForAdults\"><img src=\"https://bit.ly/3NmOK26\" /></a></div>\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\n\n\n    <div class=\"column\"><a href=\"Best-of-Nick-Toons\"><img src=\"https://bit.ly/3NuKfCA\" /></a></div>\n    <div class=\"column\"><a href=\"LooneyTunesChannel\"><img src=\"https://bit.ly/4r1U4qh\" /></a></div>\n    <div class=\"column\"><a href=\"spongebob-squarepants\"><img src=\"https://bit.ly/49Yy5e0\" /></a></div>\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\n\n \n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\n\n\n\n\n\n\n\n\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\n    <div class=\"column\"><a href=\"The-Simpsons\"><img src=\"https://bit.ly/4q0QlbH\" /></a></div>\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/3Llok09\" /></a></div>\n\n\n    <div class=\"column\"><a href=\"Classic-Spongebob\"><img src=\"https://bit.ly/458Z4AY\" /></a></div>\n    <div class=\"column\"><a href=\"CartoonNetworkChannel\"><img src=\"https://bit.ly/49XTvI7\" /></a></div>\n    <div class=\"column\"><a href=\"Hanna-Barbera\"><img src=\"https://bit.ly/3Zd8mbx\" /></a></div>\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\n\n\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\n    <div class=\"column\"><a href=\"Hey-Arnold\"><img src=\"https://bit.ly/49zrPrO\" /></a></div>\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\n    <div class=\"column\"><a href=\"ed-edd-n-eddy\"><img src=\"https://bit.ly/4pKs8pP\" /></a></div>\n\n\n\n\n\n\n\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\n\n\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\n    <div class=\"column\"><a href=\"Uncensored-Family-Guy\"><img src=\"https://i.postimg.cc/ZqJqjv5C/UNCENSORED-Family-Guy-Banner-v2.png\" /></a></div>\n      <div class=\"column\"><a href=\"Tom-and-Jerry\"><img src=\"https://bit.ly/4byh8Z5\" /></a></div>\n\n\n\n\n\n\n\n</div>\n\n\n\n\n\n\n<div class=\"motd-rocksalt\">\n\n<br />\n\n<br />\n<font size=\"25\"><font color=\"red\"><b>OTHER CHANNELS</b></font>\n\n  </font></div>\n\n\n\n<br />\n<br />\n<br />\n\n<div class=\"motd-banners\">\n\n  \n\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\n    <div class=\"column\"><a href=\"Jackass-TV\"><img src=\"https://bit.ly/4quOWuQ\" /></a></div>\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\n\n</div>\n\n<br />\n<br />\n<div class=\"motd-rocksalt\">\n<center><font size=\"5\">\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\n\n\n\n\n</div>\n\n\n<br />\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\n\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\n\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\n\n<br />\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\n\n\n<br />\n\n\n<br />\n<br /> \n\n\n\n<center>\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\n  </a>\n</center>\n\n\n\n<br />\n<br /> \n\n\n<div class=\"motd-rocksalt\">\n<div style=\"text-align:center;margin:24px 0\">\n    <a href=\"#\" class=\"motd-cta-3d motd-cta-top\">\n      👆 BACK TO TOP 👆\n    </a>\n  </div>\n\n</div>",
-    "logo": "https://bojaingles.github.io/DD-Cytube-Room/family-guy-logo.svg",
-    "favicon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M12%2060V36Q9%208%2031%207q23%200%2021%2030v23%22%20fill%3D%22%23f4cfb1%22%2F%3E%3Cpath%20d%3D%22M12%2017Q16%201%2036%206l15%2010%22%20fill%3D%22%23914a28%22%2F%3E%3Cg%20fill%3D%22white%22%20stroke%3D%22%23282522%22%20stroke-width%3D%222%22%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2227%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%2244%22%20cy%3D%2227%22%20r%3D%2210%22%2F%3E%3Cpath%20d%3D%22M34%2027h1%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23222%22%3E%3Ccircle%20cx%3D%2226%22%20cy%3D%2228%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2228%22%20r%3D%222%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M28%2044q8%207%2017%200M32%2051q-8%209-14%201m14-1q9%209%2014%201%22%20fill%3D%22none%22%20stroke%3D%22%2373442c%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E",
-    "watermark": "https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png",
-    "episodeGuide": true,
-    "compactEpisodeTitle": true,
-    "credit": true,
-    "preserveInfo": false,
-    "subtitles": {
-      "videos": {},
-      "episodes": {}
-    },
-    "guide": {
-      "showName": "Family Guy",
-      "source": "TVmaze",
-      "url": "https://bojaingles.github.io/DD-Cytube-Room/family-guy-episodes.json",
-      "titlePattern": "^Family[ ._-]+Guy!?",
-      "titleCleanupPattern": "\\s*(?:[-–—]\\s*)?\\(Encoded\\)\\s*$",
-      "numbering": "season",
-      "aliases": {
-        "familyguyseason1episode2nevermetthedeadman": 5557,
-        "familyguyseason1episode7portraitofadog": 5562,
-        "familyguyseason2episode9ifimdyinimlyinepisode": 5571,
-        "familyguyseason2episode11apictureisworth1000bucks": 5573,
-        "familyguyseason3episode10afishoutofwater": 5593,
-        "familyguyseason4episode5theclevelandlorettaquagmireuncensored": 5610,
-        "familyguyseason4episode12perfectcastaway": 5617,
-        "familyguyseason4episode20patriotgamesuncensored": 5625,
-        "familyguyseason4episode27thegriffinfamilyhistory": 5632,
-        "familyguyseason5episode13billandpetersbogusjourney": 5648,
-        "familyguyseason6episode4stewiekillsloispart1": 5657,
-        "familyguyseason6episode5loiskillsstewiepart2": 5658,
-        "familyguyseason6episode2movinoutbrianssong": 5655,
-        "familyguyseason9episode18itsatrap": 5720,
-        "familyguyseason10episode22familyguyviewermail": 5742,
-        "familyguyseason13episode1thesimpsonsguyuncensored": 5787,
-        "familyguyseason17episode1marriedwithcancerpart1": 1486841,
-        "familyguyseason17episode10heftyshadesofgraypart1": 1577672,
-        "familyguyseason18episode6loiswedding": 1722426,
-        "familyguyseason18episode8skanksgiving": 1749354,
-        "familyguyseason19episode17youngparenttrap": 2040969
-      }
-    },
-    "networkBot": "DooDooBOTChump"
-  },
-  "bobs-burgers": {
-    "title": "Bob's Burgers",
-    "brandName": "Bob's Burgers",
-    "motd": "\n\n<br />\n<br />\n\n<br />\n\n<div class=\"motd-rocksalt\">\n<center><font size=\"5\">\nThis channel is a proud part of:<br /></font></center>\n\n<br />\n\n\n</div>\n\n\n<center>\n<img class=\"responsive-banner\" src=\"https://bit.ly/4pBPNII\" width=\"500\" />\n  \n</center>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<br />\n<br />\n\n\n\n<div class=\"motd-banners\">\n\n  \n    <div class=\"column\"><a href=\"So-Bad-They-Are-Good\"><img src=\"https://bit.ly/457B3Kv\" /></a></div>\n    <div class=\"column\"><a href=\"TheAsylumMovies\"><img src=\"https://bit.ly/4pxbkSV\" /></a></div>\n    <div class=\"column\"><a href=\"The-Breenverse\"><img src=\"https://bit.ly/4qKFKSS\" /></a></div>\n    <div class=\"column\"><a href=\"SlasherTV\"><img src=\"https://bit.ly/4sG3SaU\" /></a></div>\n    <div class=\"column\"><a href=\"SaturdayMorningCartoonsChannel\"><img src=\"https://bit.ly/3NmtOZ2\" /></a></div>\n\n    <div class=\"column\"><a href=\"Best-of-SNL\"><img src=\"https://bit.ly/49mQL78\" /></a></div>\n    <div class=\"column\"><a href=\"Nothing-But-Commercials\"><img src=\"https://bit.ly/4qYpIoB\" /></a></div>\n    <div class=\"column\"><a href=\"South-Park-Show\"><img src=\"https://bit.ly/4sQ5Ci7\" /></a></div>\n    <div class=\"column\"><a href=\"crayon-shin-chan\"><img src=\"https://bit.ly/49A392k\" /></a></div>\n    <div class=\"column\"><a href=\"Bobs-Burgers\"><img src=\"https://bit.ly/45hfWW5\" /></a></div>\n\n    <div class=\"column\"><a href=\"Classic-Simpsons\"><img src=\"https://bit.ly/3LCYlkS\" /></a></div>\n    <div class=\"column\"><a href=\"futurama-show\"><img src=\"https://bit.ly/4qq6uZa\" /></a></div>\n    <div class=\"column\"><a href=\"American-Dad\"><img src=\"https://bit.ly/49G9E3C\" /></a></div>\n    <div class=\"column\"><a href=\"Best-of-Adult-Swim\"><img src=\"https://bit.ly/4jL8XL1\" /></a></div>\n    <div class=\"column\"><a href=\"Home-Movies\"><img src=\"https://bit.ly/4qx6wP2\" /></a></div>\n\n    <div class=\"column\"><a href=\"Metal-Maniacs\"><img src=\"https://bit.ly/4qsAQds\" /></a></div>\n    <div class=\"column\"><a href=\"Joe-Pera-Talks-With-You\"><img src=\"https://bit.ly/48eksWS\" /></a></div>\n    <div class=\"column\"><a href=\"Anthology-Horror\"><img src=\"https://bit.ly/4vOwlNy\" /></a></div>\n    <div class=\"column\"><a href=\"Star-Trek-TNG\"><img src=\"https://bit.ly/4pgHSk9\" /></a></div>\n    <div class=\"column\"><a href=\"Its-Always-Sunny\"><img src=\"https://bit.ly/3LCp9BD\" /></a></div>\n\n    <div class=\"column\"><a href=\"Tales-From-The-Crypt\"><img src=\"https://bit.ly/3LKZ0AH\" /></a></div>\n    <div class=\"column\"><a href=\"Malcolm-in-the-Middle\"><img src=\"https://bit.ly/49j4mfC\" /></a></div>\n    <div class=\"column\"><a href=\"Dragon-Ball-Z\"><img src=\"https://bit.ly/45MtZTL\" /></a></div>\n    <div class=\"column\"><a href=\"Workaholics\"><img src=\"https://bit.ly/49rvWG8\" /></a></div>\n    <div class=\"column\"><a href=\"The-Office\"><img src=\"https://bit.ly/3YAzp0j\" /></a></div>\n\n    <div class=\"column\"><a href=\"Twilight-Zone\"><img src=\"https://bit.ly/4cJCZ03\" /></a></div>\n    <div class=\"column\"><a href=\"the-cleveland-show\"><img src=\"https://bit.ly/3LiztPn\" /></a></div>\n    <div class=\"column\"><a href=\"Eastbound-and-Down\"><img src=\"https://bit.ly/49pQ90e\" /></a></div>\n    <div class=\"column\"><a href=\"breaking-bad\"><img src=\"https://bit.ly/4jYVGil\" /></a></div>\n    <div class=\"column\"><a href=\"Better-Call-Saul\"><img src=\"https://bit.ly/4pEu8jk\" /></a></div>\n\n    <div class=\"column\"><a href=\"Treehouse-Of-Horror\"><img src=\"https://bit.ly/4pedcjp\" /></a></div>\n    <div class=\"column\"><a href=\"The-3-Stooges\"><img src=\"https://bit.ly/4pGwAG4\" /></a></div>\n    <div class=\"column\"><a href=\"Dr-Katz-Professional-Therapist\"><img src=\"https://bit.ly/4d6h3Lw\" /></a></div>\n    <div class=\"column\"><a href=\"True-Detective\"><img src=\"https://bit.ly/4f56WJf\" /></a></div>\n    <div class=\"column\"><a href=\"Married-with-Children\"><img src=\"https://bit.ly/4qwPAb2\" /></a></div>\n\n    <div class=\"column\"><a href=\"RickandMortyTV\"><img src=\"https://bit.ly/4jGbqGx\" /></a></div>\n    <div class=\"column\"><a href=\"phineas-and-ferb\"><img src=\"https://bit.ly/49A4aaE\" /></a></div>\n    <div class=\"column\"><a href=\"Spider-Man-Channel\"><img src=\"https://bit.ly/45hhnDX\" /></a></div>\n    <div class=\"column\"><a href=\"BeavisandButt-Head\"><img src=\"https://bit.ly/4qW0c31\" /></a></div>\n    <div class=\"column\"><a href=\"Attack-on-Titan-Channel\"><img src=\"https://bit.ly/49qkcFm\" /></a></div>\n\n    <div class=\"column\"><a href=\"arrested-development\"><img src=\"https://bit.ly/49Z4LTJ\" /></a></div>\n    <div class=\"column\"><a href=\"The-Whitest-Kids-U-Know\"><img src=\"https://bit.ly/4jFLT07\" /></a></div>\n    <div class=\"column\"><a href=\"kids-in-the-hall\"><img src=\"https://bit.ly/4sGoIXQ\" /></a></div>\n    <div class=\"column\"><a href=\"Aqua-Teen-Hunger-Force-Show\"><img src=\"https://bit.ly/49zSw0d\" /></a></div>\n    <div class=\"column\"><a href=\"king-of-the-hill\"><img src=\"https://bit.ly/4qpj0YV\" /></a></div>\n\n    <div class=\"column\"><a href=\"ren-and-stimpy\"><img src=\"https://bit.ly/45cFp2Z\" /></a></div>\n    <div class=\"column\"><a href=\"Regular-Show\"><img src=\"https://bit.ly/3LlCG0y\" /></a></div>\n    <div class=\"column\"><a href=\"Classic-Nickelodeon\"><img src=\"https://bit.ly/4b4Dhy9\" /></a></div>\n    <div class=\"column\"><a href=\"Animation-For-Adults\"><img src=\"https://bit.ly/49YkCm2\" /></a></div>\n    <div class=\"column\"><a href=\"Cinco-Cinema-Experience\"><img src=\"https://bit.ly/4e5r6B3\" /></a></div>\n\n    <div class=\"column\"><a href=\"Archer-Show\"><img src=\"https://bit.ly/4e6t0RS\" /></a></div>\n    <div class=\"column\"><a href=\"ColumboTV\"><img src=\"https://bit.ly/4pP5fle\" /></a></div>\n\n\n\n\n  \n\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n<br />\n<br />\n<div class=\"motd-rocksalt\">\n<center><font size=\"5\">\nIf you'd like to help support this channel, you have 3 options:<br /></font></center>\n\n\n\n\n</div>\n\n\n<br />\n<center><a href=\"https://cash.app/$ddbciv\"><img src=\"https://i.ibb.co/h2vRWY3/Donate-with-CASH-APP.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\n\n<center><a href=\"https://www.paypal.com/donate/?hosted_button_id=WF9SLMEYRKFSJ\"><img src=\"https://i.ibb.co/RTWzjSh/Donate-Now-With-Paypal.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\n\n<center><a href=\"https://amzn.to/49AvDYI\"><img src=\"https://i.ibb.co/mFVjCJG/Order-on-Amazon.png\" alt=\"Donate with Cash App!\" width=\"150\" /></a></center>\n\n<br />\n<center><span style=\"font-size:xx-small\">**As an Amazon Associate, this channel earns from qualifying purchases. When you click on the banner above <br />or a link in the poll and make a purchase, this can result in a small commission for this channel.**</span></center>\n\n\n<br />\n\n\n<br />\n<br /> \n\n\n\n<center>\n  <a href=\"https://discord.gg/DTtBeKg5tF\">\n    <img class=\"responsive-banner\" src=\"https://bit.ly/49K4owa\" />\n  </a>\n</center>\n\n\n\n<br />\n<br /> \n\n\n",
-    "logo": "https://bojaingles.github.io/DD-Cytube-Room/bobs-burgers-logo.svg",
-    "favicon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M13%2060V24Q13%205%2032%205t19%2019v36%22%20fill%3D%22%23f1caa5%22%2F%3E%3Cpath%20d%3D%22M13%2026V16Q15%201%2034%204q20%200%2018%2024l-8-12-6%203-8-6-12%2013%22%20fill%3D%22%2324201e%22%2F%3E%3Cg%20fill%3D%22white%22%3E%3Cellipse%20cx%3D%2224%22%20cy%3D%2230%22%20rx%3D%227%22%20ry%3D%228%22%2F%3E%3Cellipse%20cx%3D%2241%22%20cy%3D%2230%22%20rx%3D%227%22%20ry%3D%228%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23222%22%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2231%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2231%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M20%2045q4-9%2012-5%208-4%2013%205-7%208-13%201-6%207-12-1%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M25%2054h15%22%20stroke%3D%22%23754f36%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E",
-    "watermark": "https://i.postimg.cc/d3zdJNSr/The-DBN-(Doodoo-Buttchump-Network)-SPELLED-OUT.png",
-    "episodeGuide": true,
-    "compactEpisodeTitle": true,
-    "credit": true,
-    "preserveInfo": false,
-    "subtitles": {
-      "videos": {},
-      "episodes": {}
-    },
-    "guide": {
-      "showName": "Bob's Burgers",
-      "source": "TVmaze",
-      "url": "https://bojaingles.github.io/DD-Cytube-Room/bobs-burgers-episodes.json",
-      "titlePattern": "^Bob[’']?s[ ._-]+Burgers!?",
-      "titleCleanupPattern": "\\s*(?:[-–—]\\s*)?\\(Encoded\\)\\s*$",
-      "numbering": "season",
-      "aliases": {
-        "bobsburgerss02e03sychronizedswimming": 7430,
-        "bobsburgerss03e14lindapendentwoman": 7450,
-        "bobsburgerss04e11easycommercialeasygomercial": 7470,
-        "bobsburgerss04e21wharfhorse": 7480,
-        "bobsburgerss04e22worldwharfiithewharfening": 7481,
-        "bobsburgerss08e06thebleakeningpt1": 1348799,
-        "bobsburgerss08e07thebleakeningpt2": 1357207,
-        "bobsburgerss09e08rollerihardlyknowher": 1556899,
-        "bobsburgerss09e13bedbobybeyond": 1587856,
-        "bobsburgerss11e08theterminatoriiterminalsofendearment": 1964610,
-        "bobsburgerss11e15sheshankredemption": 2028978,
-        "bobsburgerss12e21somelikeitbotpt1eighthgraderunner": 2308422,
-        "bobsburgerss12e22somelikeitbotpt2judgebotday": 2308423,
-        "bobsburgerss14e09fraudofthedeadzombiedocupocalypse": 2683343,
-        "bobsburgerss06e03thehantening": 277903,
-        "bobsburgerss13e21motherauthorlaserpointer": 2514920
-      }
-    },
-    "networkBot": "DooDooBOTChump"
+    "networkBot": "MyNwah"
   },
   "tawog": {
     "title": "The Amazing World of Gumball",
@@ -1763,6 +1472,6 @@ window.DDRoomProfiles = {
     },
     "roomBadge": "https://bojaingles.github.io/DD-Cytube-Room/orangetv-logo.webp",
     "networkName": "ORANGETV",
-    "networkBot": "DooDooBOTChump"
+    "networkBot": "MyNwah"
   }
 };
