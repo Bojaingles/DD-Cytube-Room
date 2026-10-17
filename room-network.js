@@ -87,7 +87,7 @@
     const fallback=date?'Originally aired '+date+(info.japaneseAirdate&&info.englishAirdate?' in Japan; English broadcast '+info.englishAirdate+'.':'.'):plain(info.summary||'').split(/(?<=[.!?])\s+/)[0]||'Episode '+info.number;
     try{const source=new URL(info.url);if(!['www.tvmaze.com','tvmaze.com'].includes(source.hostname)||!/^\/episodes\/\d+/.test(source.pathname))return fallback;
       if(triviaFacts.has(info.id))return triviaFacts.get(info.id);
-      const response=await fetch('https://api.tvmaze.com/episodes/'+Number(info.id)+'/guestcast',{signal:AbortSignal.timeout(8000),credentials:'omit'});
+      const response=await fetch('https://api.tvmaze.com/episodes/'+Number(info.sourceEpisodeId||info.id)+'/guestcast',{signal:AbortSignal.timeout(8000),credentials:'omit'});
       if(!response.ok)return fallback;const cast=await response.json();
       const names=Array.isArray(cast)?cast.filter(c=>typeof c.person?.name==='string').slice(0,4).map(c=>c.person.name+(c.character?.name?' as '+c.character.name:'')):[];
       const fact=names.length?'Guest appearances: '+names.join('; ')+'.':fallback;

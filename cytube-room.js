@@ -1,7 +1,7 @@
 /* Shared CyTube room framework. Room-specific settings live in room-configs.js. */
 (async function () {
   'use strict';
-  const version = '3.4.3';
+  const version = '3.4.4';
   const reloadDraftKey='dd-reload-draft:'+location.pathname;
   function reloadRoom(){
     const input=document.getElementById('chatline');
@@ -956,7 +956,7 @@
       panelText('.dd-episode-title', match.name);
       api.currentEpisodeInfo=match;
       window.dispatchEvent(new CustomEvent('dd-episode-info'));
-      const meta = [info.code.toUpperCase()];
+      const meta = [match.displayCode || info.code.toUpperCase()];
       if (match.japaneseAirdate) {
         const dateText = value => {
           if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return 'Not listed';
