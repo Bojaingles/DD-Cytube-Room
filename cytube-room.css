@@ -698,10 +698,10 @@ span.dd-namecolor { display: none !important; }
 #chatwrap #userlist .userlist_item .user-dropdown { text-align:left; }
 #chatwrap #userlist .glyphicon-time { font-size:0; line-height:1; width:16px; height:16px; display:inline-grid; place-items:center; vertical-align:middle; }
 #chatwrap #userlist .glyphicon-time::before { content:'☾'; font:14px/1 'Segoe UI Emoji','Apple Color Emoji',sans-serif; opacity:.8; filter:drop-shadow(0 1px 2px #0008); }
-[data-dd-afk-season=pumpkin] #chatwrap #userlist .glyphicon-time::before { content:'🎃'; }
-[data-dd-afk-season=turkey] #chatwrap #userlist .glyphicon-time::before { content:'🦃'; }
-[data-dd-afk-season=snowflake] #chatwrap #userlist .glyphicon-time::before { content:'❄'; color:#b9d9ed; }
-[data-dd-afk-season=firework] #chatwrap #userlist .glyphicon-time::before { content:'🎆'; }
+[data-dd-afk-season=pumpkin] #chatwrap :is(#userlist,#dd-network-users) .glyphicon-time::before { content:'🎃'; }
+[data-dd-afk-season=turkey] #chatwrap :is(#userlist,#dd-network-users) .glyphicon-time::before { content:'🦃'; }
+[data-dd-afk-season=snowflake] #chatwrap :is(#userlist,#dd-network-users) .glyphicon-time::before { content:'❄'; color:#b9d9ed; }
+[data-dd-afk-season=firework] #chatwrap :is(#userlist,#dd-network-users) .glyphicon-time::before { content:'🎆'; }
 
 /* A matching picture frame and compact episode marquee. Native title stays intact. */
 #videowrap #currenttitle { display:none; }
@@ -933,3 +933,4 @@ span.dd-namecolor { display: none !important; }
 #chatwrap.dd-global-open>#messagebuffer{visibility:visible!important}#chatwrap.dd-global-open>#messagebuffer>*{visibility:hidden!important}#chatwrap.dd-global-open #userlist>.userlist_item{visibility:hidden!important}
 
 #chatwrap.dd-global-open>#messagebuffer>* *{visibility:hidden!important}
+#dd-network-users .dd-user-status{display:inline-flex;align-items:center;justify-content:center;flex:0 0 16px;min-width:16px;gap:1px}#dd-network-users .glyphicon-time{font-size:0;line-height:1;width:16px;height:16px;display:inline-grid;place-items:center}#dd-network-users .glyphicon-time::before{content:"☾";font:14px/1 "Segoe UI Emoji","Apple Color Emoji",sans-serif;opacity:.8;filter:drop-shadow(0 1px 2px #0008)}#dd-network-users .dd-network-user-name{min-width:0;flex:1;margin-right:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}#dd-network-users .dd-user-room-icons{margin-left:auto;gap:1px}#dd-network-users .dd-room-more{font:9px/1 system-ui;color:#b9a5ae;display:inline}#dd-network-users .user-dropdown>a{display:block;padding:4px 2px;font-size:11px}#dd-network-users .user-dropdown>button{display:block;margin:3px 0;width:100%}#dd-local-fallback{font-size:10px;color:#d7b789;margin-left:6px}
